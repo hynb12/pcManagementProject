@@ -18,16 +18,14 @@
 <style>
 body, html {
 	height: 100%;
-	margin: 0;
 }
 
-.container {
-	background-image: url('<%=request.getContextPath()%>/images/back1.jpg');
-	height: 100%;
+.view {
+	background-image: url("<%=request.getContextPath()%>/images/back.jpg");
 	background-position: center;
 	background-repeat: no-repeat;
 	background-size: cover;
-	position: relative;
+	height: 100%;
 }
 
 .buttons {
@@ -40,12 +38,12 @@ body, html {
 </style>
 </head>
 <body>
-	<div class="container">
+	<div class="view">
 		<div class="buttons">
-			<button type="button" class="btn btn-success btn-lg"
-				onclick="location.href='loginForm'">로그인</button>
-			<button type="button" class="btn btn-info btn-lg"
-				onclick="location.href='memberRegForm'">회원가입</button>
+			<button type="button" class="btn btn-outline-primary"
+				onclick="location.href='loginForm'" style="height: 100px; width: 130px">로그인</button>
+			<button type="button" class="btn btn-outline-danger"
+				onclick="location.href='memberRegForm'" style="height: 100px; width: 130px">회원가입</button>
 		</div>
 	</div>
 </body>
