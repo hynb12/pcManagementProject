@@ -101,8 +101,4 @@ hs_err_pid*
 target/
 
 
-<<<<<<< HEAD
 # End of https://www.gitignore.io/api/java,eclipse,java-web
-=======
-# End of https://www.gitignore.io/api/java,eclipse,java-web
->>>>>>> refs/remotes/origin/master
