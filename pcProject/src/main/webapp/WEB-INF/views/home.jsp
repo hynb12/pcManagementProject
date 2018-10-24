@@ -42,10 +42,10 @@ body, html {
 		<div class="buttons">
 			<button type="button" class="btn btn-outline-primary"
 				onclick="location.href='member/login'"
-				style="height: 100px; width: 130px">로그인</button>
+				style="height: 110px; width: 140px">로그인</button>
 			<button type="button" class="btn btn-outline-danger"
 				onclick="location.href='member/reg'"
-				style="height: 100px; width: 130px">회원가입</button>
+				style="height: 110px; width: 140px">회원가입</button>
 		</div>
 	</div>
 </body>
