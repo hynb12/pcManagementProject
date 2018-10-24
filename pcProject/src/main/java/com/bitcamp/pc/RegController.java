@@ -5,19 +5,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-@RequestMapping("/memberRegForm")
-public class MemberRegController {
+@RequestMapping("/member/reg")
+public class RegController {
 	
 	// 메인페이지에서 회원가입 클릭  
 	@RequestMapping(method=RequestMethod.GET)
 	public String memberRegForm() {	
-		return "memberRegForm";
+		return "member/regForm";
 	}
 	
 	// 회원가입 페이지에서 회원가입 클릭
 	@RequestMapping(method=RequestMethod.POST)
 	public String memberReg() {	
 		
-		return "redirect:loginForm";
+		return "redirect:login";
 	}
 }

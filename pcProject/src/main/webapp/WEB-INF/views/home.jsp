@@ -41,9 +41,9 @@ body, html {
 	<div class="view">
 		<div class="buttons">
 			<button type="button" class="btn btn-outline-primary"
-				onclick="location.href='loginForm'" style="height: 100px; width: 130px">로그인</button>
+				onclick="location.href='member/login'" style="height: 100px; width: 130px">로그인</button>
 			<button type="button" class="btn btn-outline-danger"
-				onclick="location.href='memberRegForm'" style="height: 100px; width: 130px">회원가입</button>
+				onclick="location.href='member/reg'" style="height: 100px; width: 130px">회원가입</button>
 		</div>
 	</div>
 </body>

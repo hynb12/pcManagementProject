@@ -16,13 +16,15 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 </head>
 <body>
-	<h1>로그인 페이지입니다.</h1>
+	<h1>회원가입 페이지</h1>
 	<form method="post">
 		<label for="userId">아이디</label>
 		<input type="text" class="form-control" id="userId"/><br>
 		<label for="userPw">비밀번호</label>
 		<input type="password" class="form-control" id="userPw"/><br>
-		<input type="submit" value="로그인">
+		<label for="userName">비밀번호</label>
+		<input type="text" class="form-control" id="userName"/><br>
+		<input type="submit" value="회원가입">
 	</form>
 </body>
 </html>
