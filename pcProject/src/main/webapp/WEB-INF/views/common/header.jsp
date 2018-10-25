@@ -40,13 +40,7 @@
 		</li>
 		
 		<li class="nav-item">
-			<c:if test="${isAdmin}">
-				<a class="nav-link" href="<%=request.getContextPath()%>/admin/board">관리자 게시판</a>
-			</c:if>
-			
-			<c:if test="${!isAdmin}">
-				<a class="nav-link" href="<%=request.getContextPath()%>/user/board">사용자 게시판</a>
-			</c:if>
+			<a class="nav-link" href="<%=request.getContextPath()%>/member/notice">공지사항</a>
 		</li>
 		
 		<li class="nav-item">

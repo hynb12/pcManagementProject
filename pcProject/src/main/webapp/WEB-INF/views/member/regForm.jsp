@@ -13,13 +13,16 @@
 			<p>Please fill in this form.</p>
 			<hr>
 
-			<label for="email"><b>Id (Email)</b></label> <input type="text" placeholder="Enter Email" name="email" required> 
+			<label for="email"><b>Id (Email)</b></label> 
+			<input type="text" placeholder="Enter Email" name="email" required> 
 			<label for="psw"><b>Password</b></label> 
 			<input type="password" placeholder="Enter Password" name="psw" required> 
 			<label for="psw-repeat"><b>Repeat Password</b></label> 
 			<input type="password" placeholder="Repeat Password" name="psw-repeat" required> 
 			<label for="name"><b>Name</b></label> 
-			<input type="text" placeholder="Enter Name" name="name" required> 
+			<input type="text" placeholder="Enter Name" name="name" required>
+			<label for="phoneNum"><b>PhoneNum</b></label> 
+			<input type="text" placeholder="Enter PhoneNum" name="phoneNum" required>
 			<label>
 				<input type="checkbox" checked="checked" name="remember" style="margin-bottom: 15px"> Remember me
 			</label>
