@@ -6,20 +6,24 @@
 <title>PC Management</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
-
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<!-- Bootstrap core CSS -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet">
+<!-- Material Design Bootstrap -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.13/css/mdb.min.css" rel="stylesheet">
+<!-- JQuery -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<!-- Bootstrap tooltips -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+<!-- Bootstrap core JavaScript -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.min.js"></script>
+<!-- MDB core JavaScript -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.13/js/mdb.min.js"></script>
 <style>
 body, html {
 	height: 100%;
 }
-
 .view {
 	background-image: url("<%=request.getContextPath()%>/images/back.jpg");
 	background-position: center;
@@ -27,7 +31,6 @@ body, html {
 	background-size: cover;
 	height: 100%;
 }
-
 .buttons {
 	text-align: center;
 	position: absolute;
@@ -35,31 +38,35 @@ body, html {
 	left: 50%;
 	transform: translate(-50%, -50%);
 }
-
 .forgotInfo {
+	color: #fff;
 	text-align: center;
 	position: absolute;
 	left: 50%;
 	bottom: 20%;
 	transform: translate(-50%, -50%);
 }
-	
+.hr-light {
+  border-top: 3px solid #fff;
+  width: 130px;
+}
 </style>
 </head>
 <body>
-	<div class="view">
+	<div class="view" >
 		<div class="buttons">
-			<button type="button" class="btn btn-outline-primary"
-				onclick="location.href='member/login'"
-				style="height: 110px; width: 160px">로그인</button>
-			<button type="button" class="btn btn-outline-danger"
-				onclick="location.href='member/reg'"
-				style="height: 110px; width: 160px">회원가입</button>
+			<h1 class="white-text font-weight-bold mb-4 pt-md-5 pt-5 wow fadeInDown" data-wow-delay="0.3s"><strong>안녕하세요</strong></h1>
+			<hr class="hr-light my-4 wow fadeInDown" data-wow-delay="0.4s">
+			<a class="btn btn-secondary btn-lg font-weight-bold wow fadeInDown" data-wow-delay="0.7s"  style="width: 200px" href="member/login">로그인</a>
+			<a class="btn btn-default btn-lg font-weight-bold wow fadeInDown" data-wow-delay="0.7s" style="width: 200px" href="member/reg">회원가입</a>
 		</div>
-		<div class="forgotInfo">
-			<a href="member/search" style="color:#FFFFFF">아이디 또는 비밀번호가 기억나지 않으세요?</a>
-		</div>
+			<a class="forgotInfo" href="member/search">아이디 또는 비밀번호가 기억나지	않으세요?</a>
 	</div>
-	
 </body>
+<script>
+	$('.welcomeMessage').addClass('animated bounce');
+	
+	// Animations init
+	new WOW().init();
+</script>
 </html>
