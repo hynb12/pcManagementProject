@@ -82,13 +82,13 @@ html, body {
 
 </head>
 <body>
-	<%@ include file="/WEB-INF/views/common/adminHeader.jsp" %>
+	<%@ include file="/WEB-INF/views/common/header.jsp" %>
 
 	<div id="main-container">
-<h1>회원정보리스트</h1>
+		<h1>회원정보리스트</h1>
 	</div>
 	
-	<%@ include file="/WEB-INF/views/common/adminFooter.jsp" %>
+	<%@ include file="/WEB-INF/views/common/footer.jsp" %>
 
 </body>
 </html>

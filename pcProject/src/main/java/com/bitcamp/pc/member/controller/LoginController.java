@@ -19,16 +19,18 @@ public class LoginController {
 	public String login() {
 		boolean isLogin = true; // 로그인 성공 여부 검사
 		boolean isAdmin = true; // 관리자 로그인 검사
-
-		String url = "redirect:/user/userMain";
+		
+		// 관리자 로그인 여부 확인하기 위해 메인 컨트롤러로 넘겨준다.
+		String url = "redirect:/member/main?isAdmin="+isAdmin;
 
 		if (isLogin) {
 			if (isAdmin) {
-				url = "redirect:/admin/adminMain";
+				url = "redirect:/member/main?isAdmin="+isAdmin;
 			}
 		} else {
 			url = "member/loginForm";
 		}
+		
 		return url;
 	}
 }

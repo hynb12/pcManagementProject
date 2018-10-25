@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>adminMain</title>
+<title>Insert title here</title>
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 <script
@@ -81,37 +81,9 @@ html, body {
 </head>
 <body>
 	<%@ include file="/WEB-INF/views/common/header.jsp"%>
-
-	<div id="main-container">
-		<div id="comDiv">
-			<h3>◆ 현재 사용 중인 컴퓨터: 5대</h3>
-			<table id="comTable">
-				<tr>
-					<td>1</td>
-					<td>2</td>
-					<td>3</td>
-				</tr>
-
-				<tr>
-					<td>4</td>
-					<td>5</td>
-					<td>6</td>
-				</tr>
-
-				<tr>
-					<td>7</td>
-					<td>8</td>
-					<td>9</td>
-				</tr>
-
-			</table>
-		</div>
-		<div id="foodDiv">
-			<h1>음식</h1>
-		</div>
-	</div>
-
+	
+	<h1>마이 페이지입니다.</h1>
+	
 	<%@ include file="/WEB-INF/views/common/footer.jsp"%>
-
 </body>
 </html>

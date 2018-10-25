@@ -8,7 +8,8 @@ public class UserListController {
 	
 	// admin 메인페이지에서 회원정보 클릭 
 	@RequestMapping("/admin/userList")
-	public String getuserList() {
+	public String getUserList() {
+		
 		return "admin/userList";
 	}
 }
