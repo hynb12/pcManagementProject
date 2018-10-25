@@ -3,26 +3,32 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>PC Management</title>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+<link rel="styleSheet" href="../css/css_loginForm.css">
+
 </head>
 <body>
-	<h1>로그인 페이지</h1>
+
 	<form method="post">
-		<label for="userId">아이디</label>
-		<input type="text" class="form-control" id="userId"/><br>
-		<label for="userPw">비밀번호</label>
-		<input type="password" class="form-control" id="userPw"/><br>
-		<input type="submit" value="로그인">
+		<div class="imgcontainer">
+			<img src="../images/img_avatar2.png" alt="Avatar" class="avatar">
+		</div>
+
+		<div class="container">
+			<label for="uname"><b>Username</b></label> 
+			<input type="text" placeholder="Enter Username" name="uname" required> 
+			<label for="psw"><b>Password</b></label> 
+			<input type="password" placeholder="Enter Password" name="psw" required>
+
+			<button type="submit">Login</button>
+			<label>
+				<input type="checkbox" checked="checked" name="remember"> Remember me
+			</label>
+		</div>
+
+		<div class="container" style="background-color: #f1f1f1">
+			<button type="button" class="cancelbtn" onclick="location.href='../'">Cancel</button>
+		</div>
 	</form>
+
 </body>
 </html>

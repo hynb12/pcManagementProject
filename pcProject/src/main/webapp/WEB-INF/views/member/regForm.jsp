@@ -3,28 +3,34 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>PC Management</title>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+<link rel="styleSheet" href="../css/css_regForm.css">
 </head>
 <body>
-	<h1>회원가입 페이지</h1>
+
 	<form method="post">
-		<label for="userId">아이디</label>
-		<input type="text" class="form-control" id="userId"/><br>
-		<label for="userPw">비밀번호</label>
-		<input type="password" class="form-control" id="userPw"/><br>
-		<label for="userName">비밀번호</label>
-		<input type="text" class="form-control" id="userName"/><br>
-		<input type="submit" value="회원가입">
+		<div class="container">
+			<h1>Sign Up</h1>
+			<p>Please fill in this form.</p>
+			<hr>
+
+			<label for="email"><b>Id (Email)</b></label> <input type="text" placeholder="Enter Email" name="email" required> 
+			<label for="psw"><b>Password</b></label> 
+			<input type="password" placeholder="Enter Password" name="psw" required> 
+			<label for="psw-repeat"><b>Repeat Password</b></label> 
+			<input type="password" placeholder="Repeat Password" name="psw-repeat" required> 
+			<label for="name"><b>Name</b></label> 
+			<input type="text" placeholder="Enter Name" name="name" required> 
+			<label>
+				<input type="checkbox" checked="checked" name="remember" style="margin-bottom: 15px"> Remember me
+			</label>
+
+			<div class="clearfix">
+				<button type="button" class="cancelbtn"
+					onclick="location.href='../'">Cancel</button>
+				<button type="submit" class="signupbtn">Sign Up</button>
+			</div>
+		</div>
 	</form>
+
 </body>
 </html>

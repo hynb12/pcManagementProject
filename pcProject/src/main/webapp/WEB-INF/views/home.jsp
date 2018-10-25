@@ -31,10 +31,19 @@ body, html {
 .buttons {
 	text-align: center;
 	position: absolute;
-	top: 50%;
+	top: 40%;
 	left: 50%;
 	transform: translate(-50%, -50%);
 }
+
+.forgotInfo {
+	text-align: center;
+	position: absolute;
+	left: 50%;
+	bottom: 20%;
+	transform: translate(-50%, -50%);
+}
+	
 </style>
 </head>
 <body>
@@ -47,6 +56,10 @@ body, html {
 				onclick="location.href='member/reg'"
 				style="height: 110px; width: 160px">회원가입</button>
 		</div>
+		<div class="forgotInfo">
+			<a href="member/search" style="color:#FFFFFF">아이디 또는 비밀번호가 기억나지 않으세요?</a>
+		</div>
 	</div>
+	
 </body>
 </html>
