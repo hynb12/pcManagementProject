@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- namespace = 인터페이스 있는 패키지명 + 인터페이스 명 -->
+<mapper namespace="com.bitcamp.pc.member.dao.UserDaoInterface">
+
+	<insert id="insertMemberInfo"
+		parameterType="com.bitcamp.pc.member.model.User"
+		useGeneratedKeys="true" keyProperty="idx">
+		insert into member (userId,
+		userPw, userName, userphoto)
+		values ( #{userId}, #{password},
+		#{userName}, #{userPhoto})
+	</insert>
+
+	<update id="ModifyMemberInfo"
+		parameterType="com.bitcamp.op.member.model.MemberInfo"
+		useGeneratedKeys="true" keyProperty="idx">
+		update member set
+		username=#{userName},password=#{password},userphoto=#{userPhoto} where
+		userid=#{userId}
+	</update>
+
+	<delete id="DeleteMemberInfo"
+		parameterType="com.bitcamp.op.member.model.MemberInfo">
+		delete from member where userid = #{userId}
+	</delete>
+
+	<select id="getMemberInfo"
+		resultType="com.bitcamp.op.member.model.MemberInfo">
+		select * from member where userid = #{userId}
+	</select>
+
+	<select id="getMemberAll"
+		resultType="com.bitcamp.op.member.model.MemberInfo">select * from member</select>
+
+</mapper>
