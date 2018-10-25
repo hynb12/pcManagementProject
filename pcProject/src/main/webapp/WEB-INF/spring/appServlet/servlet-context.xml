@@ -33,42 +33,5 @@
 	<context:component-scan
 		base-package="com.bitcamp.pc" />
 
-	<!-- JDBC 빈 등록 -->
-	<!-- 2018-10-25 14:45 김정기 -->
-	<beans:bean id="dataSource"
-		class="com.mchange.v2.c3p0.ComboPooledDataSource">
-		<beans:property name="driverClass"
-			value="com.mysql.jdbc.Driver" />
-		<beans:property name="jdbcUrl"
-			value="jdbc:mysql://localhost/pc?characterEncoding=utf8" />
-		<beans:property name="user" value="bit" />
-		<beans:property name="password" value="1234" />
-	</beans:bean>
-
-	<!-- PlatformTransactionManager 빈 설정 -->
-	<!-- 2018-10-25 14:45 김정기 -->
-	<beans:bean id="transactionManager"
-		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-		<beans:property name="dataSource" ref="dataSource" />
-	</beans:bean> <!-- @Transactional 애노테이션 활성화 설정 -->
-	<tx:annotation-driven
-		transaction-manager="transactionManager" />
-
-	<!-- mybatis-spring 모듈이 제공하는 SqlSessionFactoryBean 이용해 mybatis의 SqlSessionFactory를 
-		생성 -->
-	<!-- 2018-10-25 14:45 김정기 -->
-	<beans:bean id="sqlSessionFactory"
-		class="org.mybatis.spring.SqlSessionFactoryBean">
-		<beans:property name="dataSource" ref="dataSource" />
-		<beans:property name="mapperLocations"
-			value="classpath:com/bitcamp/pc/member/mapper/mybatis/*.xml" />
-	</beans:bean>
-
-	<!-- 2018-10-25 14:45 김정기 -->
-	<beans:bean id="sqlSession"
-		class="org.mybatis.spring.SqlSessionTemplate">
-		<beans:constructor-arg index="0"
-			ref="sqlSessionFactory" />
-	</beans:bean>
-
+	
 </beans:beans>
