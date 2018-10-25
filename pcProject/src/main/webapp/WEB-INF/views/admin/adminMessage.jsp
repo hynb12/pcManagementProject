@@ -83,32 +83,7 @@ html, body {
 	<%@ include file="/WEB-INF/views/common/adminHeader.jsp"%>
 
 	<div id="main-container">
-		<div id="comDiv">
-			<h3>◆ 현재 사용 중인 컴퓨터: 5대</h3>
-			<table id="comTable">
-				<tr>
-					<td>1</td>
-					<td>2</td>
-					<td>3</td>
-				</tr>
-
-				<tr>
-					<td>4</td>
-					<td>5</td>
-					<td>6</td>
-				</tr>
-
-				<tr>
-					<td>7</td>
-					<td>8</td>
-					<td>9</td>
-				</tr>
-
-			</table>
-		</div>
-		<div id="foodDiv">
-			<h1>음식</h1>
-		</div>
+		<h1>관리자 쪽지입니다.</h1>
 	</div>
 
 	<%@ include file="/WEB-INF/views/common/adminFooter.jsp"%>
