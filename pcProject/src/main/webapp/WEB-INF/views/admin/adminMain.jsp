@@ -82,24 +82,7 @@ html, body {
 
 </head>
 <body>
-	<nav class="navbar navbar-expand-sm bg-dark navbar-dark"> 
-		<span class="navbar-text"> PC Management System </span>
-
-		<form class="form-inline" action="/action_page.php">
-			<input class="form-control mr-sm-2" type="text" placeholder="Search">
-			<button class="btn btn-success" type="submit">Search</button>
-			
-		</form>
-
-		<span class="navbar-text" id="admin-name"> 관리자님 어서오세요. </span>
-
-		<ul class="navbar-nav">
-			<li class="nav-item"><a class="nav-link" href="#">메인 </a></li>
-			<li class="nav-item"><a class="nav-link" href="#">회원정보 </a></li>
-			<li class="nav-item"><a class="nav-link" href="#">게시판</a></li>
-			<li class="nav-item"><a class="nav-link" href="#">쪽지</a></li>
-		</ul>
-	</nav>
+	<%@ include file="/WEB-INF/views/common/header.jsp" %>
 
 	<div id="main-container">
 		<div id="comDiv">
@@ -130,9 +113,7 @@ html, body {
 		</div>
 	</div>
 	
-	<nav class="navbar navbar-expand-sm bg-dark navbar-dark" id="footer">
-		<span class="navbar-text">관리자 이메일: mkms1104@naver.com</span>
-	</nav> 
+	<%@ include file="/WEB-INF/views/common/footer.jsp" %>
 
 </body>
 </html>
