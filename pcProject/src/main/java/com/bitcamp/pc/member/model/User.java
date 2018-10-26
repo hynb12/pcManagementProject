@@ -10,22 +10,7 @@ public class User {
 	private String userPw; // 비밀번호
 	private String userPhone; // 폰번호
 	private String userBirth; // 생년월일
-	private Time userTime; // 남은시간
-
-	public User() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
-	public User(String userId, String userName, String userPw, String userPhone, String userBirth, Time userTime) {
-		super();
-		this.userId = userId;
-		this.userName = userName;
-		this.userPw = userPw;
-		this.userPhone = userPhone;
-		this.userBirth = userBirth;
-		this.userTime = userTime;
-	}
+	private long userTime; // 남은시간
 
 	public String getUserId() {
 		return userId;
@@ -67,18 +52,33 @@ public class User {
 		this.userBirth = userBirth;
 	}
 
-	public Time getUserTime() {
+	public long getUserTime() {
 		return userTime;
 	}
 
-	public void setUserTime(Time userTime) {
+	public void setUserTime(long userTime) {
 		this.userTime = userTime;
 	}
 
 	@Override
 	public String toString() {
-		return "Member [userId=" + userId + ", userName=" + userName + ", userPw=" + userPw + ", userPhone=" + userPhone
+		return "User [userId=" + userId + ", userName=" + userName + ", userPw=" + userPw + ", userPhone=" + userPhone
 				+ ", userBirth=" + userBirth + ", userTime=" + userTime + "]";
+	}
+
+	public User(String userId, String userName, String userPw, String userPhone, String userBirth, long userTime) {
+		super();
+		this.userId = userId;
+		this.userName = userName;
+		this.userPw = userPw;
+		this.userPhone = userPhone;
+		this.userBirth = userBirth;
+		this.userTime = userTime;
+	}
+
+	public User() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
 
 }

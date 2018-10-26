@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- namespace = 인터페이스 있는 패키지명 + 인터페이스 명 -->
+<mapper namespace="com.bitcamp.pc.member.dao.UTimeDaoInterface">
+
+
+	<update id="startTime"
+		parameterType="com.bitcamp.pc.member.model.UTime">
+		update utime set comid=#{comId},
+		usertime=#{userTime},
+		starttime=#{startTime},
+		endtime=#{endTime}
+		where
+		userId=#{userId}
+	</update>
+
+
+	<update id="endTime"
+		parameterType="com.bitcamp.pc.member.model.UTime">
+		update utime set usertime=#{userTime},
+		endtime=#{endTime}
+		where
+		userId=#{userId}
+	</update>
+
+	<update id="remainTime"
+		parameterType="com.bitcamp.pc.member.model.UTime">
+		update utime set userTime=#{startTime}-
+		where
+		userId=#{userId}
+	</update>
+
+
+</mapper>

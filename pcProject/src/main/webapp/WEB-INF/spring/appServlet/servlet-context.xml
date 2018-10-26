@@ -33,5 +33,39 @@
 	<context:component-scan
 		base-package="com.bitcamp.pc" />
 
-	
+	<!-- Service 등록 -->
+	<beans:bean id="timeService"
+		class="com.bitcamp.pc.member.service.TimeService" />
+
+	<!-- JDBC 빈 등록 -->
+	<!-- 2018-10-25 14:45 김정기 -->
+	<beans:bean id="dataSource"
+		class="com.mchange.v2.c3p0.ComboPooledDataSource">
+		<beans:property name="driverClass"
+			value="com.mysql.jdbc.Driver" />
+		<beans:property name="jdbcUrl"
+			value="jdbc:mysql://localhost/pc?characterEncoding=utf8" />
+		<beans:property name="user" value="bit" />
+		<beans:property name="password" value="1234" />
+	</beans:bean>
+
+	<!-- mybatis-spring 모듈이 제공하는 SqlSessionFactoryBean 이용해 mybatis의 SqlSessionFactory를 
+		생성 -->
+	<!-- 2018-10-25 14:45 김정기 -->
+	<beans:bean id="sqlSessionFactory"
+		class="org.mybatis.spring.SqlSessionFactoryBean">
+		<beans:property name="dataSource" ref="dataSource" />
+		<beans:property name="mapperLocations"
+			value="classpath:com/bitcamp/pc/member/mapper/mybatis/*.xml" />
+	</beans:bean>
+
+	<!-- 2018-10-25 14:45 김정기 -->
+	<beans:bean id="sqlSession"
+		class="org.mybatis.spring.SqlSessionTemplate">
+		<beans:constructor-arg index="0"
+			ref="sqlSessionFactory" />
+	</beans:bean>
+
+
+
 </beans:beans>
