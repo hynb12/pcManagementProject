@@ -14,7 +14,6 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
-
 <style>
 .navbar-nav {
 	position: absolute;
@@ -79,21 +78,11 @@
 <body>
 	<%@ include file="/WEB-INF/views/common/header.jsp"%>
 	<div class="container">
-		<a class="btn btn-secondary" href="/pc/admin/noticeWrite" >글쓰기</a>
-
-		<table class="table table-hover text-center">
-			<thead>
-				<tr>
-					<th style="width: 80%">내용</th>
-					<th>등록일</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td>작성된 방명록 메시지가 없습니다.</td>
-				</tr>
-			</tbody>
-		</table>
+		<h1>글쓰기폼</h1>
+		<div class="md-form mt-3">
+			<input type="text" class="form-control" placeholder="제목">
+			<textarea class="form-control rounded-0" id="exampleFormControlTextarea2" rows="3" placeholder="내용"></textarea>
+		</div>
 	</div>
 	<%@ include file="/WEB-INF/views/common/footer.jsp"%>
 </body>
