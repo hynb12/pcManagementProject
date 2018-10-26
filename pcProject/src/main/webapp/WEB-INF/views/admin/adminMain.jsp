@@ -51,10 +51,10 @@ html, body {
 #foodDiv {
 	float: right;
 	width: 50%;
-	background: blue;
 	height: 100%;
 	padding: 20px;
 	overflow-y: scroll;
+	text-align: center;
 }
 
 #footer {
@@ -65,17 +65,47 @@ html, body {
 }
 
 #comTable {
+	margin: 0 auto;
 	border-spacing: 20px;
 	border-collapse: separate;
-	margin-left: 10%;
+	
 }
 
-#comTable td {
+#comTable td{
 	background: gray;
-	padding: 80px;
-	font-size: 30px;
+	width: 180px;
+	height: 180px;
+	padding-left:10px;
+	font-size: 20px;
 	color: white;
+	text-align: left;
+	border-radius: 10px;
+	
 }
+
+/* 테스트 */
+#comTable td:not(:nth-child(1)){
+	opacity: 0.5;
+}
+
+#foodTable {
+	margin: 0 auto;
+}
+
+#foodTable td{
+	padding: 10px;
+	
+}
+
+.comNum {
+	color: black;
+	font-weight: bold;
+}
+
+#close {
+	color : red;
+}
+
 </style>
 
 </head>
@@ -84,22 +114,45 @@ html, body {
 
 	<div id="main-container">
 		<div id="comDiv">
-			<h3>◆ 현재 사용 중인 컴퓨터: 5대</h3>
+			<h3>◆ 현재 사용 중인 컴퓨터: 5대 ◆</h3>
 			<table id="comTable">
 				<tr>
-					<td>1</td>
+					<td>
+						<div class="comNum">1</div>
+						<div class="userId">mkms1104</div>
+						<div class="reMaining-time">03:40</div>
+						<div class="comManagement">
+							<a href="">시간 추가</a><br>
+							<a href="" id="close">강제 종료</a>
+						</div>
 					<td>2</td>
 					<td>3</td>
 				</tr>
 
 				<tr>
-					<td>4</td>
+					<td>
+						<div class="comNum">4</div>
+						<div class="userId">zzan123</div>
+						<div class="reMaining-time">00:35</div>
+						<div class="comManagement">
+							<a href="">시간 추가</a><br>
+							<a href="" id="close">강제 종료</a>
+						</div>
+					</td>
 					<td>5</td>
 					<td>6</td>
 				</tr>
 
 				<tr>
-					<td>7</td>
+					<td>
+						<div class="comNum">7</div>
+						<div class="userId">bba557</div>
+						<div class="reMaining-time">02:19</div>
+						<div class="comManagement">
+							<a href="">시간 추가</a><br>
+							<a href="" id="close">강제 종료</a>
+						</div>
+					</td>
 					<td>8</td>
 					<td>9</td>
 				</tr>
@@ -107,11 +160,33 @@ html, body {
 			</table>
 		</div>
 		<div id="foodDiv">
-			<h1>음식</h1>
+			<h3>◆ 주문 대기 중인 음식 ◆</h3>
+			<table border="1" id="foodTable">
+				<tr>
+					<td>컴퓨터 번호</td>
+					<td>음식 이름</td>
+					<td>수량</td>
+					<td>상태</td>
+				</tr>
+				
+				<tr>
+					<td>3</td>
+					<td>돈까스</td>
+					<td>1</td>
+					<td>처리하기</td>
+				</tr>
+			
+			</table>
 		</div>
 	</div>
 
 	<%@ include file="/WEB-INF/views/common/footer.jsp"%>
-
+	
+	
+	<script>
+		
+	
+	
+	</script>
 </body>
 </html>
