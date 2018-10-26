@@ -28,7 +28,7 @@ public class PcStartController {
 		System.out.println("컨트롤러 시작");
 
 		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.setViewName("/");
+		modelAndView.setViewName("/member/start");
 
 		try {
 
