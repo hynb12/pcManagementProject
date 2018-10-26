@@ -73,13 +73,18 @@
 	font-size: 30px;
 	color: white;
 }
+
+#write {
+	float: right;
+	margin: 10px;
+}
 </style>
 
 </head>
 <body>
 	<%@ include file="/WEB-INF/views/common/header.jsp"%>
 	<div class="container">
-		<a class="btn btn-secondary" href="/pc/admin/noticeWrite" >글쓰기</a>
+		<a id="write" class="btn btn-secondary" href="/pc/admin/noticeWrite">글쓰기</a>
 
 		<table class="table table-hover text-center">
 			<thead>

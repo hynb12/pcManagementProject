@@ -6,4 +6,5 @@ public interface NoticeDaoInterface {
 
 	void insertNotice(NoticeVO noticeVO) throws Exception;
 
+	int pageCount() throws Exception;
 }

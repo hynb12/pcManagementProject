@@ -78,7 +78,6 @@
 <body>
 	<%@ include file="/WEB-INF/views/common/header.jsp"%>
 	<div class="container">
-		<h1>글쓰기폼</h1>
 		<form class="text-center p-5" method="post">
 			<input type="text" class="form-control" placeholder="제목">
 			<textarea class="form-control" id="exampleFormControlTextarea2" rows="3" placeholder="내용"></textarea>

@@ -31,8 +31,7 @@ body, html {
 	left: 50%;
 	transform: translate(-50%, -50%);
 }
-.forgotInfo {
-	color: #fff;
+.links {
 	text-align: center;
 	position: absolute;
 	left: 50%;
@@ -50,15 +49,15 @@ body, html {
 		<div class="buttons">
 			<h1 class="white-text font-weight-bold mb-4 pt-md-5 pt-5 wow fadeInDown" data-wow-delay="0.3s"><strong>안녕하세요</strong></h1>
 			<hr class="hr-light my-4 wow fadeInDown" data-wow-delay="0.4s">
-			<a class="btn btn-secondary btn-lg font-weight-bold wow fadeInDown" data-wow-delay="0.7s"  style="width: 200px" href="member/login">로그인</a>
-			<a class="btn btn-default btn-lg font-weight-bold wow fadeInDown" data-wow-delay="0.7s" style="width: 200px" href="member/reg">회원가입</a>
+			<a class="btn btn-secondary btn-lg font-weight-bold wow fadeInDown" data-wow-delay="0.8s"  style="width: 200px" href="member/login">로그인</a>
+			<a class="btn btn-default btn-lg font-weight-bold wow fadeInDown" data-wow-delay="0.8s" style="width: 200px" href="member/reg">회원가입</a>
 		</div>
-			<a class="forgotInfo" href="member/search">아이디 또는 비밀번호가 기억나지	않으세요?</a>
+		<div class ="links">
+			<a class="white-text wow fadeIn" data-wow-delay="0.8s"" href="member/search">아이디 또는 비밀번호가 기억나지 않으세요?</a>
+		</div>
 	</div>
 </body>
 <script>
-	$('.welcomeMessage').addClass('animated bounce');
-	
 	// Animations init
 	new WOW().init();
 </script>

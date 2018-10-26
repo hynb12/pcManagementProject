@@ -12,4 +12,10 @@
 
 	</insert>
 
+	<select id="pageCount" resultType="int">
+	
+		select count(*) from notice;
+	
+	</select>
+
 </mapper>
