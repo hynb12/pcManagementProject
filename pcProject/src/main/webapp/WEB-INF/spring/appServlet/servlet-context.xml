@@ -33,9 +33,13 @@
 	<context:component-scan
 		base-package="com.bitcamp.pc" />
 
-	<!-- Service 등록 -->
+	<!-- TimeService Service 등록 -->
 	<beans:bean id="timeService"
 		class="com.bitcamp.pc.member.service.TimeService" />
+	<!-- NoticeWriteService 등록 -->
+	<!-- 2018-10-26 20:11 신동진 -->
+	<beans:bean id="noticeWriteService"
+		class="com.bitcamp.pc.member.service.NoticeWriteService" />
 
 	<!-- JDBC 빈 등록 -->
 	<!-- 2018-10-25 14:45 김정기 -->
@@ -44,9 +48,9 @@
 		<beans:property name="driverClass"
 			value="com.mysql.jdbc.Driver" />
 		<beans:property name="jdbcUrl"
-			value="jdbc:mysql://localhost/pc?characterEncoding=utf8" />
+			value="jdbc:mysql://project2.ctgvi4ryx7dh.ap-northeast-2.rds.amazonaws.com:3306/pc" />
 		<beans:property name="user" value="bit" />
-		<beans:property name="password" value="1234" />
+		<beans:property name="password" value="123456789" />
 	</beans:bean>
 
 	<!-- mybatis-spring 모듈이 제공하는 SqlSessionFactoryBean 이용해 mybatis의 SqlSessionFactory를 
@@ -57,6 +61,8 @@
 		<beans:property name="dataSource" ref="dataSource" />
 		<beans:property name="mapperLocations"
 			value="classpath:com/bitcamp/pc/member/mapper/mybatis/*.xml" />
+		<beans:property name="configLocation"
+			value="classpath:/mybatis-config.xml" />
 	</beans:bean>
 
 	<!-- 2018-10-25 14:45 김정기 -->
@@ -66,6 +72,15 @@
 			ref="sqlSessionFactory" />
 	</beans:bean>
 
-
-
+	<!-- PlatformTransactionManager 빈 설정 -->
+	<!-- 2018-10-26 20:22 신동진 -->
+	<beans:bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<beans:property name="dataSource" ref="dataSource" />
+	</beans:bean>
+	
+	<!-- @Transactional 애노테이션 활성화 설정 -->
+	<!-- 2018-10-26 20:22 신동진 -->
+	<tx:annotation-driven
+		transaction-manager="transactionManager" />
 </beans:beans>
