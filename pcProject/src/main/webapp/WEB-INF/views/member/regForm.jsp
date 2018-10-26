@@ -11,14 +11,16 @@
 		<div class="container">
 			<h1>Sign Up</h1>
 			<p>Please fill in this form.</p>
+			<input type="checkbox" id="isAdmin" name="isAdmin">
+			<span style="color: red">are you admin?</span>
 			<hr>
 
 			<label for="email"><b>Id (Email)</b></label> 
-			<input type="text" placeholder="Enter Email" name="email" required> 
+			<input type="text" placeholder="Enter Email" name="id" required> 
 			<label for="psw"><b>Password</b></label> 
-			<input type="password" placeholder="Enter Password" name="psw" required> 
+			<input type="password" placeholder="Enter Password" name="pw" required> 
 			<label for="psw-repeat"><b>Repeat Password</b></label> 
-			<input type="password" placeholder="Repeat Password" name="psw-repeat" required> 
+			<input type="password" placeholder="Repeat Password" name="pw-repeat" required> 
 			<label for="name"><b>Name</b></label> 
 			<input type="text" placeholder="Enter Name" name="name" required>
 			<label for="phoneNum"><b>PhoneNum</b></label> 

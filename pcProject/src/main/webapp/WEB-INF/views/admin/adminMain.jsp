@@ -68,23 +68,21 @@ html, body {
 	margin: 0 auto;
 	border-spacing: 20px;
 	border-collapse: separate;
-	
 }
 
-#comTable td{
+#comTable td {
 	background: gray;
 	width: 180px;
 	height: 180px;
-	padding-left:10px;
+	padding-left: 10px;
 	font-size: 20px;
 	color: white;
 	text-align: left;
 	border-radius: 10px;
-	
 }
 
 /* 테스트 */
-#comTable td:not(:nth-child(1)){
+#comTable td:not (:nth-child(1) ){
 	opacity: 0.5;
 }
 
@@ -92,9 +90,8 @@ html, body {
 	margin: 0 auto;
 }
 
-#foodTable td{
+#foodTable td {
 	padding: 10px;
-	
 }
 
 .comNum {
@@ -103,9 +100,8 @@ html, body {
 }
 
 #close {
-	color : red;
+	color: red;
 }
-
 </style>
 
 </head>
@@ -118,12 +114,11 @@ html, body {
 			<table id="comTable">
 				<tr>
 					<td>
-						<div class="comNum">1</div>
+						<div class="comNum"></div>
 						<div class="userId">mkms1104</div>
 						<div class="reMaining-time">03:40</div>
 						<div class="comManagement">
-							<a href="">시간 추가</a><br>
-							<a href="" id="close">강제 종료</a>
+							<a href="">시간 추가</a><br> <a href="" id="close">강제 종료</a>
 						</div>
 					<td>2</td>
 					<td>3</td>
@@ -135,8 +130,7 @@ html, body {
 						<div class="userId">zzan123</div>
 						<div class="reMaining-time">00:35</div>
 						<div class="comManagement">
-							<a href="">시간 추가</a><br>
-							<a href="" id="close">강제 종료</a>
+							<a href="">시간 추가</a><br> <a href="" id="close">강제 종료</a>
 						</div>
 					</td>
 					<td>5</td>
@@ -149,8 +143,7 @@ html, body {
 						<div class="userId">bba557</div>
 						<div class="reMaining-time">02:19</div>
 						<div class="comManagement">
-							<a href="">시간 추가</a><br>
-							<a href="" id="close">강제 종료</a>
+							<a href="">시간 추가</a><br> <a href="" id="close">강제 종료</a>
 						</div>
 					</td>
 					<td>8</td>
@@ -168,24 +161,35 @@ html, body {
 					<td>수량</td>
 					<td>상태</td>
 				</tr>
-				
+
 				<tr>
 					<td>3</td>
 					<td>돈까스</td>
 					<td>1</td>
 					<td>처리하기</td>
 				</tr>
-			
+
 			</table>
 		</div>
 	</div>
 
 	<%@ include file="/WEB-INF/views/common/footer.jsp"%>
-	
-	
+
+	<script src="https://code.jquery.com/jquery-1.10.0.js"></script>
 	<script>
-		
-	
+		$(document).ready(function() {
+			// 컴퓨터 아이디 지정(1~9)
+			$('#comTable td').each(function (index) {
+				$(this).attr("id", index+1);
+			});
+			
+			// 각 컴퓨터 선택 분기 처리
+			$('#comTable td').on('click', function() {
+				console.log($(this).attr('id'));
+			});
+		});
+			
+			
 	
 	</script>
 </body>

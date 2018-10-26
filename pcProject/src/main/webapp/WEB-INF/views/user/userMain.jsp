@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>adminMain</title>
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 <script
@@ -51,10 +51,10 @@ html, body {
 #foodDiv {
 	float: right;
 	width: 50%;
-	background: blue;
 	height: 100%;
 	padding: 20px;
 	overflow-y: scroll;
+	text-align: center;
 }
 
 #footer {
@@ -65,25 +65,116 @@ html, body {
 }
 
 #comTable {
+	margin: 0 auto;
 	border-spacing: 20px;
 	border-collapse: separate;
-	margin-left: 10%;
 }
 
 #comTable td {
 	background: gray;
-	padding: 80px;
-	font-size: 30px;
+	width: 180px;
+	height: 180px;
+	padding-left: 10px;
+	font-size: 20px;
 	color: white;
+	text-align: left;
+	border-radius: 10px;
+}
+
+#comTable td{
+	opacity: 0.5;
+}
+
+#foodTable {
+	margin: 0 auto;
+}
+
+#foodTable td {
+	padding: 10px;
+}
+
+.comNum {
+	color: black;
+	font-weight: bold;
+}
+
+#close {
+	color: red;
 }
 </style>
 
 </head>
 <body>
 	<%@ include file="/WEB-INF/views/common/header.jsp"%>
-	
-	<h1>사용자 메인 페이지입니다.</h1>
-	
+
+	<div id="main-container">
+		<div id="comDiv">
+			<h3>◆ 현재 사용 중인 컴퓨터: 5대 ◆</h3>
+			<table id="comTable">
+				<tr>
+					<td>
+						<div class="comNum">1</div>
+						<div class="userId">mkms1104</div>
+						<div class="reMaining-time">03:40</div>
+						<div class="comManagement">
+							<a href="">시간 추가</a><br>
+						</div>
+					<td>2</td>
+					<td>3</td>
+				</tr>
+
+				<tr>
+					<td>
+						<div class="comNum">4</div>
+						<div class="userId">zzan123</div>
+						<div class="reMaining-time">00:35</div>
+						<div class="comManagement">
+							<a href="">시간 추가</a><br> <a href="" id="close">강제 종료</a>
+						</div>
+					</td>
+					<td>5</td>
+					<td>6</td>
+				</tr>
+
+				<tr>
+					<td>
+						<div class="comNum">7</div>
+						<div class="userId">bba557</div>
+						<div class="reMaining-time">02:19</div>
+						<div class="comManagement">
+							<a href="">시간 추가</a><br> <a href="" id="close">강제 종료</a>
+						</div>
+					</td>
+					<td>8</td>
+					<td>9</td>
+				</tr>
+
+			</table>
+		</div>
+	</div>
+
 	<%@ include file="/WEB-INF/views/common/footer.jsp"%>
+
+	<script src="https://code.jquery.com/jquery-1.10.0.js"></script>
+	<script>
+		$(document).ready(function() {
+			// 컴퓨터 아이디 지정(1~9)
+			$('#comTable td').each(function (index) {
+				$(this).attr("id", index+1);
+			});
+			
+			// 각 컴퓨터 선택 분기 처리
+			$('#comTable td').on('click', function() {
+				// 클릭한 컴퓨터 아이디
+				// 로그인한 아이디
+				// 남은 시간 
+				
+				
+				console.log($(this).attr('id'));
+				
+			});
+		});
+
+	</script>
 </body>
 </html>
