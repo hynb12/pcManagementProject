@@ -79,10 +79,11 @@
 	<%@ include file="/WEB-INF/views/common/header.jsp"%>
 	<div class="container">
 		<h1>글쓰기폼</h1>
-		<div class="md-form mt-3">
+		<form class="text-center p-5" method="post">
 			<input type="text" class="form-control" placeholder="제목">
-			<textarea class="form-control rounded-0" id="exampleFormControlTextarea2" rows="3" placeholder="내용"></textarea>
-		</div>
+			<textarea class="form-control" id="exampleFormControlTextarea2" rows="3" placeholder="내용"></textarea>
+			<button type="submit" class="btn btn-info btn-block">작성하기</button>
+		</form>
 	</div>
 	<%@ include file="/WEB-INF/views/common/footer.jsp"%>
 </body>
