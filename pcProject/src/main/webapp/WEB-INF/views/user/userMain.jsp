@@ -170,7 +170,7 @@ html, body {
 			
 			// 선택된 자리에 정보 표시 
 			$('#comTable td').each(function (index) {
-				if((index+1)==${uTime.comId}){
+				if((index+1)=='${uTime.comId}'){
 					$(this).css('opacity', 1); // 투명도 설정
 					$(this).children().eq(1).text('${uTime.userId}'); 
 					$(this).children().eq(2).text('${uTime.userTime}');
@@ -185,9 +185,8 @@ html, body {
 				
 				var comId = $(this).children().eq(0).text(); // 선택한 컴퓨터의 위치 값 가져오기
 				
-				
-				$('#addTimeModal').show(); // modal창 보이기
 				$('#comId').val(comId); 
+				$('#addTimeModal').show(); // modal창 보이기
 				
 			});
 		});
