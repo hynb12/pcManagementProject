@@ -1,7 +1,5 @@
 package com.bitcamp.pc.member.model;
 
-import java.sql.Time;
-
 //회원 테이블 User
 public class User {
 

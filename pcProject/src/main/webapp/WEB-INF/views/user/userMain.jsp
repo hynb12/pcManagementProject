@@ -101,6 +101,17 @@ html, body {
 #close {
 	color: red;
 }
+
+#addTimeModal {
+	position: absolute;
+	top: 300px;
+	left: 200px;
+	background: red;
+	width: 400px;
+	height: 200px;
+	display: none;
+}
+
 </style>
 
 </head>
@@ -112,65 +123,71 @@ html, body {
 			<h3>◆ 현재 사용 중인 컴퓨터: 5대 ◆</h3>
 			<table id="comTable">
 				<tr>
-					<td>
-						<div class="comNum">1</div>
-						<div class="userId">mkms1104</div>
-						<div class="reMaining-time">03:40</div>
-						<div class="comManagement">
-							<a href="">시간 추가</a><br>
-						</div>
-					<td>2</td>
-					<td>3</td>
+					<td></td>
+					<td></td>
+					<td></td>
 				</tr>
 
 				<tr>
-					<td>
-						<div class="comNum">4</div>
-						<div class="userId">zzan123</div>
-						<div class="reMaining-time">00:35</div>
-						<div class="comManagement">
-							<a href="">시간 추가</a><br> <a href="" id="close">강제 종료</a>
-						</div>
-					</td>
-					<td>5</td>
-					<td>6</td>
+					<td></td>
+					<td></td>
+					<td></td>
 				</tr>
 
 				<tr>
-					<td>
-						<div class="comNum">7</div>
-						<div class="userId">bba557</div>
-						<div class="reMaining-time">02:19</div>
-						<div class="comManagement">
-							<a href="">시간 추가</a><br> <a href="" id="close">강제 종료</a>
-						</div>
-					</td>
-					<td>8</td>
-					<td>9</td>
+					<td></td>
+					<td></td>
+					<td></td>
 				</tr>
 
 			</table>
+			
+			<!-- 시간 추가 modal -->
+			<div id="addTimeModal">
+				<form action="<%=request.getContextPath()%>/user/addTime">
+					<input type="hidden" id="comId" name="comId">
+					<input type="hidden" name="userId" value="mkms1104">
+					충전 시간<input type="text" name="addTime"><br>
+					<input type="submit" value="충전하기">
+				</form>
+			</div>
 		</div>
 	</div>
 
 	<%@ include file="/WEB-INF/views/common/footer.jsp"%>
-
+	
 	<script src="https://code.jquery.com/jquery-1.10.0.js"></script>
 	<script>
 		$(document).ready(function() {
-			// 컴퓨터 아이디 지정(1~9)
+			
+			// 각 자리 초기화
 			$('#comTable td').each(function (index) {
-				$(this).attr("id", index+1);
+				var str = '<div>' + (index+1) + '</div>'; // comId (1~9)
+				str += '<div></div>'; // userId
+				str += '<div></div>'; // time
+				$(str).appendTo(this);
 			});
 			
+			// 선택된 자리에 정보 표시 
+			$('#comTable td').each(function (index) {
+				if((index+1)==${uTime.comId}){
+					$(this).css('opacity', 1); // 투명도 설정
+					$(this).children().eq(1).text('${uTime.userId}'); 
+					$(this).children().eq(2).text('${uTime.userTime}');
+				}
+			});
+		
 			// 각 컴퓨터 선택 분기 처리
 			$('#comTable td').on('click', function() {
-				// 클릭한 컴퓨터 아이디
-				// 로그인한 아이디
-				// 남은 시간 
+				// 데이터베이스에 저장할 값들
+				// 1. 클릭한 컴퓨터 아이디
+				// 2. 로그인한 아이디
+				
+				var comId = $(this).children().eq(0).text(); // 선택한 컴퓨터의 위치 값 가져오기
 				
 				
-				console.log($(this).attr('id'));
+				$('#addTimeModal').show(); // modal창 보이기
+				$('#comId').val(comId); 
 				
 			});
 		});
