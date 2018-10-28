@@ -34,12 +34,12 @@ html, body {
 	right: 65%;
 }
 
-#main-container {
+.main-container {
 	height: 100%;
 	margin-top: 1%;
 }
 
-#comDiv {
+.comDiv {
 	float: left;
 	width: 50%;
 	height: 100%;
@@ -48,7 +48,7 @@ html, body {
 	text-align: center;
 }
 
-#foodDiv {
+.foodDiv {
 	float: right;
 	width: 50%;
 	height: 100%;
@@ -107,14 +107,41 @@ html, body {
 	color: red;
 }
 
-#addTimeModal {
-	position: absolute;
-	top: 300px;
-	left: 200px;
-	background: red;
-	width: 400px;
-	height: 200px;
-	display: none;
+.addTimeModal {
+	display: none; /* Hidden by default */
+	position: fixed; /* Stay in place */
+	z-index: 1; /* Sit on top */
+	padding-top: 100px; /* Location of the box */
+	left: 0;
+	top: 0;
+	width: 100%; /* Full width */
+	height: 100%; /* Full height */
+	overflow: auto; /* Enable scroll if needed */
+	background-color: rgb(0, 0, 0); /* Fallback color */
+	background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 15px;
+    border: 1px solid #888;
+    width: 60%;
+}
+
+/* The Close Button */
+.close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
 }
 </style>
 
@@ -122,8 +149,8 @@ html, body {
 <body>
 	<%@ include file="/WEB-INF/views/common/header.jsp"%>
 
-	<div id="main-container">
-		<div id="comDiv">
+	<div class="main-container">
+		<div class="comDiv">
 			<h3>◆ 사용하실 컴퓨터를 선택하세요. ◆</h3>
 			<table id="comTable">
 				<tr>
@@ -147,22 +174,24 @@ html, body {
 			</table>
 
 			<!-- 시간 추가 modal -->
-			<div id="addTimeModal">
-				<!-- UserTimeController 요청 URL -->
-				<h3>충전하실 시간을 선택하세요.</h3>
-				<form action="<%=request.getContextPath()%>/user/addTime">
-					<input type="hidden" id="comId" name="comId"> 
-					<input type="hidden" name="userId" value="mkms1104">
-					<select name="addTime" id="selectAddTime">
-  						<option value="0">select Time</option>
-					</select>
-					<input type="submit" value="충전하기">
-				</form>
+			<div id="tModal" class="addTimeModal">
+				<div class="modal-content">
+					
+					<h3>충전하실 시간을 선택하세요.<span class="close">&times;</span></h3>
+					<!-- UserTimeController 요청 URL -->
+					<form action="<%=request.getContextPath()%>/user/addTime">
+						<input type="hidden" id="comId" name="comId"> 
+						<input type="hidden" name="userId" value="mkms1104"> 
+							<select name="addTime" id="selectAddTime">
+							<option value="0">select Time</option>
+						</select> <input type="submit" value="충전하기">
+					</form>
+				</div>
 			</div>
 		</div>
 		<!-- end comDiv  -->
 
-		<div id="foodDiv">
+		<div class="foodDiv">
 			<h3>◆ 음식 리스트 ◆</h3>
 			<table id="foodTable">
 				<tr>
@@ -195,12 +224,25 @@ html, body {
 	<script>
 		$(document).ready(function() {
 			
+			// 시간 충전 modal 창 닫기 버튼 클릭
+			$('.close').on('click', function() {
+				$('.addTimeModal').hide();
+			});
+			
+			// modal 창 외 윈도우 클릭
+			$(window).on('click', function() {
+				//jquery는 dom 객체를 jquery 객체로 한 번 감싸 리턴하므로 dom 객체를 얻어와야 비교 가능
+				if (event.target == $('.addTimeModal').get(0)) {
+    				$('.addTimeModal').hide();
+    			}
+			});
+			
 			// 시간 select box 초기화 
 			for (var i = 1; i <= 12; i++) {
-                var option = '<option value='+ i + '>' + i + ' 시간</option>';
-                $('#selectAddTime').append(option);
-            }
-			
+				var option = '<option value='+ i + '>' + i + ' 시간</option>';
+				$('#selectAddTime').append(option);
+			}
+
 			// 각 자리 초기화
 			$('#comTable td').each(function(index) {
 				var str = '<div><b>' + (index + 1) + '번</b></div>'; // comId (1~9)
@@ -227,7 +269,7 @@ html, body {
 
 				var comId = $(this).children().eq(0).text(); // 선택한 컴퓨터의 위치 값 가져오기
 				$('#comId').val(parseInt(comId)); //comId input 창에 값 저장 (n번의 번 글자 지우고 숫자만 저장)
-				$('#addTimeModal').show(); // modal창 보이기
+				$('.addTimeModal').show(); // modal창 보이기
 
 			});
 		});
@@ -236,24 +278,25 @@ html, body {
 	<!-- 음식 처리(민수)  -->
 	<script>
 		var foodImgArr = new Array(9); // 음식 이미지 정보를 담을 배열
-		var foodNameArr = ['나쵸', '감자튀김', '햄버거', '제육볶음', '새우볶음밥', '소고기볶음밥', '오렌지쥬스', '콜라', '사이다'];
-		
+		var foodNameArr = [ '나쵸', '감자튀김', '햄버거', '제육볶음', '새우볶음밥', '소고기볶음밥',
+				'오렌지쥬스', '콜라', '사이다' ];
+
 		// 배열에 음식 이미지 이름 초기화
-		for(var i=0; i<foodImgArr.length; i++){
-			foodImgArr[i] = 'food_'+ (i+1) + '.png';
+		for (var i = 0; i < foodImgArr.length; i++) {
+			foodImgArr[i] = 'food_' + (i + 1) + '.png';
 		}
-		
+
 		// 테이블에 각 음식 표시
 		$('#foodTable td').each(function(index) {
 			var str = '<img src=../images/'+foodImgArr[index]+'/>';
-			str+= '<div><b>'+ foodNameArr[index] +'</b></div>'
+			str += '<div><b>' + foodNameArr[index] + '</b></div>'
 			$(str).appendTo(this);
-			
+
 			$('img').css({
-				'max-width': 100, // 이미지 크기가 div에 넘을 경우 맞춰서 이미지 크기 자동 조정
+				'max-width' : 100, // 이미지 크기가 div에 넘을 경우 맞춰서 이미지 크기 자동 조정
 				'width' : 100,
 				'height' : 100
-			}); 
+			});
 		});
 	</script>
 </body>
