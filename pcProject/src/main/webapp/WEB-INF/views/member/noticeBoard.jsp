@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <html>
 <head>
 <title>PC Management</title>
@@ -85,11 +86,10 @@
 	<%@ include file="/WEB-INF/views/common/header.jsp"%>
 	<div class="container">
 		<a id="write" class="btn btn-secondary" href="/pc/admin/noticeWrite">글쓰기</a>
-	${viewData.isEmpty()}
 		<table class="table table-hover text-center">
 			<thead>
 				<tr>
-					<th style="width: 80%">내용</th>
+					<th style="width: 85%">제목</th>
 					<th>등록일</th>
 				</tr>
 			</thead>
@@ -98,6 +98,17 @@
 					<tr>
 						<td>작성된 방명록 메시지가 없습니다.</td>
 					</tr>
+				</c:if>
+				<c:if test="${!viewData.isEmpty()}">
+					<c:forEach var="list" items="${viewData.noticeList}">
+						<tr>
+							<td>${list.noticeTitle}</td>
+							<td>
+							<fmt:parseDate value="${list.noticeDate}" pattern="yyyy-MM-dd HH:mm" var="date"/>
+							<fmt:formatDate value="${date}" pattern="yyyy-MM-dd"/>
+							</td>
+						</tr>
+					</c:forEach>
 				</c:if>
 			</tbody>
 		</table>

@@ -14,7 +14,7 @@ import com.bitcamp.pc.member.service.NoticeService;
 public class NoticeController {
 
 	@Autowired
-	NoticeService service;
+	private NoticeService service;
 
 	// 공지사항 클릭시 공지사항을 리스트를 보여줌ㅕ
 	@RequestMapping("/member/notice")
@@ -28,14 +28,11 @@ public class NoticeController {
 		}
 
 		NoticeListVO viewData = null;
-
 		try {
 			viewData = service.getNoticeList(pageNum);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
-		viewData = viewData.isEmpty() ? null : viewData;
 
 		ModelAndView modelAndView = new ModelAndView();
 
