@@ -1,16 +1,16 @@
 package com.bitcamp.pc.member.model;
 
-public class Admin {
+public class AdminVO {
 
 	private String adminId;
 	private String adminName;
 	private String adminPw;
 
-	public Admin() {
+	public AdminVO() {
 
 	}
 
-	public Admin(String adminId, String adminName, String adminPw) {
+	public AdminVO(String adminId, String adminName, String adminPw) {
 
 		this.adminId = adminId;
 		this.adminName = adminName;

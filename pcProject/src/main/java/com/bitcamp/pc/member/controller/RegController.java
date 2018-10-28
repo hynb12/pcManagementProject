@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.bitcamp.pc.admin.service.AdminRegService;
-import com.bitcamp.pc.member.model.Admin;
-import com.bitcamp.pc.member.model.User;
+import com.bitcamp.pc.member.model.AdminVO;
+import com.bitcamp.pc.member.model.UserVO;
 
 @Controller
 @RequestMapping("/member/reg")
@@ -48,7 +48,7 @@ public class RegController {
 			// 경원이형 처리
 			System.out.println("관리자 계정 회원가입");
 
-			Admin admin = new Admin();
+			AdminVO admin = new AdminVO();
 			admin.setAdminId(id);
 			admin.setAdminPw(pw);
 			admin.setAdminName(name);
@@ -64,7 +64,7 @@ public class RegController {
 			// 겨례형 처리
 			System.out.println("사용자 계정 회원가입");
 
-			User user = new User();
+			UserVO user = new UserVO();
 			user.setUserId(id);
 			user.setUserPw(pw);
 			user.setUserName(name);

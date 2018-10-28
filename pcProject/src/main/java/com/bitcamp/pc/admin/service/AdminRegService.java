@@ -4,7 +4,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.bitcamp.pc.member.dao.AdminDaoInterface;
-import com.bitcamp.pc.member.model.Admin;
+import com.bitcamp.pc.member.model.AdminVO;
 
 public class AdminRegService {
 
@@ -12,7 +12,7 @@ public class AdminRegService {
    private SqlSessionTemplate sqlSessionTemplate;
    private AdminDaoInterface adminDao;
    
-   public int adminReg(Admin admin) {
+   public int adminReg(AdminVO admin) {
       
       int resultCnt = 0;
       

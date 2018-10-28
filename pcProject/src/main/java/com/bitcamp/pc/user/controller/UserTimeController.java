@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.bitcamp.pc.member.model.UTime;
+import com.bitcamp.pc.member.model.UTimeVO;
 
 @Controller
 public class UserTimeController {
@@ -20,7 +20,7 @@ public class UserTimeController {
 		
 		// service, dao 처리 하십쇼 
 		
-		UTime uTime = new UTime();
+		UTimeVO uTime = new UTimeVO();
 		uTime.setComId(comId);
 		uTime.setUserId(userId);
 		uTime.setUserTime(addTime);

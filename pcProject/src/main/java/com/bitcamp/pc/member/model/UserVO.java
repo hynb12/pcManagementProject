@@ -1,7 +1,7 @@
 package com.bitcamp.pc.member.model;
 
 //회원 테이블 User
-public class User {
+public class UserVO {
 
 	private String userId; // 회원 아이디
 	private String userName; // 유저이름
@@ -10,7 +10,7 @@ public class User {
 	private String userBirth; // 생년월일
 	private long userTime; // 남은시간
 	
-	public User() {
+	public UserVO() {
 	}
 
 	public String getUserId() {
@@ -67,7 +67,7 @@ public class User {
 				+ ", userBirth=" + userBirth + ", userTime=" + userTime + "]";
 	}
 
-	public User(String userId, String userName, String userPw, String userPhone, String userBirth, long userTime) {
+	public UserVO(String userId, String userName, String userPw, String userPhone, String userBirth, long userTime) {
 		super();
 		this.userId = userId;
 		this.userName = userName;

@@ -8,7 +8,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 
 	<update id="startTime"
-		parameterType="com.bitcamp.pc.member.model.UTime">
+		parameterType="com.bitcamp.pc.member.model.UTimeVO">
 		update utime set comid=#{comId},
 		usertime=#{userTime},
 		starttime=#{startTime},
@@ -19,7 +19,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 
 	<update id="endTime"
-		parameterType="com.bitcamp.pc.member.model.UTime">
+		parameterType="com.bitcamp.pc.member.model.UTimeVO">
 		update utime set usertime=#{userTime},
 		endtime=#{endTime}
 		where
@@ -27,7 +27,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</update>
 
 	<update id="remainTime"
-		parameterType="com.bitcamp.pc.member.model.UTime">
+		parameterType="com.bitcamp.pc.member.model.UTimeVO">
 		update utime set userTime=#{startTime}-
 		where
 		userId=#{userId}

@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.bitcamp.pc.member.model.UTime;
+import com.bitcamp.pc.member.model.UTimeVO;
 import com.bitcamp.pc.member.service.TimeService;
 
 public class PcEndController {
@@ -18,7 +18,7 @@ public class PcEndController {
 
 	// 메인페이지에서 로그인 클릭
 	@RequestMapping("/member/start")
-	public ModelAndView End(@RequestParam("UTime") UTime utime) throws SQLException, IOException {
+	public ModelAndView End(@RequestParam("UTime") UTimeVO utime) throws SQLException, IOException {
 
 		System.out.println("컨트롤러 시작");
 

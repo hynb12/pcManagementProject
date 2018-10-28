@@ -9,7 +9,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.bitcamp.pc.member.dao.UTimeDaoInterface;
-import com.bitcamp.pc.member.model.UTime;
+import com.bitcamp.pc.member.model.UTimeVO;
 
 public class TimeService {
 
@@ -35,7 +35,7 @@ public class TimeService {
 		Date startnow = new Date(); // 시작시 현재시간
 		String startTime = f.format(startnow); // String타입으로 변경
 
-		UTime uTime = new UTime(userId, comId, userTime, startTime, ""); // 테스트 모델
+		UTimeVO uTime = new UTimeVO(userId, comId, userTime, startTime, ""); // 테스트 모델
 //		UTime(String userId, String comId, long userTime, String startTime, String endTime)
 
 		int resultCnt = 0;
@@ -51,7 +51,7 @@ public class TimeService {
 		return resultCnt;
 	}
 
-	public int endTimeReg(UTime uTime) {
+	public int endTimeReg(UTimeVO uTime) {
 
 		System.out.println("서비스 시작");
 

@@ -1,7 +1,7 @@
 package com.bitcamp.pc.member.model;
 
 //시간 테이블 Time (회원, 컴퓨터 N:N)
-public class UTime {
+public class UTimeVO {
 
 	private String userId; // 회원 아이디
 	private int comId; // 컴퓨터 번호
@@ -9,7 +9,7 @@ public class UTime {
 	private String startTime; // 시작 시간
 	private String endTime; // 종료 시간
 
-	public UTime(String userId, int comId, long userTime, String startTime, String endTime) {
+	public UTimeVO(String userId, int comId, long userTime, String startTime, String endTime) {
 		super();
 		this.userId = userId;
 		this.comId = comId;
@@ -18,7 +18,7 @@ public class UTime {
 		this.endTime = endTime;
 	}
 
-	public UTime() {
+	public UTimeVO() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
