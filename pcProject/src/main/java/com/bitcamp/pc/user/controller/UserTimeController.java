@@ -1,4 +1,4 @@
-package com.bitcamp.pc.admin.controller;
+package com.bitcamp.pc.user.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +17,8 @@ public class UserTimeController {
 								@RequestParam("addTime") long addTime) {
 		
 		ModelAndView mav = new ModelAndView();
+		
+		// service, dao 처리 하십쇼 
 		
 		UTime uTime = new UTime();
 		uTime.setComId(comId);
