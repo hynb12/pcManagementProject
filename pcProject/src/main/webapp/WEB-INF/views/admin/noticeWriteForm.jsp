@@ -79,8 +79,8 @@
 	<%@ include file="/WEB-INF/views/common/header.jsp"%>
 	<div class="container">
 		<form class="text-center p-5" method="post">
-			<input type="text" class="form-control" placeholder="제목">
-			<textarea class="form-control" id="exampleFormControlTextarea2" rows="3" placeholder="내용"></textarea>
+			<input type="text" class="form-control" placeholder="제목" name="noticeTitle">
+			<textarea class="form-control" id="exampleFormControlTextarea2" rows="3" placeholder="내용" name="noticeCon"></textarea>
 			<button type="submit" class="btn btn-info btn-block">작성하기</button>
 		</form>
 	</div>

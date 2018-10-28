@@ -40,7 +40,11 @@
 	<!-- NoticeWriteService 등록 -->
 	<!-- 2018-10-26 20:11 신동진 -->
 	<beans:bean id="noticeWriteService"
-		class="com.bitcamp.pc.member.service.NoticeWriteService" />
+		class="com.bitcamp.pc.admin.service.NoticeWriteService" />
+	<!-- NoticeService 등록 -->
+	<!-- 2018-10-28 21:18 신동진 -->
+	<beans:bean id="noticeService"
+		class="com.bitcamp.pc.member.service.NoticeService" />
 	
 	<!-- AdminRegService 등록 -->
 	<!-- 2018-10-28 20:11 김민수 -->

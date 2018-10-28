@@ -18,4 +18,9 @@
 	
 	</select>
 
+	<select id="selectList" parameterType="map" resultType="noticeVO">
+	
+		select * from notice order by noticeid desc limit #{firstRow},#{endRow} 
+	
+	</select>
 </mapper>

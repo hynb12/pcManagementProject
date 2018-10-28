@@ -5,8 +5,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.bitcamp.pc.admin.service.NoticeWriteService;
 import com.bitcamp.pc.member.model.NoticeVO;
-import com.bitcamp.pc.member.service.NoticeWriteService;
 
 @Controller
 @RequestMapping("/admin/noticeWrite")

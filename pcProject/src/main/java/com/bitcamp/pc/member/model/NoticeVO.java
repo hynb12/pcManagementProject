@@ -1,5 +1,8 @@
 package com.bitcamp.pc.member.model;
 
+import org.apache.ibatis.type.Alias;
+
+@Alias("noticeVO")
 public class NoticeVO {
 	private int noticeId;
 	private String noticeTitle;

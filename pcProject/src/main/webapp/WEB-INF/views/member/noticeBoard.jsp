@@ -85,7 +85,7 @@
 	<%@ include file="/WEB-INF/views/common/header.jsp"%>
 	<div class="container">
 		<a id="write" class="btn btn-secondary" href="/pc/admin/noticeWrite">글쓰기</a>
-
+	${viewData.isEmpty()}
 		<table class="table table-hover text-center">
 			<thead>
 				<tr>
@@ -94,9 +94,11 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr>
-					<td>작성된 방명록 메시지가 없습니다.</td>
-				</tr>
+				<c:if test="${viewData.isEmpty()}">
+					<tr>
+						<td>작성된 방명록 메시지가 없습니다.</td>
+					</tr>
+				</c:if>
 			</tbody>
 		</table>
 	</div>
