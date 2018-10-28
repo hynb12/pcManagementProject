@@ -3,6 +3,7 @@ package com.bitcamp.pc.member.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping("/member/login")
@@ -16,7 +17,8 @@ public class LoginController {
 
 	// 로그인 페이지에서 로그인 클릭
 	@RequestMapping(method = RequestMethod.POST)
-	public String login() {
+	public String login(@RequestParam("userId") String userId) {
+		
 		boolean isLogin = true; // 로그인 성공 여부 검사
 		boolean isAdmin = false; // 관리자 로그인 검사
 		

@@ -9,6 +9,9 @@ public class User {
 	private String userPhone; // 폰번호
 	private String userBirth; // 생년월일
 	private long userTime; // 남은시간
+	
+	public User() {
+	}
 
 	public String getUserId() {
 		return userId;
@@ -74,9 +77,5 @@ public class User {
 		this.userTime = userTime;
 	}
 
-	public User() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
+	
 }

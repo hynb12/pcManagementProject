@@ -24,7 +24,9 @@
 			<label for="name"><b>Name</b></label> 
 			<input type="text" placeholder="Enter Name" name="name" required>
 			<label for="phoneNum"><b>PhoneNum</b></label> 
-			<input type="text" placeholder="Enter PhoneNum" name="phoneNum" required>
+			<input type="text" placeholder="Enter PhoneNum" name="phoneNum" id="phoneNum" required>
+			<label for="birth"><b>Birth</b></label>
+			<input type="text" placeholder="Enter Birth" name="birth" id="birth" required>
 			<label>
 				<input type="checkbox" checked="checked" name="remember" style="margin-bottom: 15px"> Remember me
 			</label>
@@ -36,6 +38,30 @@
 			</div>
 		</div>
 	</form>
-
+	
+	<script src="https://code.jquery.com/jquery-1.10.0.js"></script>
+	<script>
+		
+		$('#isAdmin').on('click', function() {
+			
+			var isAdmin = $('#isAdmin').is(':checked');
+			console.log("출력"+isAdmin);
+			
+			// 관리자 회원가입으로 체크되었을 경우
+			if(isAdmin){
+				$('#birth').attr('disabled', true);
+				$('#birth').css('background', 'gray');
+				$('#phoneNum').attr('disabled', true);
+				$('#phoneNum').css('background', 'gray');
+			}
+			
+			else{
+				$('#birth').attr('disabled', false);
+				$('#birth').css('background', '');
+				$('#phoneNum').attr('disabled', false);
+				$('#phoneNum').css('background', '');
+			}
+		});
+	</script>
 </body>
 </html>
