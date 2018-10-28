@@ -10,6 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.bitcamp.pc.admin.service.AdminRegService;
 import com.bitcamp.pc.member.model.AdminVO;
 import com.bitcamp.pc.member.model.UserVO;
+import com.bitcamp.pc.user.service.UserRegService;
 
 @Controller
 @RequestMapping("/member/reg")
@@ -19,8 +20,10 @@ public class RegController {
 
 	// 관리자 서비스 autowired
 	@Autowired
-	private AdminRegService regService;
-
+	private AdminRegService adminRegService;
+	@Autowired
+	private UserRegService userRegService;
+	
 	// 메인페이지에서 회원가입 클릭
 	@RequestMapping(method = RequestMethod.GET)
 	public String memberRegForm() {
@@ -44,6 +47,9 @@ public class RegController {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("redirect:login");
 		
+		// Reg 결과 값
+		int resultCnt = 0;
+		
 		if (isAdmin != null) {
 			// 경원이형 처리
 			System.out.println("관리자 계정 회원가입");
@@ -53,7 +59,7 @@ public class RegController {
 			admin.setAdminPw(pw);
 			admin.setAdminName(name);
 
-			int resultCnt = regService.adminReg(admin);
+			resultCnt = adminRegService.adminReg(admin);
 
 			if (resultCnt == 0) {
 				mav.setViewName("fail");
@@ -70,6 +76,12 @@ public class RegController {
 			user.setUserName(name);
 			user.setUserPhone(phoneNum);
 			user.setUserBirth(birth);
+			
+			resultCnt = userRegService.userReg(user);
+			
+			if (resultCnt == 0) {
+				mav.setViewName("fail");
+			}
 		}
 
 		return mav;
