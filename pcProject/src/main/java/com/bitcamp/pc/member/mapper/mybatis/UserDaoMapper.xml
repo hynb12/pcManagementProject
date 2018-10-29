@@ -3,11 +3,18 @@
 
 <!-- namespace - 인터페이스에 있는 패키지 명 + 인터페이스 명 -->
 <mapper namespace="com.bitcamp.pc.member.dao.UserDaoInterface">
-	<insert id="insertUser"
-		parameterType="userVO">
-	
+	<insert id="insertUser" parameterType="userVO">
+
 		insert into user (userid, username, userpw, userphone, userbirth)
-		values (#{userId}, #{userName}, #{userPw}, #{userPhone}, #{userBirth})
-	
+		values
+		(#{userId}, #{userName}, #{userPw}, #{userPhone}, #{userBirth})
+
 	</insert>
+
+	<select id="loginUser" resultType="userVO">
+
+		select userid, userpw from user where userid=#{userId}
+
+	</select>
+
 </mapper>
