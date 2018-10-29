@@ -96,11 +96,11 @@ html, body {
 }
 
 .form-group {
-	margin-bottom: 30px;
+	margin-bottom: 40px;
 }
 
 .messageTitle {
-	margin-bottom: 40px;
+	margin: 20px 0px 50px 0px;
 }
 
 @media ( min-width :992px) {
@@ -113,15 +113,13 @@ html, body {
 		position: absolute;
 		width: 200px;
 	}
-	.comment-form .name {
-		top: -20px;
-	}
-	.comment-form .email {
-		top: -20px;
-	}
+	.comment-form .name, 
+	.comment-form .email, 
 	.comment-form .message {
-		top: -20px;
+		top: -27px;
+		font-weight : bold;
 	}
+	
 }
 
 @media ( min-width :1200px) {
@@ -139,7 +137,7 @@ html, body {
 	<div class="post">
 		<div class="contact">
 			<div class="messageTitle">
-				<h2>쪽지보내기</h2>
+				<h2>메시지남기기</h2>
 			</div>
 			<form class="comment-form" method="post">
 				<div class="row">
