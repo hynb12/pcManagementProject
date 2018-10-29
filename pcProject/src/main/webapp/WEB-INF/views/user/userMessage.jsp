@@ -9,7 +9,6 @@
 .post {
 	padding: 0 1.5%;
 }
-
 .comment-form .form-control {
 	border: 0px;
 	background: #eee;
@@ -30,6 +29,9 @@
 
 .messageTitle {
 	margin: 20px 0px 50px 0px;
+}
+.form-control {
+	margin-bottom : 20px;
 }
 
 @media ( min-width :992px) {
@@ -69,7 +71,7 @@
 						<div class="col-md-12 form-group">
 							<label class="name">보내는 사람</label> <input type="text"
 								class="form-control" placeholder="user Id" name="userId"
-								required />
+								value = "${userVO.userId }" readonly/>
 						</div>
 						<div class="col-md-12 form-group">
 							<label class="email">메시지 제목</label> <input type="text"
@@ -84,7 +86,7 @@
 						</div>
 						<div class="col-md-12 form-group">
 							<input type="submit" class="btn btn-block btn-lg btn-success"
-								value="쪽지 보내기">
+								value="쪽지 보내기" id = "submit">
 						</div>
 
 					</div>
@@ -94,4 +96,12 @@
 	</div>
 	<%@ include file="/WEB-INF/views/common/footer.jsp"%>
 </body>
+<script>
+	$(document).ready(function(){
+		$('#submit').click(function(){
+			alert("쪽지를 보냈습니다.");
+		});
+	});
+</script>
+
 </html>

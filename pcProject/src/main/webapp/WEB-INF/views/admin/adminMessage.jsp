@@ -6,6 +6,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
+#main-container {
+	margin-left : -20px;
+	min-width : 100%;
+}
 #messageTitle {
 	font-weight: bold;
 	margin-top: 15px;
@@ -73,7 +77,7 @@
 	position: absolute;
 	border: 1px solid black;
 	right: 100px;
-	top: 20px;
+	top: 120px;
 	border-radius: 10px;
 }
 
