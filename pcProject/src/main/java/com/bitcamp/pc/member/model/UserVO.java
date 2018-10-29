@@ -1,6 +1,9 @@
 package com.bitcamp.pc.member.model;
 
+import org.apache.ibatis.type.Alias;
+
 //회원 테이블 User
+@Alias("userVO")
 public class UserVO {
 
 	private String userId; // 회원 아이디

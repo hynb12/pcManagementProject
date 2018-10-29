@@ -1,6 +1,9 @@
 package com.bitcamp.pc.member.model;
 
+import org.apache.ibatis.type.Alias;
+
 //시간 테이블 Time (회원, 컴퓨터 N:N)
+@Alias("utimeVO")
 public class UTimeVO {
 
 	private String userId; // 회원 아이디

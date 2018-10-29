@@ -1,7 +1,9 @@
 package com.bitcamp.pc.member.model;
 
-public class AdminVO {
+import org.apache.ibatis.type.Alias;
 
+@Alias("adminVO")
+public class AdminVO {
 	private String adminId;
 	private String adminName;
 	private String adminPw;

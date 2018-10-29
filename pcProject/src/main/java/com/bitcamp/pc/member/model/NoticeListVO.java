@@ -11,8 +11,8 @@ public class NoticeListVO {
 	private int firstRow;
 	private int endRow;
 
-	public NoticeListVO(List<NoticeVO> noticeList, int noticeTotalCount, int currentPageNum,
-			int noticeCountPerPage, int firstRow, int endRow) {
+	public NoticeListVO(List<NoticeVO> noticeList, int noticeTotalCount, int currentPageNum, int noticeCountPerPage,
+			int firstRow, int endRow) {
 		this.noticeList = noticeList;
 		this.noticeTotalCount = noticeTotalCount;
 		this.currentPageNum = currentPageNum;
