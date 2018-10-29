@@ -1,44 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>adminMain</title>
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
-
+<title>PC Management</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
-html, body {
-	height: 90%;
-}
-
-.navbar-nav {
-	position: absolute;
-	right: 1%;
-}
-
-#admin-name {
-	position: absolute;
-	right: 40%;
-}
-
-.form-inline {
-	position: absolute;
-	right: 65%;
-}
-
-.main-container {
-	height: 100%;
-	margin-top: 1%;
-}
-
 .comDiv {
 	float: left;
 	width: 50%;
@@ -55,13 +22,6 @@ html, body {
 	padding: 20px;
 	overflow-y: scroll;
 	text-align: center;
-}
-
-#footer {
-	position: absolute;
-	left: 0px;
-	bottom: 0px;
-	width: 100%;
 }
 
 #comTable {
@@ -147,19 +107,16 @@ html, body {
 .foodCnt {
 	text-align: center;
 	font-size: 16px;
-	width : 20px;
+	width: 20px;
 	height: 20px;
 }
-
-
 </style>
 
 </head>
 <body>
-
 	<%@ include file="/WEB-INF/views/common/header.jsp"%>
 
-	<div class="main-container">
+	<div class="container">
 		<div class="comDiv">
 			<h3>◆ 사용하실 컴퓨터를 선택하세요. ◆</h3>
 			<table id="comTable">
@@ -195,19 +152,20 @@ html, body {
 							type="hidden" name="userId" value="mkms1104"> <select
 							name="addTime" id="selectAddTime">
 							<option value="0">select Time</option>
-						</select> <i --%>nput type="submit" value="충전하기" id="addTime">
-					</form> 
-					
+						</select> <i --%>
+					nput type="submit" value="충전하기" id="addTime">
+					</form>
+
 					<form id="addTimeForm">
-						<input type="hidden" id="comId" name="comId"> 
-						<input type="hidden" name="userId" value="mkms1104"> 
-						<select name="addTime" id="selectAddTime">
+						<input type="hidden" id="comId" name="comId"> <input
+							type="hidden" name="userId" value="mkms1104"> <select
+							name="addTime" id="selectAddTime">
 							<option value="0">select Time</option>
-						</select> 
-					</form> 
-					
+						</select>
+					</form>
+
 					<button id="addTimeBtn">충전하기</button>
-					
+
 				</div>
 			</div>
 		</div>
@@ -249,10 +207,7 @@ html, body {
 		</div>
 	</div>
 
-	<%-- <%@ include file="/WEB-INF/views/common/footer.jsp"%> --%>
-
-	<script src="https://code.jquery.com/jquery-1.10.0.js"></script>
-
+	<%@ include file="/WEB-INF/views/common/footer.jsp"%>
 	<!-- 컴퓨터 처리(정기)  -->
 	<script>
 		var setTime = 2;// 최초 설정 시간(기본 : 초), 
@@ -345,7 +300,7 @@ html, body {
 			$('#addTimeBtn').on('click', function(){
 				alert("클릭");
 				$.ajax({
-					url: '<%= request.getContextPath()%>/user/addTime',
+					url: '<%=request.getContextPath()%>/user/addTime',
 					type: 'post',
 					data: $('#addTimeForm').serialize(),
 					
