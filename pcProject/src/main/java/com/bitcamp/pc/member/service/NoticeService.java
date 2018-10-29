@@ -5,11 +5,13 @@ import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.bitcamp.pc.member.dao.NoticeDaoInterface;
 import com.bitcamp.pc.member.model.NoticeListVO;
 import com.bitcamp.pc.member.model.NoticeVO;
 
+@Service
 public class NoticeService {
 
 	@Autowired
