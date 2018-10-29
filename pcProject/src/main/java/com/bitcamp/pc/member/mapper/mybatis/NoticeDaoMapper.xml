@@ -29,4 +29,10 @@
 		select * from notice where noticeid=#{id}
 
 	</select>
+	
+	<delete id="deleteNotice" parameterType="int">
+	
+		delete from notice where noticeid=#{id}
+	
+	</delete>
 </mapper>

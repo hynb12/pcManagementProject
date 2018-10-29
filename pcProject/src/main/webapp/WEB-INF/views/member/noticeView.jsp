@@ -32,8 +32,8 @@
 			</div>
 		</div>
 		<hr />
-		<button type="button" class="btn btn-dark"
-			onclick="location.href='/pc/member/notice'">삭제</button>
+		<button type="button" class="btn btn-dark" data-toggle="modal"
+			data-target="#modalLoginForm" onclick="">삭제</button>
 		<button type="button" class="btn btn-dark"
 			onclick="location.href='/pc/member/notice'">수정</button>
 		<button type="button" class="btn btn-dark"
@@ -41,4 +41,24 @@
 	</div>
 	<%@ include file="/WEB-INF/views/common/footer.jsp"%>
 </body>
+<div class="modal fade" id="modalLoginForm" tabindex="-1" role="dialog"
+	aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header text-center">
+				<h4 class="modal-title w-100 font-weight-bold">
+					정말 <span style="color: red">삭제</span>하시나요?
+				</h4>
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-footer d-flex justify-content-center">
+				<a class="btn btn-danger" href="/pc/member/noticeDelete/${view.noticeId}">삭제</a> <a
+					class="btn btn-dark" data-dismiss="modal">취소</a>
+			</div>
+		</div>
+	</div>
+</div>
 </html>
