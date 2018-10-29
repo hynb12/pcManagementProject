@@ -5,50 +5,7 @@
 <title>PC Management</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
 <style>
-.navbar-nav {
-	position: absolute;
-	right: 1%;
-}
-
-#admin-name {
-	position: absolute;
-	right: 40%;
-}
-
-.form-inline {
-	position: absolute;
-	right: 65%;
-}
-
-#main-container {
-	height: 100%;
-	margin-top: 1%;
-}
-
-#comDiv {
-	float: left;
-	width: 50%;
-	height: 100%;
-	padding: 20px;
-	overflow-y: scroll;
-	text-align: center;
-}
-
-#comTable {
-	border-spacing: 20px;
-	border-collapse: separate;
-	margin-left: 10%;
-}
-
-#comTable td {
-	background: gray;
-	padding: 80px;
-	font-size: 30px;
-	color: white;
-}
-
 .post {
 	padding: 0 1.5%;
 }

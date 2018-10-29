@@ -5,25 +5,10 @@
 <title>PC Management</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
 <style>
-html, body {
-	height: 90%;
-}
-
-.navbar-nav {
-	position: absolute;
-	right: 1%;
-}
-
 #admin-name {
 	position: absolute;
 	right: 40%;
-}
-
-.form-inline {
-	position: absolute;
-	right: 65%;
 }
 
 #main-container {
@@ -47,13 +32,6 @@ html, body {
 	padding: 20px;
 	overflow-y: scroll;
 	text-align: center;
-}
-
-#footer {
-	position: absolute;
-	left: 0px;
-	bottom: 0px;
-	width: 100%;
 }
 
 #comTable {
