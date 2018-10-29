@@ -156,6 +156,7 @@ html, body {
 
 </head>
 <body>
+
 	<%@ include file="/WEB-INF/views/common/header.jsp"%>
 
 	<div class="main-container">
@@ -189,13 +190,24 @@ html, body {
 						충전하실 시간을 선택하세요.<span class="close">&times;</span>
 					</h3>
 					<!-- UserTimeController 요청 URL -->
-					<form action="<%=request.getContextPath()%>/user/addTime">
+					<%-- <form action="<%=request.getContextPath()%>/user/addTime">
 						<input type="hidden" id="comId" name="comId"> <input
 							type="hidden" name="userId" value="mkms1104"> <select
 							name="addTime" id="selectAddTime">
 							<option value="0">select Time</option>
-						</select> <input type="submit" value="충전하기" id="addTime">
-					</form>
+						</select> <i --%>nput type="submit" value="충전하기" id="addTime">
+					</form> 
+					
+					<form id="addTimeForm">
+						<input type="hidden" id="comId" name="comId"> 
+						<input type="hidden" name="userId" value="mkms1104"> 
+						<select name="addTime" id="selectAddTime">
+							<option value="0">select Time</option>
+						</select> 
+					</form> 
+					
+					<button id="addTimeBtn">충전하기</button>
+					
 				</div>
 			</div>
 		</div>
@@ -237,7 +249,7 @@ html, body {
 		</div>
 	</div>
 
-	<%@ include file="/WEB-INF/views/common/footer.jsp"%>
+	<%-- <%@ include file="/WEB-INF/views/common/footer.jsp"%> --%>
 
 	<script src="https://code.jquery.com/jquery-1.10.0.js"></script>
 
@@ -296,7 +308,7 @@ html, body {
 
 			// 각 자리 초기화
 			$('#comTable td').each(function(index) {
-				var str = '<div><b>' + (index + 1) + '번</b></div>'; // comId (1~9)
+				var str = '<div><b>' + (index + 1) + '</b></div>'; // comId (1~9)
 				str += '<div></div>'; // userId
 				str += '<div></div>'; // time
 				$(str).appendTo(this);
@@ -328,11 +340,33 @@ html, body {
 				$('#addTimeModal').show(); // modal창 보이기
 
 			});
-	
+			
+			// 충전하기 클릭 시 
+			$('#addTimeBtn').on('click', function(){
+				alert("클릭");
+				$.ajax({
+					url: '<%= request.getContextPath()%>/user/addTime',
+					type: 'post',
+					data: $('#addTimeForm').serialize(),
+					
+					success:function(data){
+						alert("1");
+						console.log(data);
+						console.log(JSON.parse(data).userId);
+						
+						console.log(data.userId);
+						
+						
+					},
+					
+					error:function(e){
+						console.log("에러");
+					}
+				});
+			});
 			
 			///////////////////////////////////////////////////////////////////////////////////////
 			///////////////////////////////////////////////////////////////////////////////////////
-			
 			
 			<!-- 음식 처리(민수)  -->
 			

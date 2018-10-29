@@ -19,13 +19,12 @@ public class UserTimeController {
 		ModelAndView mav = new ModelAndView();
 		
 		// service, dao 처리 하십쇼 
-		
 		UTimeVO uTime = new UTimeVO();
 		uTime.setComId(comId);
 		uTime.setUserId(userId);
 		uTime.setUserTime(addTime);
 		
-		mav.setViewName("user/userMain");
+		mav.setViewName("user/userMainJson");
 		mav.addObject("uTime", uTime);
 		
 		return mav;
