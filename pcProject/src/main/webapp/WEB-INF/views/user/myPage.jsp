@@ -1,89 +1,82 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+	pageEncoding="UTF-8"%>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+<title>PC Management</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
 <style>
-html, body {
-	height: 90%;
+/* 정기 마이페이지 */
+#user_info {
+	margin: 20px;
 }
 
-.navbar-nav {
-	position: absolute;
-	right: 1%;
+#user_table * {
+	padding: 10px 50px;
 }
 
-#admin-name {
-	position: absolute;
-	right: 40%;
-}
-
-.form-inline {
-	position: absolute;
-	right: 65%;
-}
-
-#main-container {
-	height: 100%;
-	margin-top: 1%;
-}
-
-#comDiv {
-	float: left;
-	width: 50%;
-	height: 100%;
-	padding: 20px;
-	overflow-y: scroll;
-	text-align: center;
-}
-
-#foodDiv {
-	float: right;
-	width: 50%;
-	background: blue;
-	height: 100%;
-	padding: 20px;
-	overflow-y: scroll;
-}
-
-#footer {
-	position: absolute;
-	left: 0px;
-	bottom: 0px;
-	width: 100%;
-}
-
-#comTable {
-	border-spacing: 20px;
-	border-collapse: separate;
-	margin-left: 10%;
-}
-
-#comTable td {
-	background: gray;
-	padding: 80px;
-	font-size: 30px;
+#user_table>tbody>tr>th {
+	border: 1px solid #303030;
+	border-top: 1px solid white;
+	border-bottom: 1px solid white;
 	color: white;
+	background-color: #303030;
+}
+
+#user_table>tbody>tr>td {
+	color: black;
+	border: 1px solid #303030;
+	background-color: white;
+}
+
+#bt {
+	padding: 0px;
+	width: 80px;
+	height: 25px;
 }
 </style>
 
 </head>
 <body>
 	<%@ include file="/WEB-INF/views/common/header.jsp"%>
-	
-	<h1>마이 페이지입니다.</h1>
-	
+	<div class="container">
+		<h1>마이 페이지</h1>
+		<hr>
+		<div id="user_info">
+			<form action="">
+				<table id="user_table">
+					<tr>
+						<th>회원아이디</th>
+						<td>MinSSSSS</td>
+					</tr>
+					<tr>
+						<th>이름</th>
+						<td>MinSSSSS</td>
+					</tr>
+					<tr>
+						<th>핸드폰번호</th>
+						<td>01012345678</td>
+					</tr>
+					<tr>
+						<th>남은시간</th>
+						<td>1234분</td>
+					</tr>
+					<tr>
+						<th>생년월일</th>
+						<td>11.11.11</td>
+					</tr>
+					<tr>
+						<th>회원정보관리</th>
+						<td><input id="bt" type="button" value='수정' onclick="">
+							<input type="button" id="bt" value="삭제" onclick=""></td>
+					</tr>
+				</table>
+			</form>
+
+
+		</div>
+	</div>
 	<%@ include file="/WEB-INF/views/common/footer.jsp"%>
 </body>
 </html>
