@@ -15,7 +15,6 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
-
 <style>
 .navbar-nav {
 	position: absolute;
@@ -48,9 +47,9 @@
 	width: 100%;
 }
 
-#write {
-	float: right;
-	margin: 10px;
+.row {
+	margin-top: 50px;
+	color: #666;
 }
 </style>
 
@@ -58,36 +57,17 @@
 <body>
 	<%@ include file="/WEB-INF/views/common/header.jsp"%>
 	<div class="container">
-		<a id="write" class="btn btn-secondary" href="/pc/admin/noticeWrite">글쓰기</a>
-		<table class="table table-hover text-center">
-			<thead>
-				<tr>
-					<th style="width: 85%">제목</th>
-					<th>등록일</th>
-				</tr>
-			</thead>
-			<tbody>
-				<c:if test="${viewData.isEmpty()}">
-					<tr>
-						<td>작성된 방명록 메시지가 없습니다.</td>
-					</tr>
-				</c:if>
-				<c:if test="${!viewData.isEmpty()}">
-					<c:forEach var="list" items="${viewData.noticeList}">
-						<tr>
-							<td onclick="location.href='notice/${list.noticeId}'">${list.noticeTitle}</td>
-							<td>
-							<fmt:parseDate value="${list.noticeDate}" pattern="yyyy-MM-dd HH:mm" var="date"/>
-							<fmt:formatDate value="${date}" pattern="yyyy-MM-dd"/>
-							</td>
-						</tr>
-					</c:forEach>
-				</c:if>
-			</tbody>
-		</table>
-		<c:forEach var="num" begin="1" end="${viewData.pageTotalCount}">
-		<a href="notice?page=${num}">[${num}]</a>
-		</c:forEach>
+		<div class="row" >
+			<div class="col-sm-3">
+				<h4 style="color: #1e1e1e;">${view.noticeTitle}</h4>
+				<fmt:parseDate value="${view.noticeDate}}" pattern="yyyy-MM-dd HH:mm" var="date"/>
+				<fmt:formatDate value="${date}" pattern="yyyy-MM-dd"/>
+			</div>
+			<div class="col-sm-9"><p></p>
+			${view.noticeCon}
+			<hr>
+			</div>
+		</div>
 	</div>
 	<%@ include file="/WEB-INF/views/common/footer.jsp"%>
 </body>

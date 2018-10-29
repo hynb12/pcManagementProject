@@ -16,7 +16,7 @@ public class NoticeController {
 	@Autowired
 	private NoticeService service;
 
-	// 공지사항 클릭시 공지사항을 리스트를 보여줌ㅕ
+	// 공지사항 클릭시 공지사항을 리스트를 보여줌
 	@RequestMapping("/member/notice")
 	public ModelAndView getNoticeList(HttpServletRequest req) {
 

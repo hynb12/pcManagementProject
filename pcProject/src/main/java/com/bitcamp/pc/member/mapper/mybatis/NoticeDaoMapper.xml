@@ -23,4 +23,10 @@
 		select * from notice order by noticeid desc limit #{firstRow},#{endRow} 
 	
 	</select>
+	
+	<select id="selectView" resultType="noticeVO">
+	
+		select * from notice where noticeid=#{id}
+
+	</select>
 </mapper>

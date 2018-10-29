@@ -13,4 +13,6 @@ public interface NoticeDaoInterface {
 	int pageCount() throws Exception;
 
 	List<NoticeVO> selectList(@Param("firstRow") int firstRow, @Param("endRow") int endRow) throws Exception;
+
+	NoticeVO selectView(int noticeId);
 }
