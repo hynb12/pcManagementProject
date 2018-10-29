@@ -6,6 +6,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
+
+*{
+	overflow : hidden;
+}
+
 .comDiv {
 	float: left;
 	width: 50%;
@@ -13,6 +18,7 @@
 	padding: 20px;
 	overflow-y: scroll;
 	text-align: center;
+	border: 1px solid black;
 }
 
 .foodDiv {
@@ -22,6 +28,7 @@
 	padding: 20px;
 	overflow-y: scroll;
 	text-align: center;
+	border: 1px solid black;
 }
 
 #comTable {
@@ -49,6 +56,7 @@
 	margin: 0 auto;
 	border-spacing: 20px;
 	border-collapse: separate;
+	
 }
 
 #foodTable td {
@@ -56,6 +64,7 @@
 	height: 220px;
 	border-radius: 70px;
 	border: 2px solid gray;
+	text-align: center;
 }
 
 .comNum {
@@ -116,7 +125,7 @@
 <body>
 	<%@ include file="/WEB-INF/views/common/header.jsp"%>
 
-	<div class="container">
+	<div>
 		<div class="comDiv">
 			<h3>◆ 사용하실 컴퓨터를 선택하세요. ◆</h3>
 			<table id="comTable">
@@ -137,6 +146,12 @@
 					<td></td>
 					<td></td>
 				</tr>
+				
+				<tr>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
 
 			</table>
 
@@ -146,16 +161,8 @@
 					<h3>
 						충전하실 시간을 선택하세요.<span class="close">&times;</span>
 					</h3>
-					<!-- UserTimeController 요청 URL -->
-					<%-- <form action="<%=request.getContextPath()%>/user/addTime">
-						<input type="hidden" id="comId" name="comId"> <input
-							type="hidden" name="userId" value="mkms1104"> <select
-							name="addTime" id="selectAddTime">
-							<option value="0">select Time</option>
-						</select> <i --%>
-					nput type="submit" value="충전하기" id="addTime">
-					</form>
-
+					
+					<!-- ajax serialize 사용을 위해  -->
 					<form id="addTimeForm">
 						<input type="hidden" id="comId" name="comId"> <input
 							type="hidden" name="userId" value="mkms1104"> <select
@@ -269,7 +276,7 @@
 				$(str).appendTo(this);
 			});
 
-			// 선택된 자리에 정보 표시 
+			/* // 선택된 자리에 정보 표시 
 			$('#comTable td').each(function(index) {
 				
 				if ((index + 1) == '${uTime.comId}') {
@@ -282,7 +289,7 @@
 					// $(this).children().eq(2).text(userTime); // 두 번째 줄에 남은 시간 표시
 					// $(this).children().eq(2).css('color', 'black'); // 시간 글씨색 변경
 				}
-			});
+			}); */
 
 			// 각 컴퓨터 선택 분기 처리
 			$('#comTable td').on('click', function() {
@@ -298,26 +305,34 @@
 			
 			// 충전하기 클릭 시 
 			$('#addTimeBtn').on('click', function(){
-				alert("클릭");
 				$.ajax({
 					url: '<%=request.getContextPath()%>/user/addTime',
 					type: 'post',
 					data: $('#addTimeForm').serialize(),
 					
 					success:function(data){
-						alert("1");
-						console.log(data);
-						console.log(JSON.parse(data).userId);
+						// 선택된 자리에 정보 표시 
+						$('#comTable td').each(function(index) {
+							if ((index + 1) == data.comId) {
+								$(this).css('opacity', 1); // 선택된 컴퓨터의 투명도 설정
+								
+								$(this).children().eq(1).text(data.userId); // 선택된 컴퓨터의 첫 번째 줄에 아이디 표시
+								// $(this).children().eq(2).text('${uTime.userTime}'); // 두 번째 줄에 남은 시간 표시
+								
+								
+								// $(this).children().eq(2).text(userTime); // 두 번째 줄에 남은 시간 표시
+								// $(this).children().eq(2).css('color', 'black'); // 시간 글씨색 변경
+							}
+							console.log(data);
+							console.log(data.userId);
+							console.log(data.comId);
+							console.log(data.userTime);
 						
-						console.log(data.userId);
-						
-						
-					},
+						});
+					}, /* end success */
 					
-					error:function(e){
-						console.log("에러");
-					}
 				});
+				$('#addTimeModal').hide();
 			});
 			
 			///////////////////////////////////////////////////////////////////////////////////////
