@@ -57,17 +57,25 @@
 <body>
 	<%@ include file="/WEB-INF/views/common/header.jsp"%>
 	<div class="container">
-		<div class="row" >
+		<div class="row">
 			<div class="col-sm-3">
 				<h4 style="color: #1e1e1e;">${view.noticeTitle}</h4>
-				<fmt:parseDate value="${view.noticeDate}}" pattern="yyyy-MM-dd HH:mm" var="date"/>
-				<fmt:formatDate value="${date}" pattern="yyyy-MM-dd"/>
+				<fmt:parseDate value="${view.noticeDate}" pattern="yyyy-MM-dd HH:mm"
+					var="date" />
+				<fmt:formatDate value="${date}" pattern="yyyy-MM-dd" />
 			</div>
-			<div class="col-sm-9"><p></p>
-			${view.noticeCon}
-			<hr>
+			<div class="col-sm-9" style="height: 400px">
+				<p></p>
+				${view.noticeCon}
 			</div>
 		</div>
+		<hr />
+		<button type="button" class="btn btn-dark"
+			onclick="location.href='/pc/member/notice'">삭제</button>
+		<button type="button" class="btn btn-dark"
+			onclick="location.href='/pc/member/notice'">수정</button>
+		<button type="button" class="btn btn-dark"
+			onclick="location.href='/pc/member/notice'">목록</button>
 	</div>
 	<%@ include file="/WEB-INF/views/common/footer.jsp"%>
 </body>

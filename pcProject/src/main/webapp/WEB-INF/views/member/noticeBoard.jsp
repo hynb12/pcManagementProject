@@ -8,49 +8,30 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
-
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link
+	href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css"
+	rel="stylesheet">
+<link
+	href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.13/css/mdb.min.css"
+	rel="stylesheet">
+<script type="text/javascript"
+	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript"
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+<script type="text/javascript"
+	src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.min.js"></script>
+<script type="text/javascript"
+	src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.13/js/mdb.min.js"></script>
 <style>
-.navbar-nav {
-	position: absolute;
-	right: 1%;
-}
-
-#admin-name {
-	position: absolute;
-	right: 40%;
-}
-
-.form-inline {
-	position: absolute;
-	right: 65%;
-}
-
-#foodDiv {
-	float: right;
-	width: 50%;
-	background: blue;
-	height: 100%;
-	padding: 20px;
-	overflow-y: scroll;
-}
-
-#footer {
-	position: absolute;
-	left: 0px;
-	bottom: 0px;
-	width: 100%;
-}
-
 #write {
 	float: right;
 	margin: 10px;
+}
+/* 공지사항 게시판 제목 오버 */
+.notice-title:hover {
+	font-weight: bold;
+	text-decoration: underline;
 }
 </style>
 
@@ -59,9 +40,9 @@
 	<%@ include file="/WEB-INF/views/common/header.jsp"%>
 	<div class="container">
 		<a id="write" class="btn btn-secondary" href="/pc/admin/noticeWrite">글쓰기</a>
-		<table class="table table-hover text-center">
+		<table class="table">
 			<thead>
-				<tr>
+				<tr class="text-center">
 					<th style="width: 85%">제목</th>
 					<th>등록일</th>
 				</tr>
@@ -75,20 +56,25 @@
 				<c:if test="${!viewData.isEmpty()}">
 					<c:forEach var="list" items="${viewData.noticeList}">
 						<tr>
-							<td onclick="location.href='notice/${list.noticeId}'">${list.noticeTitle}</td>
-							<td>
-							<fmt:parseDate value="${list.noticeDate}" pattern="yyyy-MM-dd HH:mm" var="date"/>
-							<fmt:formatDate value="${date}" pattern="yyyy-MM-dd"/>
-							</td>
+							<td style="padding: 20px;"><a class="notice-title"
+								href="notice/${list.noticeId}">${list.noticeTitle}</a></td>
+							<td class="text-center"><fmt:parseDate
+									value="${list.noticeDate}" pattern="yyyy-MM-dd HH:mm"
+									var="date" /> <fmt:formatDate value="${date}"
+									pattern="yyyy-MM-dd" /></td>
 						</tr>
 					</c:forEach>
 				</c:if>
 			</tbody>
 		</table>
 		<c:forEach var="num" begin="1" end="${viewData.pageTotalCount}">
-		<a href="notice?page=${num}">[${num}]</a>
+			<a href="notice?page=${num}">[${num}]</a>
 		</c:forEach>
 	</div>
-	<%@ include file="/WEB-INF/views/common/footer.jsp"%>
+	<footer class="page-footer font-small special-color-dark">
+		<div class="footer-copyright text-center py-3">
+			© 2018 Copyright: <a href="#">PC Management</a>
+		</div>
+	</footer>
 </body>
 </html>
