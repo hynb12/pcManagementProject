@@ -33,6 +33,8 @@ public class UserLoginService {
          // 세션에 vo 객체 저장한다.
          session.setAttribute("userVO", vo);
          
+         System.out.println(session.getAttribute("userVO"));//로그인 확인
+         System.out.println("그냥 객체"+vo);//로그인 확인
          
          result = true;
       }

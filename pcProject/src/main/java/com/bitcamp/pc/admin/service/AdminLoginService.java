@@ -34,6 +34,8 @@ public class AdminLoginService {
 			// 3. adminPw를 초기화하였다면 session에 저장
 			session.setAttribute("adminVO", vo);
 			
+			System.out.println(session.getAttribute("adminVO"));//로그인 확인
+	         System.out.println("그냥 객체"+vo);//로그인 확인
 			
 			// 모두 충족한다면 true 값으로 반환
 			result = true;

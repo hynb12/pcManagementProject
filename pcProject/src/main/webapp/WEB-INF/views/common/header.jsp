@@ -53,6 +53,8 @@
 					href="<%=request.getContextPath()%>/member/notice">공지사항</a></li>
 				<li class="nav-item"><a class="nav-link"
 					href="<%=request.getContextPath()%>/admin/message">쪽지함</a></li>
+				<li class="nav-item"><a class="nav-link"
+					href="<%=request.getContextPath()%>/member/logout">로그아웃</a></li>
 			</c:if>
 			<c:if test="${!isAdmin}">
 				<li class="nav-item"><a class="nav-link"
@@ -61,6 +63,8 @@
 					href="<%=request.getContextPath()%>/member/notice">공지사항</a></li>
 				<li class="nav-item"><a class="nav-link"
 					href="<%=request.getContextPath()%>/user/message">쪽지전송</a></li>
+				<li class="nav-item"><a class="nav-link"
+					href="<%=request.getContextPath()%>/member/logout">로그아웃</a></li>
 			</c:if>
 		</ul>
 		<!-- Links -->
