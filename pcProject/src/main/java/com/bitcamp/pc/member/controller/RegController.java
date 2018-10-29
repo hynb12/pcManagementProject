@@ -35,8 +35,10 @@ public class RegController {
 	public ModelAndView memberReg(
 			// 체크박스는 파라미터 안넘어오면 null 이므로 오류 발생
 			// 그러므로 파라미터 필수 여부 false 변경
-			@RequestParam(value = "isAdmin", required = false) String isAdmin, @RequestParam("id") String id,
-			@RequestParam("pw") String pw, @RequestParam("name") String name,
+			@RequestParam(value = "isAdmin", required = false) String isAdmin, 
+			@RequestParam("id") String id,
+			@RequestParam("pw") String pw, 
+			@RequestParam("name") String name,
 			@RequestParam(value = "phoneNum", required = false) String phoneNum,
 			@RequestParam(value = "birth", required = false) String birth) {
 

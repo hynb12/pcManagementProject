@@ -33,7 +33,6 @@ public class UserLoginService {
 			// 세션에 vo 객체 저장한다.
 			session.setAttribute("loginVO", vo);
 			
-			
 			result = true;
 		}
 

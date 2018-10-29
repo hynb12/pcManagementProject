@@ -93,8 +93,8 @@ html, body {
 
 #foodTable td {
 	width: 180px;
-	height: 180px;
-	border-radius: 90px;
+	height: 220px;
+	border-radius: 70px;
 	border: 2px solid gray;
 }
 
@@ -129,7 +129,6 @@ html, body {
 	width: 60%;
 }
 
-
 /* The Close Button */
 .close {
 	color: #aaaaaa;
@@ -144,6 +143,14 @@ html, body {
 	text-decoration: none;
 	cursor: pointer;
 }
+
+.foodCnt {
+	text-align: center;
+	font-size: 16px;
+	width : 20px;
+	height: 20px;
+}
+
 
 </style>
 
@@ -187,7 +194,7 @@ html, body {
 							type="hidden" name="userId" value="mkms1104"> <select
 							name="addTime" id="selectAddTime">
 							<option value="0">select Time</option>
-						</select> <input type="submit" value="충전하기">
+						</select> <input type="submit" value="충전하기" id="addTime">
 					</form>
 				</div>
 			</div>
@@ -195,7 +202,7 @@ html, body {
 		<!-- end comDiv  -->
 
 		<div class="foodDiv">
-			<h3>◆ 음식 리스트 ◆</h3>
+			<h3>◆ 음식 선택 후 주문하기 눌러주세요. ◆</h3>
 			<table id="foodTable">
 				<tr>
 					<td></td>
@@ -216,9 +223,9 @@ html, body {
 				</tr>
 
 			</table>
-			
-			<button onclick="viewOrderList()">주문하기</button>
-			
+
+			<button id="orderBtn">주문하기</button>
+
 			<!-- 주문 리스트 modal -->
 			<div id="orderListModal" class="mainModal">
 				<div class="modal-content">
@@ -236,11 +243,37 @@ html, body {
 
 	<!-- 컴퓨터 처리(정기)  -->
 	<script>
+		var setTime = 2;// 최초 설정 시간(기본 : 초), 
+		
+		// 카운트 함수 
+		function msg_time(user) { // 1초씩 카운트
+			
+			console.log(setTime);
+			m = Math.floor(setTime / 60) + "분 " + (setTime % 60) + "초"; // 남은 시간 계산
+		         
+		    var msg = "<font color='black'><b>" + m + "</b></font>";
+		  	$(user).children().eq(2).html(msg); // div 영역에 보여줌 
+		  	
+		    setTime--; // 1초씩 감소  
+		    
+		    if (setTime < 0) {
+		    	console.log("시간 종료");
+		    	
+		    	// 시간이 종료 되었으면..
+		        m = (Math.floor(setTime / 60)+1)*(-1) + "분 " + ((setTime % 60)+1)*(-1) + "초";
+
+		        var msg = " <font color='red'><b>" + m + "</b></font>";
+		        $(user).children().eq(2).html(msg); // div 영역에 보여줌 
+		    }
+	    } // end msg_time()
+		
+		// 로드 시 최초 1회만 실행
 		$(document).ready(function() {
 			
-			// 시간 충전 modal 창 닫기 버튼 클릭
+			// 시간 충전, 주문내역  modal 창 닫기 버튼 클릭
 			$('.close').on('click', function() {
 				$('#addTimeModal').hide();
+				$('#orderListModal').hide();
 			});
 			
 			// modal 창 외 윈도우 클릭
@@ -248,6 +281,10 @@ html, body {
 				//jquery는 dom 객체를 jquery 객체로 한 번 감싸 리턴하므로 dom 객체를 얻어와야 비교 가능
 				if (event.target == $('#addTimeModal').get(0)) {
     				$('#addTimeModal').hide();
+    			}
+				
+				if (event.target == $('#orderListModal').get(0)) {
+    				$('#orderListModal').hide();
     			}
 			});
 			
@@ -267,11 +304,16 @@ html, body {
 
 			// 선택된 자리에 정보 표시 
 			$('#comTable td').each(function(index) {
+				
 				if ((index + 1) == '${uTime.comId}') {
 					$(this).css('opacity', 1); // 선택된 컴퓨터의 투명도 설정
 					$(this).children().eq(1).text('${uTime.userId}'); // 선택된 컴퓨터의 첫 번째 줄에 아이디 표시
-					$(this).children().eq(2).text('${uTime.userTime}'); // 두 번째 줄에 남은 시간 표시
-					$(this).children().eq(2).css('color', 'black'); // 시간 글씨색 변경
+					// $(this).children().eq(2).text('${uTime.userTime}'); // 두 번째 줄에 남은 시간 표시
+					
+					setInterval(msg_time(this), 1000);
+					
+					// $(this).children().eq(2).text(userTime); // 두 번째 줄에 남은 시간 표시
+					// $(this).children().eq(2).css('color', 'black'); // 시간 글씨색 변경
 				}
 			});
 
@@ -286,12 +328,13 @@ html, body {
 				$('#addTimeModal').show(); // modal창 보이기
 
 			});
-		});
-	</script>
-
-	<!-- 음식 처리(민수)  -->
-	<script>
-		$(document).ready(function() {
+	
+			
+			///////////////////////////////////////////////////////////////////////////////////////
+			///////////////////////////////////////////////////////////////////////////////////////
+			
+			
+			<!-- 음식 처리(민수)  -->
 			
 			// 음식 정보 담을 생성자
 			function FoodInfo(imgSrc, foodName, foodPrice) {
@@ -312,26 +355,36 @@ html, body {
 							new FoodInfo('food_9.png', '사이다', 1000),
 			];
 			
-			// 테이블에 각 음식 표시
+			// 음식 초기화
 			$('#foodTable td').each(function(index) {
 				var str = '<img src=../images/'+foodArr[index].imgSrc+'/>';
 				str += '<div><b>' + foodArr[index].foodName + '</b></div>';
 				str += '<div><b>' + foodArr[index].foodPrice + '</b></div>'; 
+				str += '<div> <span id="minus">-</span> ';
+				str += '<input type="text" value="0" class="foodCnt">';
+				str += '<span id="plus">+</span> </div>'; 
 				$(str).appendTo(this);
-
+			
 				$('img').css({
 					'max-width' : 100, // 이미지 크기가 div에 넘을 경우 맞춰서 이미지 크기 자동 조정
 					'width' : 100,
 					'height' : 100
 				});
+				
+				$(this).children().eq(3).css('font-size', 20); // +, - 크기 조정
+			});
+			
+			// 각 음식 선택 분기 처리
+			$('#foodTable td').on('click', function() {
+				
 			});
 			
 			// 메뉴 선택 후 주문하기 버튼 클릭 시 발생하는 이벤트
-			function viewOrderList() {
+			$('#orderBtn').on('click', function () {
 				$('#orderListModal').show();
-			}
-	
-		});
+			});
+		
+		}); // end window.onload() 
 	</script>
 </body>
 </html>
