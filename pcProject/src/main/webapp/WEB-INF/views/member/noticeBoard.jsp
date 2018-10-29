@@ -24,7 +24,7 @@
 <body>
 	<%@ include file="/WEB-INF/views/common/header.jsp"%>
 	<div class="container">
-		<a id="write" class="btn btn-secondary" href="/pc/admin/noticeWrite">글쓰기</a>
+		<a id="write" class="btn btn-outline-elegant waves-effect" href="/pc/admin/noticeWrite">글쓰기</a>
 		<table class="table">
 			<thead>
 				<tr class="text-center">

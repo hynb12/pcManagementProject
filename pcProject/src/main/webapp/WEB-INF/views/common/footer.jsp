@@ -15,7 +15,7 @@ body {
 }
 </style>
 
-<footer class="page-footer font-small unique-color-dark ">
+<footer class="page-footer font-small bg-dark ">
 	<div class="footer-copyright text-center py-3">
 		© 2018 Copyright: <a href="#">PC Management</a>
 	</div>
