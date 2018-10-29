@@ -2,10 +2,12 @@ package com.bitcamp.pc.admin.service;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.bitcamp.pc.member.dao.AdminDaoInterface;
 import com.bitcamp.pc.member.model.AdminVO;
 
+@Service
 public class AdminRegService {
 
    @Autowired

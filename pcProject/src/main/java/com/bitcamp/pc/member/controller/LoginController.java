@@ -20,7 +20,7 @@ public class LoginController {
 	public String login(@RequestParam("userId") String userId) {
 		
 		boolean isLogin = true; // 로그인 성공 여부 검사
-		boolean isAdmin = false; // 관리자 로그인 검사
+		boolean isAdmin = true; // 관리자 로그인 검사
 		
 		// 관리자 로그인 여부 확인하기 위해 메인 컨트롤러로 넘겨준다.
 		String url = "redirect:/member/main?isAdmin="+isAdmin;

@@ -7,10 +7,12 @@ import java.util.Date;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.bitcamp.pc.member.dao.UTimeDaoInterface;
 import com.bitcamp.pc.member.model.UTimeVO;
 
+@Service
 public class TimeService {
 
 	@Autowired

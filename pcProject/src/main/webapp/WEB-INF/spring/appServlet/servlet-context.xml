@@ -33,20 +33,6 @@
 	<context:component-scan
 		base-package="com.bitcamp.pc" />
 	
-	<!-- TimeService Service 등록 -->
-	<beans:bean id="timeService"
-		class="com.bitcamp.pc.member.service.TimeService" />
-		
-	<!-- AdminRegService 등록 -->
-	<!-- 2018-10-28 20:11 김민수 -->
-	<beans:bean id="adminRegService"
-		class="com.bitcamp.pc.admin.service.AdminRegService"/>
-	
-	<!-- UserRegService 등록 -->
-	<!-- 2018-10-28 20:02 문경원 -->
-	<beans:bean id="UserRegService"
-		class="com.bitcamp.pc.user.service.UserRegService"/>
-	
 	<!-- JDBC 빈 등록 -->
 	<!-- 2018-10-25 14:45 김정기 -->
 	<beans:bean id="dataSource"
