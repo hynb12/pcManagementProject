@@ -11,4 +11,10 @@
       values (#{adminId}, #{adminName}, #{adminPw})
    
    </insert>
+   
+   <select id="loginAdmin" resultType="AdminVO">
+   
+   		select adminid, adminpw from admin where adminid=#{userId}
+   
+   </select>
 </mapper>
