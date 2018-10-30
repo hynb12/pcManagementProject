@@ -57,9 +57,9 @@
 }
 
 #foodTable td {
-	width: 180px;
-	height: 220px;
-	border-radius: 70px;
+	width: 200px;
+	height: 200px;
+	border-radius: 100px;
 	border: 2px solid gray;
 	text-align: center;
 }
@@ -113,6 +113,21 @@
 	width: 20px;
 	height: 20px;
 }
+
+.orderTable {
+	margin: 0 auto;
+	text-align: center;
+}
+
+.orderTable td {
+	width: 100px;
+}
+
+#totalPrice {
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
 </style>
 
 </head>
@@ -200,6 +215,12 @@
 				<div class="modal-content">
 					<h3>
 						주문내역<span class="close">&times;</span>
+						<table border="1" id="orderListTable" class="orderTable">
+							<!-- jquery로 리스트 동적 생성 -->
+						</table>
+						
+						<div id="totalPrice"></div>
+						<button id="orderConfirmBtn">주문 확정</button>
 					</h3>
 				</div>
 			</div>
@@ -241,6 +262,7 @@
 			$('.close').on('click', function() {
 				$('#addTimeModal').hide();
 				$('#orderListModal').hide();
+				$('#orderListTable').text(''); // 리스트 내용 초기화
 			});
 			
 			// modal 창 외 윈도우 클릭
@@ -252,6 +274,7 @@
 				
 				if (event.target == $('#orderListModal').get(0)) {
     				$('#orderListModal').hide();
+    				$('#orderListTable').text(''); // 리스트 내용 초기화
     			}
 			});
 			
@@ -324,6 +347,13 @@
 				this.foodPrice = foodPrice;
 			}
 			
+			// 주문한 음식 담을 생성자
+			function OrderList(foodName, foodPrice, foodCnt) {
+				this.foodName = foodName;
+				this.foodPrice = foodPrice*foodCnt; // 수량 만큼 가격 계산
+				this.foodCnt = foodCnt;
+			}
+			
 			// 생성자로 각 음식 정보 생성 후 배열에 저장
 			var foodArr = [new FoodInfo('food_1.png', '나쵸', 5000),
 							new FoodInfo('food_2.png', '감자튀김', 3000),
@@ -352,13 +382,16 @@
 					'height' : 100
 				});
 				
+				$(this).attr('id', index+1); // 음식 아이디 지정
+				
 				$(this).children().eq(3).css({
 					'display': 'inline-block'
 				}); // +, - 크기 조정
 			});
 			
 			// 각 음식 + 카운트 처리
-			$('.plus').on('click', function() {
+			$('.plus').on('click', function(e) {
+				e.stopPropagation(); // 이벤트 전파 방지 (음식이 선택되면 안됨)
 				
 				var n =  $('.plus').index(this);
 			 	var num = $('.foodCnt:eq('+n+')').val();
@@ -367,27 +400,76 @@
 			});
 			
 			// 각 음식 - 카운트 처리
-			$('.minus').on('click', function() {
-				console.log($(this).next());
-				console.log($(this).next().next());
-			
+			$('.minus').on('click', function(e) {
+				e.stopPropagation(); // 이벤트 전파 방지 (음식이 선택되면 안됨)
+				
 				var n =  $('.minus').index(this);
 			 	var num = $('.foodCnt:eq('+n+')').val();
 			 	
 			 	if(num-1 < 0 ){ // 수량 0이하 안되게 처리
-			 		console.log("내리지마라");
 			 		return;
 			 	}
 				num = $('.foodCnt:eq('+n+')').val(num*1-1);
 			});
 			
+			var orderList = [];
+			var isChoice = new Array(9).fill(true); 
 			
 			$('#foodTable td').on('click', function() {
+				var idx = $(this).attr('id')-1; // 선택한 테이블의 아이디 가져온 후 배열의 인덱스로 사용하기 위해 -1
+				var foodCnt = $(this).children().eq(3).children().eq(1).val(); // 선택된 음식의 수량 가져오기
+				var foodName = foodArr[idx].foodName; // 선택된 음식의 이름 가져오기
+				var foodPrice = foodArr[idx].foodPrice; // 선택된 음식의 가격 가져오기
 				
+				// 음식 선택
+				if(isChoice[idx]){
+					
+					if(foodCnt != 0){ // 선택된 음식 갯수가 0이 아닐 때만 리스트에 담기
+						$(this).css('opacity', '0.5');
+					
+						//console.log($(this).children().eq(3).children().eq(0).off('click'));
+						//console.log($(this).children().eq(3).children().eq(2).off('click'));
+						
+						orderList.push(new OrderList(foodName, foodPrice, foodCnt)); // 선택한 음식을 리스트 배열에 저장
+						isChoice[idx] = false;
+					}
+				}
+				
+				// 음식 선택 해제
+				else {
+					$(this).css('opacity', '');
+					var i = orderList.indexOf(idx);
+					orderList.splice(i, 1); // 리스트에서 삭제
+					
+					//$(this).children().eq(3).children().eq(0).on('click');
+					//$(this).children().eq(3).children().eq(2).on('click');
+					
+					isChoice[idx] = true;
+				}
+				console.log(orderList);
 			});
 			
 			// 메뉴 선택 후 주문하기 버튼 클릭 시 발생하는 이벤트
 			$('#orderBtn').on('click', function () {
+				if(orderList.length == 0){ // 주문할 메뉴를 하나도 선택하지 않았을 경우
+					alert('메뉴를 선택하세요.');
+					return;
+				}
+				
+				var str = '';
+				var totalPrice = 0;
+				
+				str += '<tr><th>음식</th><th>가격</th><th>수량</th></tr>';
+				
+				for(var i=0; i < orderList.length; i++){
+					str += '<tr><td>'+ orderList[i].foodName +'</td>';
+					str += '<td>'+ orderList[i].foodPrice +'</td>';
+					str += '<td>'+ orderList[i].foodCnt +'</td></tr>';
+					totalPrice +=  orderList[i].foodPrice;
+				}
+				
+				$('#orderListTable').append(str);
+				$('#totalPrice').text('주문하신 음식의 총 가격은' + totalPrice + '원 입니다.');
 				$('#orderListModal').show();
 			});
 		
