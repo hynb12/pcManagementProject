@@ -6,17 +6,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
-#admin-name {
-	position: absolute;
-	right: 40%;
-}
 
-#main-container {
+.main-container {
 	height: 100%;
 	margin-top: 1%;
 }
 
-#comDiv {
+.comDiv {
 	float: left;
 	width: 50%;
 	height: 100%;
@@ -25,7 +21,7 @@
 	text-align: center;
 }
 
-#foodDiv {
+.foodDiv {
 	float: right;
 	width: 50%;
 	height: 100%;
@@ -51,22 +47,12 @@
 	border-radius: 10px;
 }
 
-/* 테스트 */
-#comTable td:not (:nth-child(1) ){
-	opacity: 0.5;
-}
-
 #foodTable {
 	margin: 0 auto;
 }
 
 #foodTable td {
 	padding: 10px;
-}
-
-.comNum {
-	color: black;
-	font-weight: bold;
 }
 
 #close {
@@ -78,8 +64,8 @@
 <body>
 	<%@ include file="/WEB-INF/views/common/header.jsp"%>
 
-	<div id="main-container">
-		<div id="comDiv">
+	<div class="main-container">
+		<div class="comDiv">
 			<h3>◆ 현재 사용 중인 컴퓨터: 5대 ◆</h3>
 			<table id="comTable">
 				<tr>
@@ -122,7 +108,7 @@
 
 			</table>
 		</div>
-		<div id="foodDiv">
+		<div class="foodDiv">
 			<h3>◆ 주문 대기 중인 음식 ◆</h3>
 			<table border="1" id="foodTable">
 				<tr>

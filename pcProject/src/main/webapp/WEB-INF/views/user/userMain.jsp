@@ -7,8 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
 
-*{
-	overflow : hidden;
+.main-container {
+	height: 100%;
+	margin-top: 1%;
 }
 
 .comDiv {
@@ -18,7 +19,6 @@
 	padding: 20px;
 	overflow-y: scroll;
 	text-align: center;
-	border: 1px solid black;
 }
 
 .foodDiv {
@@ -28,7 +28,6 @@
 	padding: 20px;
 	overflow-y: scroll;
 	text-align: center;
-	border: 1px solid black;
 }
 
 #comTable {
@@ -70,10 +69,6 @@
 .comNum {
 	color: black;
 	font-weight: bold;
-}
-
-#close {
-	color: red;
 }
 
 .mainModal {
@@ -119,13 +114,14 @@
 	width: 20px;
 	height: 20px;
 }
+
 </style>
 
 </head>
 <body>
 	<%@ include file="/WEB-INF/views/common/header.jsp"%>
 
-	<div>
+	<div class="main-container">
 		<div class="comDiv">
 			<h3>◆ 사용하실 컴퓨터를 선택하세요. ◆</h3>
 			<table id="comTable">
@@ -215,6 +211,7 @@
 	</div>
 
 	<%@ include file="/WEB-INF/views/common/footer.jsp"%>
+	
 	<!-- 컴퓨터 처리(정기)  -->
 	<script>
 		var setTime = 2;// 최초 설정 시간(기본 : 초), 
