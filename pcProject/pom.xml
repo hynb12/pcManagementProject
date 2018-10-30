@@ -195,7 +195,7 @@
 		</dependency>
 		<!-- Mybatis Spring 모듈 추가 from Spring_08_MyBatis연동_.pdf -->
 		
-		<!-- 제이슨 추가 -->
+		<!-- JSON 추가 -->
 		 <dependency>
             <groupId>org.codehaus.jackson</groupId>
             <artifactId>jackson-mapper-asl</artifactId>
