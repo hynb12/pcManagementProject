@@ -7,28 +7,28 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.bitcamp.pc.member.dao.UTimeDaoInterface">
 
 
-	<update id="startTime"
-		parameterType="utimeVO">
-		update utime set comid=#{comId},
+	<update id="startTime" parameterType="utimeVO">
+		update utime set
+		userId=#{userId},
 		usertime=#{userTime},
 		starttime=#{startTime},
 		endtime=#{endTime}
 		where
-		userId=#{userId}
+		comid=#{comId}
 	</update>
 
 
-	<update id="endTime"
-		parameterType="utimeVO">
-		update utime set usertime=#{userTime},
+	<update id="endTime" parameterType="utimeVO">
+		update utime set
+		usertime=#{userTime},
 		endtime=#{endTime}
 		where
 		userId=#{userId}
 	</update>
 
-	<update id="remainTime"
-		parameterType="utimeVO">
-		update utime set userTime=#{startTime}-
+	<update id="remainTime" parameterType="utimeVO">
+		update utime set
+		userTime=#{startTime}-
 		where
 		userId=#{userId}
 	</update>

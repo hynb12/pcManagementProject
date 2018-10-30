@@ -20,42 +20,41 @@ public class TimeService {
 
 	private UTimeDaoInterface utimeDaoInterface;
 
-	public int startTimeReg(String userId, int comId, long charge, long lastUserTime) {
+	public int startTimeReg(String userId, int comId, long remainTime) {
 
-		System.out.println("서비스 시작");
+		System.out.println("from TimeService.startTimeReg // 서비스 시작 ");
 
 		utimeDaoInterface = sqlSessionTemplate.getMapper(UTimeDaoInterface.class);
 
 		// 시간형식
 		SimpleDateFormat f;
-		f = new SimpleDateFormat("HH:mm:ss");
-
-		// 남은시간(충전)
-		long userTime = lastUserTime + charge;
+		f = new SimpleDateFormat("HH:mm");
 
 		// 시작
 		Date startnow = new Date(); // 시작시 현재시간
-		String startTime = f.format(startnow); // String타입으로 변경
 
-		UTimeVO uTime = new UTimeVO(userId, comId, userTime, startTime, ""); // 테스트 모델
-//		UTime(String userId, String comId, long userTime, String startTime, String endTime)
+		String startTime = f.format(startnow); // String타입으로 변경
+		System.out.println("from TimeService.startTimeReg // 현재시간 : " + startTime);
+
+		UTimeVO uTime = new UTimeVO(userId, comId, remainTime, startTime, ""); // 테스트 모델
+//      UTime(String userId, String comId, long userTime, String startTime, String endTime)
 
 		int resultCnt = 0;
 
-		System.out.println("서비스 중간 확인");
+		System.out.println("from TimeService.startTimeReg // 서비스 중간 확인 ");
 
-		System.out.println(uTime); // 테스트 모델 확인
+		System.out.println("from TimeService.startTimeReg // 테스트 모델 확인 : " + uTime); // 테스트 모델 확인
 
 		resultCnt = utimeDaoInterface.startTime(uTime);
 
-		System.out.println("서비스 끝");
+		System.out.println("from TimeService.startTimeReg // 서비스 끝 ");
 
 		return resultCnt;
 	}
 
 	public int endTimeReg(UTimeVO uTime) {
 
-		System.out.println("서비스 시작");
+		System.out.println("from TimeService.endTimeReg // 서비스 시작 ");
 
 		utimeDaoInterface = sqlSessionTemplate.getMapper(UTimeDaoInterface.class);
 
@@ -84,13 +83,13 @@ public class TimeService {
 
 		int resultCnt = 0;
 
-		System.out.println("서비스 중간 확인");
+		System.out.println("from TimeService.endTimeReg // 서비스 중간 확인 ");
 
 		System.out.println(uTime); // 테스트 모델 확인
 
 		resultCnt = utimeDaoInterface.endTime(uTime);
 
-		System.out.println("서비스 끝");
+		System.out.println("from TimeService.endTimeReg // 서비스 끝 ");
 
 		return resultCnt;
 	}
