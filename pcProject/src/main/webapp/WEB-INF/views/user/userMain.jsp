@@ -6,7 +6,6 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
-
 .main-container {
 	height: 100%;
 	margin-top: 1%;
@@ -55,7 +54,6 @@
 	margin: 0 auto;
 	border-spacing: 20px;
 	border-collapse: separate;
-	
 }
 
 #foodTable td {
@@ -90,6 +88,7 @@
 	margin: auto;
 	padding: 15px;
 	border: 1px solid #888;
+	width: 200px;
 }
 
 /* The Close Button */
@@ -113,7 +112,6 @@
 	width: 20px;
 	height: 20px;
 }
-
 </style>
 
 </head>
@@ -141,7 +139,7 @@
 					<td></td>
 					<td></td>
 				</tr>
-				
+
 				<tr>
 					<td></td>
 					<td></td>
@@ -156,11 +154,11 @@
 					<h3>
 						충전하실 시간을 선택하세요.<span class="close">&times;</span>
 					</h3>
-					
+
 					<!-- ajax serialize 사용을 위해  -->
 					<form id="addTimeForm">
-						<input type="hidden" id="comId" name="comId"> 
-						<select name="addTime" id="selectAddTime">
+						<input type="hidden" id="comId" name="comId"> <select
+							name="addTime" id="selectAddTime">
 							<option value="0">select Time</option>
 						</select>
 					</form>
@@ -208,7 +206,7 @@
 	</div>
 
 	<%@ include file="/WEB-INF/views/common/footer.jsp"%>
-	
+
 	<!-- 컴퓨터 처리(정기)  -->
 	<script>
 		var setTime = 2;// 최초 설정 시간(기본 : 초), 
@@ -300,8 +298,11 @@
 								$(this).css('opacity', 1); // 선택된 컴퓨터의 투명도 설정
 								
 								$(this).children().eq(1).text(data.userId); // 선택된 컴퓨터의 첫 번째 줄에 아이디 표시
-								$(this).children().eq(2).text(data.userTime); // 두 번째 줄에 남은 시간 표시
-								$(this).children().eq(2).css('color', 'black'); // 시간 글씨색 변경
+								$(this).children().eq(2).text(Math.floor(data.userTime/60)+'시간 ' +(data.userTime%60)+'분'); // 두 번째 줄에 남은 시간 표시
+								$(this).children().eq(2).css({
+									'color': 'black',
+									'font-weight' : 'bold'
+								}); // 시간 글씨색 변경
 							}
 						});
 					} /* end success */
