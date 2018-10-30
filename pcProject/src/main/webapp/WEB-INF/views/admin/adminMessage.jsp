@@ -183,7 +183,7 @@
 						readonly></li>
 					<li>보낸 아이디 : <input type="text" value="${detail.userId}"
 						readonly></li>
-					<li>메시지 날짜 : <input type="text" value="${detail.messageDate}"
+					<li>메시지 날짜 : <input type="text" value="${detail.messageDate}" pattern="yyyy-MM-dd HH:mm"
 						readonly></li>
 					<li>메시지 제목 : <input type="text" value="${detail.messageTitle}"
 						readonly></li>

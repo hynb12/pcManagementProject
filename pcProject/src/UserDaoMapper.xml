@@ -13,15 +13,8 @@
 
 	<select id="loginUser" resultType="userVO">
 
-		select * from user where userid=#{userId}
+		select userid, userpw from user where userid=#{userId}
 
-	</select>
-
-	<select id="searchId"
-		parameterType="userVO" resultType="userVO">
-			
-		select * from user where userphone=#{userPhone}
-			
 	</select>
 	
 	<select id="getMyPage" resultType = "userVO">
@@ -41,4 +34,5 @@
 	delete from user where userid = #{userId}
 	
 	</delete>
+
 </mapper>

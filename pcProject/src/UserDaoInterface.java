@@ -9,10 +9,7 @@ public interface UserDaoInterface {
 	
 	// 유저 로그인 메서드
 	public UserVO loginUser(String userId);
-	
-	// 유저 ID 찾기
-	public UserVO searchId(String userPhone);
-	
+
 	// 마이페이지 메서드
 	public UserVO getMyPage(String userId);
 	
