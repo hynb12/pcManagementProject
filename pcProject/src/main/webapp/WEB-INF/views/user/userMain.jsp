@@ -98,6 +98,7 @@
 	font-size: 28px;
 	font-weight: bold;
 	font-size: 28px;
+	
 }
 
 .close:hover, .close:focus {
@@ -352,7 +353,6 @@
 				});
 				
 				$(this).children().eq(3).css({
-					'font-size': 20,
 					'display': 'inline-block'
 				}); // +, - 크기 조정
 			});
@@ -361,19 +361,24 @@
 			$('.plus').on('click', function() {
 				
 				var n =  $('.plus').index(this);
-			 	var num = $(".foodCnt:eq("+n+")").val();
-				num = $(".foodCnt:eq("+n+")").val(num*1+1);
+			 	var num = $('.foodCnt:eq('+n+')').val();
+				num = $('.foodCnt:eq('+n+')').val(num*1+1);
 		
 			});
 			
 			// 각 음식 - 카운트 처리
 			$('.minus').on('click', function() {
-				
-			 	console.log($(this).next().val());
-			 	 
+				console.log($(this).next());
+				console.log($(this).next().next());
+			
 				var n =  $('.minus').index(this);
-			 	var num = $(".foodCnt:eq("+n+")").val();
-				num = $(".foodCnt:eq("+n+")").val(num*1-1);
+			 	var num = $('.foodCnt:eq('+n+')').val();
+			 	
+			 	if(num-1 < 0 ){ // 수량 0이하 안되게 처리
+			 		console.log("내리지마라");
+			 		return;
+			 	}
+				num = $('.foodCnt:eq('+n+')').val(num*1-1);
 			});
 			
 			
