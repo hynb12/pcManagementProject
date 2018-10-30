@@ -340,9 +340,9 @@
 				var str = '<img src=../images/'+foodArr[index].imgSrc+'/>';
 				str += '<div><b>' + foodArr[index].foodName + '</b></div>';
 				str += '<div><b>' + foodArr[index].foodPrice + '</b></div>'; 
-				str += '<div> <span id="minus">-</span> ';
+				str += '<div> <span class="minus">-</span> ';
 				str += '<input type="text" value="0" class="foodCnt">';
-				str += '<span id="plus">+</span> </div>'; 
+				str += '<span class="plus">+</span> </div>'; 
 				$(str).appendTo(this);
 			
 				$('img').css({
@@ -354,7 +354,26 @@
 				$(this).children().eq(3).css('font-size', 20); // +, - 크기 조정
 			});
 			
-			// 각 음식 선택 분기 처리
+			// 각 음식 + 카운트 처리
+			$('.plus').on('click', function() {
+				
+				var n =  $('.plus').index(this);
+			 	var num = $(".foodCnt:eq("+n+")").val();
+				num = $(".foodCnt:eq("+n+")").val(num*1+1);
+		
+			});
+			
+			// 각 음식 - 카운트 처리
+			$('.minus').on('click', function() {
+				
+			 	console.log($(this).next().val());
+			 	 
+				var n =  $('.minus').index(this);
+			 	var num = $(".foodCnt:eq("+n+")").val();
+				num = $(".foodCnt:eq("+n+")").val(num*1-1);
+			});
+			
+			
 			$('#foodTable td').on('click', function() {
 				
 			});

@@ -18,7 +18,6 @@ public class UserTimeController {
 
 		// service, dao 처리 하십쇼
 		
-		
 
 		UserVO userVo = (UserVO) session.getAttribute("userVO");
 
