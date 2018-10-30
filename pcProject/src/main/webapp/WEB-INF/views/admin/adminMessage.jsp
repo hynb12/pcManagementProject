@@ -29,7 +29,7 @@
 }
 
 #messageUl {
-	background-color: lightyellow;
+	background-color: #eee;
 	padding: 15px 10px;
 	text-align: center;
 	width: 250px;
