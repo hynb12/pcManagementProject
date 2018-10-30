@@ -13,7 +13,7 @@
 
 	<select id="loginUser" resultType="userVO">
 
-		select userid, userpw from user where userid=#{userId}
+		select * from user where userid=#{userId}
 
 	</select>
 

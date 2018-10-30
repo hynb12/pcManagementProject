@@ -14,7 +14,7 @@
    
    <select id="loginAdmin" resultType="AdminVO">
    
-   		select adminid, adminpw from admin where adminid=#{userId}
+   		select * from admin where adminid=#{userId}
    
    </select>
    
