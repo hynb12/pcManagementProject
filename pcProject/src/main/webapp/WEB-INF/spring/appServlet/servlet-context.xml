@@ -40,7 +40,7 @@
 		<beans:property name="driverClass"
 			value="com.mysql.jdbc.Driver" />
 		<beans:property name="jdbcUrl"
-			value="jdbc:mysql://project2.ctgvi4ryx7dh.ap-northeast-2.rds.amazonaws.com:3306/pc" />
+			value="jdbc:mysql://pcproject.ct3fisx1rlef.ap-northeast-2.rds.amazonaws.com:3306/pc" />
 		<beans:property name="user" value="bit" />
 		<beans:property name="password" value="123456789" />
 	</beans:bean>
