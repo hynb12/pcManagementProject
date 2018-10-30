@@ -13,6 +13,9 @@ public interface UserDaoInterface {
 	// 유저 ID 찾기
 	public UserVO searchId(String userPhone);
 	
+	// 유저 PW 찾기
+	public UserVO searchPw(String userId);
+	
 	// 마이페이지 메서드
 	public UserVO getMyPage(String userId);
 	

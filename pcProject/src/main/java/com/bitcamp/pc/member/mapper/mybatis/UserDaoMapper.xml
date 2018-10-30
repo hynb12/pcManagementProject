@@ -6,39 +6,45 @@
 	<insert id="insertUser" parameterType="userVO">
 
 		insert into user (userid, username, userpw, userphone, userbirth)
-		values
-		(#{userId}, #{userName}, #{userPw}, #{userPhone}, #{userBirth})
+		values (#{userId}, #{userName}, #{userPw}, #{userPhone}, #{userBirth})
 
 	</insert>
 
 	<select id="loginUser" resultType="userVO">
 
-		select * from user where userid=#{userId}
+		select * from user where userid = #{userId}
 
 	</select>
 
-	<select id="searchId"
-		parameterType="userVO" resultType="userVO">
-			
-		select * from user where userphone=#{userPhone}
-			
+	<select id="searchId" parameterType="userVO" resultType="userVO">
+
+		select * from user where userphone = #{userPhone}
+
 	</select>
-	
-	<select id="getMyPage" resultType = "userVO">
-	
+
+	<select id="searchPw" parameterType="userVO" resultType="userVO">
+
+		select * from user where userid = #{userId}
+
+	</select>
+
+
+	<select id="getMyPage" resultType="userVO">
+
 		select * from user where userid = #{userId}
 	</select>
-	
-	<update id="editUser" parameterType = "userVO">
-	
-		update user set userpw = #{userPw}, username = #{userName}, userphone = #{userPhone}, userbirth = #{userBirth}
+
+	<update id="editUser" parameterType="userVO">
+
+		update user set userpw = #{userPw}, username = #{userName}, userphone =
+		#{userPhone}, userbirth = #{userBirth}
 		where userid = #{userId}
-	
+
 	</update>
 
-	<delete id = "deleteUser">
-	
-	delete from user where userid = #{userId}
-	
+	<delete id="deleteUser">
+
+		delete from user where userid = #{userId}
+
 	</delete>
 </mapper>

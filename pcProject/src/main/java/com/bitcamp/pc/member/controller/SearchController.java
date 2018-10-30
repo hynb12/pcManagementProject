@@ -10,6 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.bitcamp.pc.member.model.UserVO;
 import com.bitcamp.pc.user.service.SearchIdService;
+import com.bitcamp.pc.user.service.SearchPwService;
 
 @Controller
 @RequestMapping("/member/search")
@@ -17,7 +18,9 @@ public class SearchController {
 
 	@Autowired
 	SearchIdService idService;
-
+	@Autowired
+	SearchPwService pwService;
+	
 	// 메인에서 찾기 클릭 시
 	@RequestMapping(method = RequestMethod.GET)
 	public String search() {
@@ -44,7 +47,15 @@ public class SearchController {
 		}
 
 		// 비밀번호 찾기
-		System.out.println("비밀번호 찾기");
+		if(search.equals("pw")) {
+			System.out.println("비밀번호 찾기");
+			System.out.println(vo);
+			
+			String pw = pwService.userPwSearch(vo.getUserId(), vo.getUserName());
+			vo.setUserPw(pw);
+			
+			return vo;
+		}
 		return vo;
 	}
 }
