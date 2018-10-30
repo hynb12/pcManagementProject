@@ -57,6 +57,38 @@
 				</c:if>
 			</tbody>
 		</table>
+
+		<!--Pagination -->
+		<nav class="d-flex justify-content-center mt-5">
+			<ul class="pagination pagination-circle pg-teal mb-0">
+
+				<!--First-->
+				<li class="page-item disabled"><a class="page-link">First</a></li>
+
+				<!--Arrow left-->
+				<li class="page-item disabled"><a class="page-link"
+					aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
+						<span class="sr-only">Previous</span>
+				</a></li>
+
+				<!--Numbers-->
+				<li class="page-item active"><a class="page-link">1</a></li>
+				<li class="page-item"><a class="page-link">2</a></li>
+				<li class="page-item"><a class="page-link">3</a></li>
+				<li class="page-item"><a class="page-link">4</a></li>
+				<li class="page-item"><a class="page-link">5</a></li>
+
+				<!--Arrow right-->
+				<li class="page-item"><a class="page-link" aria-label="Next">
+						<span aria-hidden="true">&raquo;</span> <span class="sr-only">Next</span>
+				</a></li>
+
+				<!--Last-->
+				<li class="page-item"><a class="page-link">Last</a></li>
+
+			</ul>
+		</nav>
+		<!--Pagination -->
 		<div style="text-align: center;">
 			<c:forEach var="num" begin="1" end="${viewData.pageTotalCount}">
 				<a href="notice?page=${num}">[${num}]</a>

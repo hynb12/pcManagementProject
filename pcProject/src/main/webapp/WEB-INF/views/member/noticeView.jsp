@@ -13,8 +13,14 @@
 	margin-top: 50px;
 	color: #666;
 }
+
 .buttons {
 	float: right;
+	display: block;
+}
+
+.comments {
+	padding-top: 40px;
 }
 </style>
 
@@ -43,7 +49,39 @@
 			<button type="button" class="btn btn-dark"
 				onclick="location.href='/pc/member/notice'">목록</button>
 		</div>
+
+		<!--Section: Comments-->
+		<section class="comments my-5">
+
+			<!-- Card header -->
+			<div class="card-header font-weight-bold">0 comments</div>
+
+			<div class="media d-block d-md-flex mt-5">
+				<img
+					class="card-img-64 rounded-circle z-depth-1 d-flex mx-auto mb-3"
+					src="https://mdbootstrap.com/img/Photos/Avatars/img (21).jpg"
+					alt="Generic placeholder image">
+				<div class="media-body text-center text-md-left ml-md-3 ml-0">
+
+					댓글 내용입니다.
+					<hr />
+
+				</div>
+			</div>
+		</section>
+		<!--Section: Comments-->
+		<!-- Quick Reply -->
+		<div class="md-form mt-4">
+			<label for="quickReplyFormComment">내용 입력</label>
+			<textarea class="form-control md-textarea" id="quickReplyFormComment"
+				rows="3"></textarea>
+
+			<div class="text-center my-4">
+				<button class="btn btn-default btn-sm btn-rounded" type="submit">Post</button>
+			</div>
+		</div>
 	</div>
+
 	<%@ include file="/WEB-INF/views/common/footer.jsp"%>
 </body>
 <!-- 삭제확인 모달 -->
