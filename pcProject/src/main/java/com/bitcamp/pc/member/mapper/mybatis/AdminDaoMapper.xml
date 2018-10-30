@@ -17,4 +17,10 @@
    		select adminid, adminpw from admin where adminid=#{userId}
    
    </select>
+   
+   <select id="getUserList" resultType="UserVO">
+   
+   		select * from user
+   
+   </select>
 </mapper>
