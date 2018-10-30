@@ -47,8 +47,8 @@
 				</div>
 				<form id="pwSearchForm" method="post">
 					<input type="hidden" name="search" value="pw" /> <input
-						type="text" name="userid" placeholder="Id" required> <input
-						type="text" name="username" placeholder="UserName" required>
+						type="text" name="userId" placeholder="Id" required> <input
+						type="text" name="userName" placeholder="UserName" required>
 					<input id="searchpw" type="button" class="btn" value="Search Password">
 				</form>
 			</div>
@@ -92,7 +92,7 @@
 					// 콘솔로 데이터가 잘 들어왔는지 확인
 					console.log(data);
 					
-					$('window_search').text("비밀번호는 "+ data.userPw +"입니다.")
+					$('#window_search').text("비밀번호는 "+ data.userPw +"입니다.")
 				}
 			
 			}); /* end ajax */
