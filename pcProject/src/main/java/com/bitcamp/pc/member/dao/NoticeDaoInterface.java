@@ -18,5 +18,5 @@ public interface NoticeDaoInterface {
 
 	void deleteNotice(int id) throws Exception;
 
-	void updateNotice(NoticeVO noticeVO);
+	void updateNotice(NoticeVO noticeVO) throws Exception;
 }

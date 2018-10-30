@@ -71,14 +71,6 @@
 					href="<%=request.getContextPath()%>/member/logout"><i class="fa fa-unlock-alt" aria-hidden="true"></i>로그아웃</a></li>
 			</c:if>
 		</ul>
-		<!-- Links -->
-
-		<form class="form-inline">
-			<div class="md-form my-0">
-				<input class="form-control mr-sm-2" type="text" placeholder="Search"
-					aria-label="Search">
-			</div>
-		</form>
 	</div>
 	<!-- Collapsible content -->
 

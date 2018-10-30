@@ -15,8 +15,12 @@
 }
 /* 공지사항 게시판 제목 오버 */
 .notice-title:hover {
-	font-weight: bold;
+	/* 	font-weight: bold; */
 	text-decoration: underline;
+}
+
+.table {
+	table-layout: fixed;
 }
 </style>
 
@@ -24,7 +28,8 @@
 <body>
 	<%@ include file="/WEB-INF/views/common/header.jsp"%>
 	<div class="container">
-		<a id="write" class="btn btn-outline-elegant waves-effect" href="/pc/admin/noticeWrite">글쓰기</a>
+		<a id="write" class="btn btn-outline-elegant waves-effect"
+			href="/pc/admin/noticeWrite">글쓰기</a>
 		<table class="table">
 			<thead>
 				<tr class="text-center">
@@ -52,9 +57,11 @@
 				</c:if>
 			</tbody>
 		</table>
-		<c:forEach var="num" begin="1" end="${viewData.pageTotalCount}">
-			<a href="notice?page=${num}">[${num}]</a>
-		</c:forEach>
+		<div style="text-align: center;">
+			<c:forEach var="num" begin="1" end="${viewData.pageTotalCount}">
+				<a href="notice?page=${num}">[${num}]</a>
+			</c:forEach>
+		</div>
 	</div>
 	<%@ include file="/WEB-INF/views/common/footer.jsp"%>
 </body>

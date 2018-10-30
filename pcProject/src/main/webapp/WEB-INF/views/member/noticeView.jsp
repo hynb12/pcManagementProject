@@ -13,6 +13,9 @@
 	margin-top: 50px;
 	color: #666;
 }
+.buttons {
+	float: right;
+}
 </style>
 
 </head>
@@ -32,15 +35,18 @@
 			</div>
 		</div>
 		<hr />
-		<button type="button" class="btn btn-dark" data-toggle="modal"
-			data-target="#modalLoginForm" onclick="">삭제</button>
-		<button type="button" class="btn btn-dark"
-			onclick="location.href='/pc/admin/notice/modify/${view.noticeId}'">수정</button>
-		<button type="button" class="btn btn-dark"
-			onclick="location.href='/pc/member/notice'">목록</button>
+		<div class="buttons">
+			<button type="button" class="btn btn-dark" data-toggle="modal"
+				data-target="#modalLoginForm" onclick="">삭제</button>
+			<button type="button" class="btn btn-dark"
+				onclick="location.href='/pc/admin/notice/modify/${view.noticeId}'">수정</button>
+			<button type="button" class="btn btn-dark"
+				onclick="location.href='/pc/member/notice'">목록</button>
+		</div>
 	</div>
 	<%@ include file="/WEB-INF/views/common/footer.jsp"%>
 </body>
+<!-- 삭제확인 모달 -->
 <div class="modal fade" id="modalLoginForm" tabindex="-1" role="dialog"
 	aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-dialog" role="document">
@@ -55,10 +61,12 @@
 				</button>
 			</div>
 			<div class="modal-footer d-flex justify-content-center">
-				<a class="btn btn-danger" href="/pc/admin/notice/delete/${view.noticeId}">삭제</a> <a
+				<a class="btn btn-danger"
+					href="/pc/admin/notice/delete/${view.noticeId}">삭제</a> <a
 					class="btn btn-dark" data-dismiss="modal">취소</a>
 			</div>
 		</div>
 	</div>
 </div>
+<!-- 삭제확인 모달 끝-->
 </html>
