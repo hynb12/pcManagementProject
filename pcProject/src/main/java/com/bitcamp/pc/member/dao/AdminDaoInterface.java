@@ -15,4 +15,5 @@ public interface AdminDaoInterface {
 	
 	// User List 출력
 	public List<UserVO> getUserList();
+	
 }

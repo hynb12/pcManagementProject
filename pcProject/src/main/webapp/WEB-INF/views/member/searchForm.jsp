@@ -19,8 +19,8 @@
 			<div class="col">
 				<form method="post">
 					<input type="hidden" name="search" value="id"/>
-					<input type="text" name="username" placeholder="Username" required>
-					<input type="text" name="birthday" placeholder="Birthday" required>
+					<input type="text" name="userPhone" placeholder="UserPhone" required>
+					<input type="text" name="userName" placeholder="UserName" required>
 					<input type="submit" value="Search Id">
 				</form>
 			</div>
@@ -32,7 +32,7 @@
 				<form method="post">
 					<input type="hidden" name="search" value="pw"/>
 					<input type="text" name="userid" placeholder="Id" required>
-					<input type="text" name="username" placeholder="Username" required>
+					<input type="text" name="username" placeholder="UserName" required>
 					<input type="submit" value="Search Password">
 				</form>
 			</div>

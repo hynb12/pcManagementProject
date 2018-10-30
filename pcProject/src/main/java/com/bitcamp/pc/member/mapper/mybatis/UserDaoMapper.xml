@@ -17,4 +17,10 @@
 
 	</select>
 
+	<select id="searchId"
+		parameterType="userVO" resultType="userVO">
+			
+		select * from user where userphone=#{userPhone}
+			
+	</select>
 </mapper>
