@@ -340,9 +340,9 @@
 				var str = '<img src=../images/'+foodArr[index].imgSrc+'/>';
 				str += '<div><b>' + foodArr[index].foodName + '</b></div>';
 				str += '<div><b>' + foodArr[index].foodPrice + '</b></div>'; 
-				str += '<div> <span class="minus">-</span> ';
+				str += '<div><button type="button" class="close" aria-label="Close" style="float:left"><span class="minus" aria-hidden="true">-</span></button>';
 				str += '<input type="text" value="0" class="foodCnt">';
-				str += '<span class="plus">+</span> </div>'; 
+				str += '<button type="button" class="close" aria-label="Close"><span class="plus" aria-hidden="true">+</span></button> </div>'; 
 				$(str).appendTo(this);
 			
 				$('img').css({
@@ -351,7 +351,10 @@
 					'height' : 100
 				});
 				
-				$(this).children().eq(3).css('font-size', 20); // +, - 크기 조정
+				$(this).children().eq(3).css({
+					'font-size': 20,
+					'display': 'inline-block'
+				}); // +, - 크기 조정
 			});
 			
 			// 각 음식 + 카운트 처리
