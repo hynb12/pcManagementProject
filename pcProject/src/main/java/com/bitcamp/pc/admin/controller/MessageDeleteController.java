@@ -14,7 +14,7 @@ public class MessageDeleteController {
 	@Autowired
 	private MessageDeleteService service;
 	
-	@RequestMapping("/admin/notice/delete")
+	@RequestMapping("/admin/delete")
 	public String delete(@RequestParam("messageId") String messageId) {
 		
 		service.delete(messageId);

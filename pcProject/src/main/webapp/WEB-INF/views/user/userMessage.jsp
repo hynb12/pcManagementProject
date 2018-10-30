@@ -24,14 +24,19 @@
 }
 
 .form-group {
-	margin-bottom: 40px;
+	margin-bottom: 40px !important;
+	
 }
 
 .messageTitle {
 	margin: 20px 0px 50px 0px;
+	font-size : 35px;
+	font-weight : bold;
 }
-.form-control {
-	margin-bottom : 20px;
+#userId {
+	background-color : darkgray;
+	font-weight : bold;
+	font-size : 20px;
 }
 
 @media ( min-width :992px) {
@@ -47,6 +52,7 @@
 	.comment-form .name, .comment-form .email, .comment-form .message {
 		top: -27px;
 		font-weight: bold;
+		
 	}
 }
 
@@ -54,6 +60,9 @@
 	.post {
 		max-width: 525px;
 	}
+}
+#submit {
+	font-size : 15px;
 }
 </style>
 
@@ -64,25 +73,25 @@
 		<div class="post">
 			<div class="contact">
 				<div class="messageTitle">
-					<h2>메시지남기기</h2>
+					<p>메시지남기기</p>
 				</div>
 				<form class="comment-form" method="post">
 					<div class="row">
 						<div class="col-md-12 form-group">
 							<label class="name">보내는 사람</label> <input type="text"
 								class="form-control" placeholder="user Id" name="userId"
-								value = "${userVO.userId }" readonly/>
+								value = "${userVO.userId }" id = "userId" readonly/>
 						</div>
 						<div class="col-md-12 form-group">
 							<label class="email">메시지 제목</label> <input type="text"
 								class="form-control" placeholder="message Title"
-								name="messageTitle" required />
+								name="messageTitle" id = "messageTitle" required />
 						</div>
 						<div class="clearfix"></div>
 						<div class="col-md-12 form-group">
 							<label class="message">메시지 내용</label>
 							<textarea class="form-control" cols="47" rows="7"
-								placeholder="Message" name="messageCon" required></textarea>
+								placeholder="Message" name="messageCon" id = "messageCon" required></textarea>
 						</div>
 						<div class="col-md-12 form-group">
 							<input type="submit" class="btn btn-block btn-lg btn-success"
@@ -99,7 +108,13 @@
 <script>
 	$(document).ready(function(){
 		$('#submit').click(function(){
-			alert("쪽지를 보냈습니다.");
+			var messageTitle = $('#messageTitle').val();
+			var messageCon = $('#messageCon').val();
+			if(messageTitle != null && messageCon != null && messageTitle != "" && messageCon != ""){
+				alert("쪽지를 보냈습니다.");
+			} else {
+				alert("메시지 제목 혹은 메시지 내용을 입력하세요");
+			}
 		});
 	});
 </script>

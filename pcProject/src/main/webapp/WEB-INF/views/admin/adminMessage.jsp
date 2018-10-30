@@ -8,13 +8,14 @@
 <style>
 #main-container {
 	margin-left : -20px;
-	min-width : 100%;
+	min-width : 800px !important;
+	overflow : hidden;
 }
 #messageTitle {
 	font-weight: bold;
-	margin-top: 15px;
-	margin-left: 50px;
-	margin-bottom: 20px;
+	margin-top: 30px;
+	margin-left: 70px;
+	margin-bottom: 30px;
 }
 
 #wrap {
@@ -61,7 +62,7 @@
 	background-color: black;
 	border: 1px solid black;
 	text-decoration: none;
-	padding: 5px;
+	padding: 8px 5px;
 	border-radius: 5px;
 }
 
@@ -76,8 +77,8 @@
 	background-color: white;
 	position: absolute;
 	border: 1px solid black;
-	right: 100px;
-	top: 120px;
+	right: 150px;
+	top: 100px;
 	border-radius: 10px;
 }
 

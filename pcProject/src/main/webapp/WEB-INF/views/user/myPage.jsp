@@ -100,7 +100,7 @@
 	border : 2px solid white;
 }
 #editUserId{
-	background-color : gray !important;
+	background-color : darkgray !important;
 }
 
 #editBtnTd{
