@@ -17,8 +17,13 @@ public class NoticeDeleteService {
 	public void noticeDelete(int id) {
 
 		daoInterface = sessionTemplate.getMapper(NoticeDaoInterface.class);
-		
-		daoInterface.deleteNotice(id);
-		
+
+		try {
+			daoInterface.deleteNotice(id);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 	}
 }

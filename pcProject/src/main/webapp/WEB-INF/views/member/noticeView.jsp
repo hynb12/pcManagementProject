@@ -35,7 +35,7 @@
 		<button type="button" class="btn btn-dark" data-toggle="modal"
 			data-target="#modalLoginForm" onclick="">삭제</button>
 		<button type="button" class="btn btn-dark"
-			onclick="location.href='/pc/member/notice'">수정</button>
+			onclick="location.href='/pc/admin/notice/modify/${view.noticeId}'">수정</button>
 		<button type="button" class="btn btn-dark"
 			onclick="location.href='/pc/member/notice'">목록</button>
 	</div>
@@ -55,7 +55,7 @@
 				</button>
 			</div>
 			<div class="modal-footer d-flex justify-content-center">
-				<a class="btn btn-danger" href="/pc/member/noticeDelete/${view.noticeId}">삭제</a> <a
+				<a class="btn btn-danger" href="/pc/admin/notice/delete/${view.noticeId}">삭제</a> <a
 					class="btn btn-dark" data-dismiss="modal">취소</a>
 			</div>
 		</div>

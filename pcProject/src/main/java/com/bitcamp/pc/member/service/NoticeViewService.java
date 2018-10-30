@@ -13,16 +13,22 @@ public class NoticeViewService {
 
 	@Autowired
 	private SqlSessionTemplate sessionTemplate;
-	
+
 	private NoticeDaoInterface daoInterface;
-	
+
 	@Transactional
 	public NoticeVO getView(int id) {
-		
+
 		daoInterface = sessionTemplate.getMapper(NoticeDaoInterface.class);
-		
-		NoticeVO no = daoInterface.selectView(id);
-		
+
+		NoticeVO no = null;
+		try {
+			no = daoInterface.selectView(id);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 		return no;
 	}
 

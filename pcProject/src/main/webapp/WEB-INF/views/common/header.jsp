@@ -55,7 +55,7 @@
 					href="<%=request.getContextPath()%>/admin/message"><i
 						class="fa fa-envelope-open-o" aria-hidden="true"></i>쪽지함</a></li>
 				<li class="nav-item"><a class="nav-link"
-					href="<%=request.getContextPath()%>/member/logout">로그아웃</a></li>
+					href="<%=request.getContextPath()%>/member/logout"><i class="fa fa-unlock-alt" aria-hidden="true"></i>로그아웃</a></li>
 			</c:if>
 			<c:if test="${!isAdmin}">
 				<li class="nav-item"><a class="nav-link"
@@ -68,7 +68,7 @@
 					href="<%=request.getContextPath()%>/user/message"><i
 						class="fa fa-send-o" aria-hidden="true"></i>쪽지전송</a></li>
 				<li class="nav-item"><a class="nav-link"
-					href="<%=request.getContextPath()%>/member/logout">로그아웃</a></li>
+					href="<%=request.getContextPath()%>/member/logout"><i class="fa fa-unlock-alt" aria-hidden="true"></i>로그아웃</a></li>
 			</c:if>
 		</ul>
 		<!-- Links -->

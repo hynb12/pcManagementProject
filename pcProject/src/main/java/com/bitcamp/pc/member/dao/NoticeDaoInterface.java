@@ -14,7 +14,7 @@ public interface NoticeDaoInterface {
 
 	List<NoticeVO> selectList(@Param("firstRow") int firstRow, @Param("endRow") int endRow) throws Exception;
 
-	NoticeVO selectView(int noticeId);
+	NoticeVO selectView(int noticeId) throws Exception;
 
-	void deleteNotice(int id);
+	void deleteNotice(int id) throws Exception;
 }
