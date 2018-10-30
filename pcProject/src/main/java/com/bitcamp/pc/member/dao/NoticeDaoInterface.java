@@ -17,4 +17,6 @@ public interface NoticeDaoInterface {
 	NoticeVO selectView(int noticeId) throws Exception;
 
 	void deleteNotice(int id) throws Exception;
+
+	void updateNotice(NoticeVO noticeVO);
 }

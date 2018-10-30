@@ -35,4 +35,11 @@
 		delete from notice where noticeid=#{id}
 	
 	</delete>
+	
+	<update id="updateNotice" parameterType="noticeVO">
+	
+		update notice set noticetitle=#{noticeTitle}, noticeCon=#{noticeCon} 
+		where noticeid=#{noticeId};
+	
+	</update>
 </mapper>

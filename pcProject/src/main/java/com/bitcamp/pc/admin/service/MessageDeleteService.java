@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 
 import com.bitcamp.pc.member.dao.MessageDaoInterface;
 
-
 @Service
 public class MessageDeleteService {
 
