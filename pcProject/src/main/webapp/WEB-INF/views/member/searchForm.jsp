@@ -16,6 +16,13 @@
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="styleSheet" href="../css/css_searchForm.css">
+
+<style>
+.btn {
+	color: white;
+	background-color: green;
+}
+</style>
 </head>
 <body>
 
@@ -33,7 +40,7 @@
 					<input type="hidden" name="search" value="id" /> <input
 						type="text" name="userPhone" placeholder="UserPhone" required>
 					<input type="text" name="userName" placeholder="UserName" required>
-					<input id="searchid" type="button" value="Search Id">
+					<input id="searchid" type="button" class="btn" value="Search Id">
 				</form>
 			</div>
 
@@ -45,7 +52,7 @@
 					<input type="hidden" name="search" value="pw" /> <input
 						type="text" name="userid" placeholder="Id" required> <input
 						type="text" name="username" placeholder="UserName" required>
-					<input type="submit" value="Search Password">
+					<input type="button" class="btn" value="Search Password">
 				</form>
 			</div>
 
@@ -62,11 +69,12 @@
 		$("#searchid").on('click', function() {
 				
 				$.ajax({
+					//url주소 조심하세요 자동정렬할때
 					url: '<%=request.getContextPath()%>/member/search',
-					type : 'post',
-					data : $('#idSeachForm').serialize(),
+				type : 'post',
+				data : $('#idSeachForm').serialize(),
 
-					success : function(data) {
+				success : function(data) {
 					console.log(data);
 
 					$('#window_id').text("회원님의 아이디는 : " + data.userId);
