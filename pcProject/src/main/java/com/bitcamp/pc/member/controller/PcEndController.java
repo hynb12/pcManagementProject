@@ -9,12 +9,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.bitcamp.pc.member.model.UTimeVO;
-import com.bitcamp.pc.member.service.TimeService;
+import com.bitcamp.pc.user.service.UserTimeService;
 
 public class PcEndController {
 
 	@Autowired
-	private TimeService timeService;
+	private UserTimeService timeService;
 
 	// 메인페이지에서 로그인 클릭
 	@RequestMapping("/member/start")

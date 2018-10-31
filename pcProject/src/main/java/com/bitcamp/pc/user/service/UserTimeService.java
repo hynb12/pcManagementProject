@@ -1,4 +1,4 @@
-package com.bitcamp.pc.member.service;
+package com.bitcamp.pc.user.service;
 
 import java.text.SimpleDateFormat;
 import java.time.Duration;
@@ -9,22 +9,23 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.bitcamp.pc.member.dao.UTimeDaoInterface;
+import com.bitcamp.pc.member.dao.UserTimeDaoInterface;
 import com.bitcamp.pc.member.model.UTimeVO;
+import com.bitcamp.pc.member.model.UserVO;
 
 @Service
-public class TimeService {
+public class UserTimeService {
 
 	@Autowired
 	private SqlSessionTemplate sqlSessionTemplate;
 
-	private UTimeDaoInterface utimeDaoInterface;
+	private UserTimeDaoInterface userTimeDaoInterface;
 
-	public int startTimeReg(String userId, int comId, long remainTime) {
+	public int UTimeChargeService(String userId, int comId, long remainTime) {
 
-		System.out.println("from TimeService.startTimeReg // 서비스 시작 ");
+		System.out.println("from UserTimeService.UTimeChargeService // 서비스 시작 ");
 
-		utimeDaoInterface = sqlSessionTemplate.getMapper(UTimeDaoInterface.class);
+		userTimeDaoInterface = sqlSessionTemplate.getMapper(UserTimeDaoInterface.class);
 
 		// 시간형식
 		SimpleDateFormat f;
@@ -34,20 +35,43 @@ public class TimeService {
 		Date startnow = new Date(); // 시작시 현재시간
 
 		String startTime = f.format(startnow); // String타입으로 변경
-		System.out.println("from TimeService.startTimeReg // 현재시간 : " + startTime);
+		System.out.println("from UserTimeService.UTimeChargeService // 현재시간 : " + startTime);
 
 		UTimeVO uTime = new UTimeVO(userId, comId, remainTime, startTime, ""); // 테스트 모델
 //      UTime(String userId, String comId, long userTime, String startTime, String endTime)
 
 		int resultCnt = 0;
 
-		System.out.println("from TimeService.startTimeReg // 서비스 중간 확인 ");
+		System.out.println("from UserTimeService.UTimeChargeService // 서비스 중간 확인 ");
 
-		System.out.println("from TimeService.startTimeReg // 테스트 모델 확인 : " + uTime); // 테스트 모델 확인
+		System.out.println("from UserTimeService.UTimeChargeService // 테스트 모델 확인 : " + uTime); // 테스트 모델 확인
 
-		resultCnt = utimeDaoInterface.startTime(uTime);
+		resultCnt = userTimeDaoInterface.UTimeChargeDao(uTime);
 
-		System.out.println("from TimeService.startTimeReg // 서비스 끝 ");
+		System.out.println("from UserTimeService.UTimeChargeService // 서비스 끝 ");
+
+		return resultCnt;
+	}
+
+	public int UserChargeService(String userId, long remainTime) {
+
+		System.out.println("from UserTimeService.UserChargeService // 서비스 시작 ");
+
+		userTimeDaoInterface = sqlSessionTemplate.getMapper(UserTimeDaoInterface.class);
+			
+		UserVO userVO = new UserVO();
+		userVO.setUserId(userId);
+		userVO.setUserTime(remainTime);
+
+		int resultCnt = 0;
+
+		System.out.println("from UserTimeService.UserChargeService // 서비스 중간 확인 ");
+
+		System.out.println("from UserTimeService.UserChargeService // 테스트 모델 확인 : " + userVO); // 테스트 모델 확인
+
+		resultCnt = userTimeDaoInterface.UserChargeDao(userVO);
+
+		System.out.println("from UserTimeService.UserChargeService// 서비스 끝 ");
 
 		return resultCnt;
 	}
@@ -56,7 +80,7 @@ public class TimeService {
 
 		System.out.println("from TimeService.endTimeReg // 서비스 시작 ");
 
-		utimeDaoInterface = sqlSessionTemplate.getMapper(UTimeDaoInterface.class);
+		userTimeDaoInterface = sqlSessionTemplate.getMapper(UserTimeDaoInterface.class);
 
 		// 시간형식
 		SimpleDateFormat f;
@@ -87,7 +111,7 @@ public class TimeService {
 
 		System.out.println(uTime); // 테스트 모델 확인
 
-		resultCnt = utimeDaoInterface.endTime(uTime);
+		resultCnt = userTimeDaoInterface.endTime(uTime);
 
 		System.out.println("from TimeService.endTimeReg // 서비스 끝 ");
 
