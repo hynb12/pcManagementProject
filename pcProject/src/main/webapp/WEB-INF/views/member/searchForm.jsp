@@ -40,7 +40,7 @@
 	margin: auto;
 	padding: 15px;
 	border: 1px solid #888;
-	width: 100%;
+	width: 60%;
 	text-align: center;
 }
 
@@ -57,6 +57,10 @@
 	color: #000;
 	text-decoration: none;
 	cursor: pointer;
+}
+
+.strong{
+color: red
 }
 </style>
 </head>
@@ -121,9 +125,9 @@
 					
 					//정보 오류시
 					if((data.userId) == ""){
-						$('#window_search').text("회원님의 정보를 확인해주세요");
+						$('#window_search').html("<h3 class='strong'>회원님의 정보를 확인해주세요</h3>");
 					} else {
-						$('#window_search').text("회원님의 아이디는 [ " + data.userId + " ] 입니다");
+						$('#window_search').html("회원님의 아이디는 <h3 class='strong'>" + data.userId + "</h3> 입니다");
 					}
 					
 				} /* end success */
@@ -152,9 +156,9 @@
 
 							//정보 오류시
 							if ((data.userPw) == "") {
-								$('#window_search').text("회원님의 정보를 확인해주세요");
+								$('#window_search').html("<h3 class='strong'>회원님의 정보를 확인해주세요</h3>");
 							} else {
-								$('#window_search').text("회원님의 비밀번호는 [ " + data.userPw	+ " ] 입니다.");
+								$('#window_search').html("회원님의 비밀번호는 <h3 class='strong'>" + data.userPw + "</h3> 입니다.");
 							}
 
 						}/* end success */
@@ -178,25 +182,23 @@
 		// form 안에 각 요소를 param 값으로 저장 시키지 않고 한번에 담아줌
 
 		// 로드 시 최초 1회만 실행
-		$(document).ready(function() {
 
-			// 아이디,비밀번호 modal 창 닫기 버튼 클릭
-			$('.close').on('click', function() {
+
+		// 아이디,비밀번호 modal 창 닫기 버튼 클릭
+		$('.close').on('click', function() {
+			$('#showModal').hide();
+
+		});
+
+		// modal 창 외 윈도우 클릭
+		$(window).on('click', function() {
+			//jquery는 dom 객체를 jquery 객체로 한 번 감싸 리턴하므로 dom 객체를 얻어와야 비교 가능
+			if (event.target == $('#showModal').get(0)) {
 				$('#showModal').hide();
+			}
+		});
 
-			});
-
-			// modal 창 외 윈도우 클릭
-			$(window).on('click', function() {
-				//jquery는 dom 객체를 jquery 객체로 한 번 감싸 리턴하므로 dom 객체를 얻어와야 비교 가능
-				if (event.target == $('#showModal').get(0)) {
-					$('#showModal').hide();
-				}
-			});
-		})
 	</script>
-
-
 
 
 </body>

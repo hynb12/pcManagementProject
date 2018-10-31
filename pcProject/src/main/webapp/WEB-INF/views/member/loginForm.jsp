@@ -11,7 +11,7 @@
 <script type="text/javascript"
 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
 <style>
-#failColar{
+#failColor{
 	color: red;
 }
 
@@ -34,8 +34,8 @@
 			<!-- 로그인 폼 체크 -->
 			<div id="loginChk">
 				<c:if test="${param.loginfail}">
-					<span id="failColar">-- Warning -- 로그인에 실패했습니다!<br>
-					ID와 PW를 확인해주세요.</span>
+					<span id="failColor">Warning!! 로그인에 실패했습니다!<br>
+					ID와 PASSWORD를 확인해주세요.</span>
 				</c:if>
 			</div>
 			<button id="loginBtn" type="submit">Login</button>
