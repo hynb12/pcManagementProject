@@ -83,12 +83,12 @@
 	background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
 }
 
-.modal-content {
+.modal-contents {
 	background-color: #fefefe;
 	margin: auto;
 	padding: 15px;
 	border: 1px solid #888;
-	width:60%;
+	width:50%;
 }
 
 /* The Close Button */
@@ -166,7 +166,7 @@
 
 			<!-- 시간 추가 modal -->
 			<div id="addTimeModal" class="mainModal">
-				<div class="modal-content">
+				<div class="modal-contents">
 					<h3>
 						충전하실 시간을 선택하세요.<span class="close">&times;</span>
 					</h3>
@@ -212,7 +212,7 @@
 
 			<!-- 주문 리스트 modal -->
 			<div id="orderListModal" class="mainModal">
-				<div class="modal-content">
+				<div class="modal-contents">
 					<h3>
 						주문내역<span class="close">&times;</span>
 					</h3>
@@ -317,6 +317,11 @@
 			// 충전하기 클릭 시 
 			$('#addTimeBtn').on('click', function(){
 				
+				if($('#selectAddTime option:selected').val() == 0){
+					alert('충전하실 시간을 선택하세요.');
+					return;
+				}
+				
 				/* UserTimeContoller로 요청 */
 				$.ajax({
 					url: '<%=request.getContextPath()%>/user/addTime', 
@@ -363,7 +368,7 @@
 				this.userId = userId; // 사용자 아이디
 				this.orderFoodId = orderFoodId; // 음식 번호
 				this.foodName = foodName; // 음식 이름
-				this.foodPrice = foodPrice*orderCnt; // 수량 만큼 가격 계산
+				this.foodPrice = foodPrice; // 수량 만큼 가격 계산
 				this.orderCnt = orderCnt; // 이름 갯수
 			}
 			
@@ -514,7 +519,7 @@
 					str += '<tr><td>'+ orderList[i].foodName +'</td>';
 					str += '<td>'+ orderList[i].foodPrice +'</td>';
 					str += '<td>'+ orderList[i].orderCnt +'</td></tr>';
-					totalPrice +=  orderList[i].foodPrice;
+					totalPrice +=  (orderList[i].foodPrice * orderList[i].orderCnt); 
 				}
 				
 				$('#orderListTable').append(str);

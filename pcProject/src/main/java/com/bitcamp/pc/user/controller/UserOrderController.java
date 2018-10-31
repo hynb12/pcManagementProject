@@ -42,7 +42,7 @@ public class UserOrderController {
 			resultOrder = orderService.order(order);
 			
 			if(resultOrder == 0) {
-				System.out.println("★★주문 테이블 등록 실패");
+				System.out.println("주문 테이블 등록 실패");
 			}
 			
 			else {
