@@ -10,9 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.bitcamp.pc.member.model.OrderListVO;
 import com.bitcamp.pc.member.model.OrderVO;
-import com.bitcamp.pc.user.service.OrderListService;
 import com.bitcamp.pc.user.service.OrderService;
 
 @Controller
@@ -20,9 +18,6 @@ public class UserOrderController {
 	
 	@Autowired
 	OrderService orderService;
-	
-	@Autowired
-	OrderListService orderListService;
 	
 	@ResponseBody 
 	@RequestMapping(value = "/user/order", 
@@ -32,10 +27,10 @@ public class UserOrderController {
 	
 	public void order(@RequestBody List<Map<String, Object>> list) {
 		int resultOrder = 0;
-		int resultOrderList = 0;
 		
 		System.out.println(list);
 		
+		// RequestBody를 사용해 넘겨받은 JSON형태의 데이터를 리스트 형식으로 출력
 		for (int i = 0; i < list.size(); i++) {
             
     		OrderVO order = new OrderVO();
@@ -43,20 +38,8 @@ public class UserOrderController {
     		order.setOrderFoodId((int)list.get(i).get("orderFoodId"));
     		order.setOrderCnt((int)list.get(i).get("orderCnt"));
             
-    		
-    		
-    		
-			/*OrderListVO orderList = new OrderListVO();
-			orderList.setOrderId((int)list.get(i).get("orderId"));
-			orderList.setFoodId((int)list.get(i).get("foodId"));
-			orderList.setFoodName((String)list.get(i).get("foodName"));
-			orderList.setFoodCnt((int)list.get(i).get("foodCnt"));*/
-			
 			// 주문 테이블에 정보 저장하는 서비스 처리
 			resultOrder = orderService.order(order);
-			
-			// 주문 리스트 테이블에 정보 저장하는 서비스 처리
-			// resultOrderList = orderListService.orderList(orderList);
 			
 			if(resultOrder == 0) {
 				System.out.println("★★주문 테이블 등록 실패");

@@ -54,16 +54,10 @@
    </delete>
    
    <!-- 주문 테이블 정보 저장 -->
-   <insert id="insertOrder" parameterType="orderVO">
+   <insert id="insertOrder" parameterType="orderVo">
       insert into order (orderid, comid, userid)
       values (#{orderid}, #{comid}, #{userid})
 
-   </insert>
-   
-   <!-- 주문 리스트 테이블 정보 저장 -->
-   <insert id="insertOrderList" parameterType="orderListVo">
-      insert into order (orderid, foodid, foodname, foodcnt)
-      values (#{orderid}, #{foodid}, #{foodname}, #{foodcnt})
    </insert>
    
    <!-- 아이디 중복 검사 -->

@@ -1,6 +1,5 @@
 package com.bitcamp.pc.member.dao;
 
-import com.bitcamp.pc.member.model.OrderListVO;
 import com.bitcamp.pc.member.model.OrderVO;
 import com.bitcamp.pc.member.model.UserVO;
 
@@ -29,9 +28,6 @@ public interface UserDaoInterface {
 	
 	// 주문 정보
 	public int insertOrder(OrderVO order);
-	
-	// 주문 리스트 정보
-	public int insertOrderList(OrderListVO orderList);
 	
 	// 아이디 중복 체크
 	public int checkOverId(String userId);

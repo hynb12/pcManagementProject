@@ -489,8 +489,8 @@
 					}
 				});
 				
-				orderList = []; // 리스트에 담긴 메뉴 버튼 누를 때마다 초기화
-				$('#orderListTable').text(''); // 리스트 페이지 누를 때마다 초기화
+				orderList = []; // 주문하기 누를 때 마다 매번 초기화 시켜줘야 함(리스트보고 주문안할 수도 있음)
+				$('#orderListTable').text(''); // 리스트의 내용도 초기화 (안그러면 계속 이어 붙여서 보여줌)
 				
 				$('#foodTable td').each(function(index) {
 					
@@ -519,7 +519,6 @@
 				
 				$('#orderListTable').append(str);
 				$('#totalPrice').text('주문하신 음식의 총 가격은 ' + totalPrice + '원 입니다.');
-				$('#orderInfo').text(userComId +'번 자리의 ' + userId +'님이 주문하셨습니다.');
 				$('#orderListModal').show();
 			});
 			
@@ -540,18 +539,17 @@
 				
 				// 초기화
 				$('#foodTable td').each(function(index) {
-					$(this).css('opacity', '');
-					$(this).children().eq(3).children().eq(1).val('0');
+					$(this).css('opacity', ''); // 투명도 defalut
+					$(this).children().eq(3).children().eq(1).val('0'); // 모든 음식 수량 0
 				});
 				
 				// 초기화
 				for(var i=0; i<isChoice.length; i++){
-					isChoice[i] = false;
+					isChoice[i] = false; // 선택된 음식 상태 모두 false 
 				}
 				
 				$('#orderListModal').hide();
-				
-				
+								
 			});
 		}); // end window.onload() 
 	</script>
