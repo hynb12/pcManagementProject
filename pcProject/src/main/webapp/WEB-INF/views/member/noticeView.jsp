@@ -111,16 +111,14 @@
 					url : '/pc/reply/all/' + noid,
 					dataType : 'json',
 					success : function(data) {
-						$(data)
-								.each(
-										function(index, item) {
+						$('#commentsNum').html(data.length + ' comments');
+						$(data).each(function(index, item) {
 											$('#commentsNum').html(data.length + ' comments');
-											reply += '<div class="media d-block d-md-flex mt-5">';
+											reply += '<div class="media d-block d-md-flex mt-5" wow fadeIn>';
 											reply += '<img class="card-img-64 rounded-circle z-depth-1 d-flex mx-auto mb-3" src="https://mdbootstrap.com/img/Photos/Avatars/img (21).jpg">';
 											reply += '<div class="media-body text-center text-md-left ml-md-3 ml-0">';
 											reply += item.replyCon;
 											reply += '<hr /></div></div>';
-
 											$('#replyAllBody').html(reply);
 										});
 									reply = '';
@@ -142,8 +140,12 @@
 			success : function(data) {
 				console.log('댓글작성완료');
 				getAllList();
+				$('#replyFormComment').val('');
 			}
 		});
 	});
+	
+	// Animations init
+	new WOW().init();
 </script>
 </html>
