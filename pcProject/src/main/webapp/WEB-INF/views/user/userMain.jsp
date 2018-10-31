@@ -88,7 +88,7 @@
 	margin: auto;
 	padding: 15px;
 	border: 1px solid #888;
-	width: 200px;
+	width:60%;
 }
 
 /* The Close Button */
@@ -215,13 +215,14 @@
 				<div class="modal-content">
 					<h3>
 						주문내역<span class="close">&times;</span>
-						<table border="1" id="orderListTable" class="orderTable">
-							<!-- jquery로 리스트 동적 생성 -->
-						</table>
-						
-						<div id="totalPrice"></div>
-						<button id="orderConfirmBtn">주문 확정</button>
 					</h3>
+					<table border="1" id="orderListTable" class="orderTable">
+							<!-- jquery로 리스트 동적 생성 -->
+					</table>
+						
+					<div id="totalPrice"></div>
+					<button id="orderConfirmBtn">주문 확정</button>
+					
 				</div>
 			</div>
 		</div>
@@ -415,6 +416,7 @@
 			var orderList = [];
 			var isChoice = new Array(9).fill(true); 
 			
+			// 음식 선택 시
 			$('#foodTable td').on('click', function() {
 				var idx = $(this).attr('id')-1; // 선택한 테이블의 아이디 가져온 후 배열의 인덱스로 사용하기 위해 -1
 				var foodCnt = $(this).children().eq(3).children().eq(1).val(); // 선택된 음식의 수량 가져오기
@@ -472,7 +474,20 @@
 				$('#totalPrice').text('주문하신 음식의 총 가격은' + totalPrice + '원 입니다.');
 				$('#orderListModal').show();
 			});
-		
+			
+			// 주문 확정 시 
+			$('#orderConfirmBtn').on('click', function () {
+				$.ajax({
+					url: '<%=request.getContextPath()%>/user/order', 
+					type: 'post',
+					data: JSON.stringify(orderList),
+					
+					success:function(data){
+						console.log(data);
+						
+					} /* end success */
+				}); /* end ajax */
+			});
 		}); // end window.onload() 
 	</script>
 </body>
