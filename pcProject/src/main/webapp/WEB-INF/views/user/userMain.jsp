@@ -173,7 +173,7 @@
 
 					<!-- ajax serialize 사용을 위해  -->
 					<form id="addTimeForm">
-						<input type="hidden" id="comId" name="comId"> <select
+						<input type="hidden" id="inputComId" name="comId"> <select
 							name="addTime" id="selectAddTime">
 							<option value="0">select Time</option>
 						</select>
@@ -221,6 +221,7 @@
 					</table>
 						
 					<div id="totalPrice"></div>
+					<div id="orderInfo"></div>
 					<button id="orderConfirmBtn">주문 확정</button>
 					
 				</div>
@@ -263,7 +264,6 @@
 			$('.close').on('click', function() {
 				$('#addTimeModal').hide();
 				$('#orderListModal').hide();
-				$('#orderListTable').text(''); // 리스트 내용 초기화
 			});
 			
 			// modal 창 외 윈도우 클릭
@@ -275,7 +275,6 @@
 				
 				if (event.target == $('#orderListModal').get(0)) {
     				$('#orderListModal').hide();
-    				$('#orderListTable').text(''); // 리스트 내용 초기화
     			}
 			});
 			
@@ -291,16 +290,26 @@
 				str += '<div></div>'; // userId
 				str += '<div></div>'; // time
 				$(str).appendTo(this);
+				
+				$(this).attr('comId', index+1);
 			});
+			
 
 			// 각 컴퓨터 선택 분기 처리
+			var isUse = new Array(12).fill(false); 
+			
 			$('#comTable td').on('click', function() {
-				// 데이터베이스에 저장할 값들
-				// 1. 클릭한 컴퓨터 아이디
-				// 2. 로그인한 아이디
-
-				var comId = $(this).children().eq(0).text(); // 선택한 컴퓨터의 위치 값 가져오기
-				$('#comId').val(comId); //comId input 창에 값 저장
+				var comId = $(this).attr('comId'); // 선택한 컴퓨터의 위치 값 가져오기
+				
+				if(isUse[comId] == false){
+					isUse[comId] = true;
+				}
+				
+				else{
+					isUse[comId] = false;
+				}
+				
+				$('#inputComId').val(comId); //comId input 창에 값 저장
 				$('#addTimeModal').show(); // modal창 보이기
 
 			});
@@ -312,7 +321,7 @@
 				$.ajax({
 					url: '<%=request.getContextPath()%>/user/addTime', 
 					type: 'post',
-					data: $('#addTimeForm').serialize(),
+					data: $('#addTimeForm').serialize(), // 선택한 자리 번호와 충전한 시간 전송
 					
 					success:function(data){
 						console.log(data);
@@ -341,18 +350,21 @@
 			
 			<!-- 음식 처리(민수)  -->
 			
-			// 음식 정보 담을 생성자
+			// 음식 정보 초기화를 위해 사용할 생성자
 			function FoodInfo(imgSrc, foodName, foodPrice) {
 				this.imgSrc = imgSrc;
 				this.foodName = foodName;
 				this.foodPrice = foodPrice;
 			}
 			
-			// 주문한 음식 담을 생성자
-			function OrderList(foodName, foodPrice, foodCnt) {
-				this.foodName = foodName;
+			// 주문한 음식과 유저 정보 담을 생성자
+			function OrderList(userComId, userId, orderId, foodName, foodPrice, foodCnt) {
+				this.userComId = userComId; // 사용자 컴퓨터 번호
+				this.userId = userId; // 사용자 아이디
+				this.orderId = orderId; // 주문번호
+				this.foodName = foodName; // 음식 이름
 				this.foodPrice = foodPrice*foodCnt; // 수량 만큼 가격 계산
-				this.foodCnt = foodCnt;
+				this.foodCnt = foodCnt; // 이름 갯수
 			}
 			
 			// 생성자로 각 음식 정보 생성 후 배열에 저장
@@ -383,7 +395,7 @@
 					'height' : 100
 				});
 				
-				$(this).attr('id', index+1); // 음식 아이디 지정
+				$(this).attr('foodId', index+1); // 음식 아이디 지정
 				
 				$(this).children().eq(3).css({
 					'display': 'inline-block'
@@ -413,55 +425,90 @@
 				num = $('.foodCnt:eq('+n+')').val(num*1-1);
 			});
 			
-			var orderList = [];
-			var isChoice = new Array(9).fill(true); 
+			var isChoice = new Array(9).fill(false); 
 			
-			// 음식 선택 시
+			// 각 음식 선택 시 처리
 			$('#foodTable td').on('click', function() {
-				var idx = $(this).attr('id')-1; // 선택한 테이블의 아이디 가져온 후 배열의 인덱스로 사용하기 위해 -1
-				var foodCnt = $(this).children().eq(3).children().eq(1).val(); // 선택된 음식의 수량 가져오기
-				var foodName = foodArr[idx].foodName; // 선택된 음식의 이름 가져오기
-				var foodPrice = foodArr[idx].foodPrice; // 선택된 음식의 가격 가져오기
+				var idx = $(this).attr('foodId')-1;
 				
-				// 음식 선택
-				if(isChoice[idx]){
-					
-					if(foodCnt != 0){ // 선택된 음식 갯수가 0이 아닐 때만 리스트에 담기
+				var foodCnt = $(this).children().eq(3).children().eq(1).val(); // 선택된 음식의 수량 가져오기
+				
+				if(isChoice[idx] == false){ // 음식 선택 안된 상태
+					if(foodCnt != 0){ // 선택된 음식 갯수가 0이 아닐 때만 선택 가능
 						$(this).css('opacity', '0.5');
-					
-						//console.log($(this).children().eq(3).children().eq(0).off('click'));
-						//console.log($(this).children().eq(3).children().eq(2).off('click'));
-						
-						orderList.push(new OrderList(foodName, foodPrice, foodCnt)); // 선택한 음식을 리스트 배열에 저장
-						isChoice[idx] = false;
+						isChoice[idx] = true;
+					}
+				}
+				else {
+					$(this).css('opacity', '');
+					isChoice[idx] = false;
+				}
+			});
+			
+			var orderId = 1; // 주문 번호
+			var orderList = []; // 선택된 메뉴 객체를 담을 배열
+			
+			// 메뉴 선택 후 주문하기 버튼 클릭 시 발생하는 이벤트	
+			$('#orderBtn').on('click', function () {
+				var isUseCom = false;
+				
+				for(var i=0; i < isUse.length; i++){
+					if(isUse[i]){ // 모든 좌석 검사 (한대라도 사용 중이면 isUseCom true)
+						isUseCom = true;
 					}
 				}
 				
-				// 음식 선택 해제
-				else {
-					$(this).css('opacity', '');
-					var i = orderList.indexOf(idx);
-					orderList.splice(i, 1); // 리스트에서 삭제
-					
-					//$(this).children().eq(3).children().eq(0).on('click');
-					//$(this).children().eq(3).children().eq(2).on('click');
-					
-					isChoice[idx] = true;
-				}
-				console.log(orderList);
-			});
-			
-			// 메뉴 선택 후 주문하기 버튼 클릭 시 발생하는 이벤트
-			$('#orderBtn').on('click', function () {
-				if(orderList.length == 0){ // 주문할 메뉴를 하나도 선택하지 않았을 경우
-					alert('메뉴를 선택하세요.');
+				if(!isUseCom){
+					alert('사용하실 자리를 먼저 선택하세요.');
 					return;
 				}
 				
-				var str = '';
-				var totalPrice = 0;
+				var isUserChoice = false;
 				
-				str += '<tr><th>음식</th><th>가격</th><th>수량</th></tr>';
+				for(var i=0; i < isChoice.length; i++){
+					if(isChoice[i]){  
+						isUserChoice = true;
+					}
+				}
+				
+				if(!isUserChoice){
+					alert('메뉴를 선택하세요.');
+					return;
+				}
+			
+				// 모든 조건 검사 완료 후 주문 가능 ↓
+				
+				var userComId =''; // 사용자 컴퓨터 아이디 
+				var userId=''; // 사용자 아이디
+				
+				$('#comTable td').each(function(index) {
+					var id = $(this).children().eq(1).text(); // 전체 자리의 사용자 아이디 가져오기
+					if(id == '${userVO.userId}'){ // 세션 아이디와 일치하는 사용자 찾기
+						
+						userComId = index+1; // 사용자 컴퓨터 아이디
+						userId = id; // 사용자 아이디
+					}
+				});
+				
+				orderList = []; // 리스트에 담긴 메뉴 버튼 누를 때마다 초기화
+				$('#orderListTable').text(''); // 리스트 페이지 누를 때마다 초기화
+				
+				$('#foodTable td').each(function(index) {
+					
+					if(isChoice[index]){
+						var foodCnt = $(this).children().eq(3).children().eq(1).val(); // 선택된 음식의 수량 가져오기
+						var foodName = foodArr[index].foodName; // 선택된 음식의 이름 가져오기
+						var foodPrice = foodArr[index].foodPrice; // 선택된 음식의 가격 가져오기
+						
+						// 리스트에 저장
+						orderList.push(new OrderList(userComId, userId, orderId, foodName, foodPrice, foodCnt));
+					}
+				});
+				
+				console.log(orderList);
+					
+				var str = '<tr><th>음식</th><th>가격</th><th>수량</th></tr>';
+				var totalPrice = 0;
 				
 				for(var i=0; i < orderList.length; i++){
 					str += '<tr><td>'+ orderList[i].foodName +'</td>';
@@ -471,15 +518,19 @@
 				}
 				
 				$('#orderListTable').append(str);
-				$('#totalPrice').text('주문하신 음식의 총 가격은' + totalPrice + '원 입니다.');
+				$('#totalPrice').text('주문하신 음식의 총 가격은 ' + totalPrice + '원 입니다.');
+				$('#orderInfo').text(userComId +'번 자리의 ' + userId +'님이 주문하셨습니다.');
 				$('#orderListModal').show();
 			});
 			
 			// 주문 확정 시 
 			$('#orderConfirmBtn').on('click', function () {
+				orderId++; // 주문번호 증가
+				
 				$.ajax({
 					url: '<%=request.getContextPath()%>/user/order', 
 					type: 'post',
+					contentType: "application/json", /* 요청 타입 지정(안하면 405 오류) */
 					data: JSON.stringify(orderList),
 					
 					success:function(data){

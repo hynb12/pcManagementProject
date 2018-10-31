@@ -1,5 +1,7 @@
 package com.bitcamp.pc.member.dao;
 
+import com.bitcamp.pc.member.model.OrderListVO;
+import com.bitcamp.pc.member.model.OrderVO;
 import com.bitcamp.pc.member.model.UserVO;
 
 public interface UserDaoInterface {
@@ -24,4 +26,10 @@ public interface UserDaoInterface {
 
 	// 유저 삭제
 	public int deleteUser(String userId);
+	
+	// 주문 정보
+	public int insertOrder(OrderVO order);
+	
+	// 주문 리스트 정보
+	public int insertOrderList(OrderListVO orderList);
 }
