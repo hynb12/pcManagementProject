@@ -47,7 +47,7 @@
 			<button type="button" class="btn btn-dark"
 				onclick="location.href='/pc/admin/notice/modify/${view.noticeId}'">수정</button>
 			<button type="button" class="btn btn-dark"
-				onclick="location.href='/pc/member/notice'">목록</button>
+				onclick="location.href='/pc/member/notice'"><i class="fa fa-th-list pr-2" aria-hidden="true"></i>목록</button>
 		</div>
 
 		<!--Section: Comments-->
@@ -112,11 +112,15 @@
 					dataType : 'json',
 					success : function(data) {
 						$('#commentsNum').html(data.length + ' comments');
+						$('#replyAllBody').html('');
 						$(data).each(function(index, item) {
 											$('#commentsNum').html(data.length + ' comments');
-											reply += '<div class="media d-block d-md-flex mt-5" wow fadeIn>';
+											reply += '<div class="media d-block d-md-flex mt-4">';
 											reply += '<img class="card-img-64 rounded-circle z-depth-1 d-flex mx-auto mb-3" src="https://mdbootstrap.com/img/Photos/Avatars/img (21).jpg">';
 											reply += '<div class="media-body text-center text-md-left ml-md-3 ml-0">';
+											reply += '<h5 class="font-weight-bold mt-0">';
+											reply += '<button id="replyDeleteBtn' + item.replyId +'" onclick="replyDelete('+ item.replyId +')" type="button" class="btn btn-danger px-3 float-right"><i class="fa fa-trash" aria-hidden="true"></i></button>';
+										    reply += '<a class="text-default">냐옹이</a></h5>';
 											reply += item.replyCon;
 											reply += '<hr /></div></div>';
 											$('#replyAllBody').html(reply);
@@ -145,7 +149,15 @@
 		});
 	});
 	
-	// Animations init
-	new WOW().init();
+	function replyDelete(replyId){	
+		$.ajax({
+			type : 'get',
+			url : '/pc/reply/' + replyId,
+			success : function(data){
+				console.log('삭제확인');
+				getAllList();
+			}
+		});
+ 	};
 </script>
 </html>

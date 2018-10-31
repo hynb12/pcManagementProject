@@ -41,4 +41,14 @@ public class ReplyService {
 		}
 
 	}
+
+	public void deleteReply(int id) {
+		daoInterface = sessionTemplate.getMapper(ReplyDaoInterface.class);
+		
+		try {
+			daoInterface.deleteReply(id);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 }

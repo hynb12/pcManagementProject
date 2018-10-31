@@ -20,20 +20,27 @@ public class ReplyCotroller {
 	@Autowired
 	ReplyService service;
 
-	@RequestMapping(value = "/all/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/all/{noid}", method = RequestMethod.GET)
 	@ResponseBody
-	public List<ReplyVO> replyList(@PathVariable("id") int id) {
+	public List<ReplyVO> replyList(@PathVariable("noid") int id) {
 
 		List<ReplyVO> list = service.listReply(id);
 
 		return list;
 	}
-	
+
 	@RequestMapping(value = "", method = RequestMethod.POST)
 	@ResponseBody
 	public void replyInsert(ReplyVO vo) {
 
 		service.insertReply(vo);
-				
+
+	}
+
+	@RequestMapping(value = "/{replyid}", method = RequestMethod.GET)
+	@ResponseBody
+	public void replyDelete(@PathVariable("replyid") int id) {
+
+		service.deleteReply(id);
 	}
 }
