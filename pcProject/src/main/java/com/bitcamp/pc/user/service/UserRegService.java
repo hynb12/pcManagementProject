@@ -24,4 +24,15 @@ public class UserRegService {
 		
 		return resultCnt;
 	}
+	
+	public int checkUserId(String id) {
+		
+		int resultCnt = 0;
+		
+		userDao = sqlSessionTemplate.getMapper(UserDaoInterface.class);
+		resultCnt = userDao.checkOverId(id);
+		
+		return resultCnt;
+	}
+	
 }

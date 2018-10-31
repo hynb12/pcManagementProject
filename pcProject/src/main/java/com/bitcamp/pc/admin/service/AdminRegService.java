@@ -25,4 +25,14 @@ public class AdminRegService {
       
       return resultCnt;
    }
+   
+   public int checkAdminId(String adminid) {
+	   
+	   int resultCnt = 0;
+	   
+	   adminDao = sqlSessionTemplate.getMapper(AdminDaoInterface.class);
+	   resultCnt = adminDao.checkOverId(adminid);
+	   
+	   return resultCnt;
+   }
 }

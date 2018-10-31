@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.bitcamp.pc.admin.service.AdminRegService;
@@ -13,32 +14,29 @@ import com.bitcamp.pc.member.model.UserVO;
 import com.bitcamp.pc.user.service.UserRegService;
 
 @Controller
-@RequestMapping("/member/reg")
+/* @RequestMapping("/member/reg") */
 public class RegController {
 
 	// 유저 서비스 autowired
-
 	// 관리자 서비스 autowired
 	@Autowired
 	private AdminRegService adminRegService;
 	@Autowired
 	private UserRegService userRegService;
-	
+
 	// 메인페이지에서 회원가입 클릭
-	@RequestMapping(method = RequestMethod.GET)
+	@RequestMapping(value = "/member/reg", method = RequestMethod.GET)
 	public String memberRegForm() {
 		return "member/regForm";
 	}
 
 	// 회원가입 페이지에서 회원가입 클릭
-	@RequestMapping(method = RequestMethod.POST)
+	@RequestMapping(value = "/member/reg", method = RequestMethod.POST)
 	public ModelAndView memberReg(
 			// 체크박스는 파라미터 안넘어오면 null 이므로 오류 발생
 			// 그러므로 파라미터 필수 여부 false 변경
-			@RequestParam(value = "isAdmin", required = false) String isAdmin, 
-			@RequestParam("id") String id,
-			@RequestParam("pw") String pw, 
-			@RequestParam("name") String name,
+			@RequestParam(value = "isAdmin", required = false) String isAdmin, @RequestParam("id") String id,
+			@RequestParam("pw") String pw, @RequestParam("name") String name,
 			@RequestParam(value = "phoneNum", required = false) String phoneNum,
 			@RequestParam(value = "birth", required = false) String birth) {
 
@@ -48,10 +46,10 @@ public class RegController {
 
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("redirect:login");
-		
+
 		// Reg 결과 값
 		int resultCnt = 0;
-		
+
 		if (isAdmin != null) {
 			// 경원이형 처리
 			System.out.println("관리자 계정 회원가입");
@@ -78,9 +76,9 @@ public class RegController {
 			user.setUserName(name);
 			user.setUserPhone(phoneNum);
 			user.setUserBirth(birth);
-			
+
 			resultCnt = userRegService.userReg(user);
-			
+
 			if (resultCnt == 0) {
 				mav.setViewName("fail");
 			}
@@ -88,4 +86,26 @@ public class RegController {
 
 		return mav;
 	}
+
+	// 유효성 검사하는 컨트롤러
+	@RequestMapping(value = "/member/regCheck", method = RequestMethod.GET)
+	@ResponseBody
+	public int idCheck(@RequestParam("id") String paramId, @RequestParam("isAdmin") boolean isAdmin) {
+		System.out.println("isAdmin" + isAdmin);
+		System.out.println("paramId" + paramId);
+		int result = 0;
+
+		if (isAdmin) {
+
+			result = adminRegService.checkAdminId(paramId);
+
+		} else {
+
+			result = userRegService.checkUserId(paramId);
+
+		}
+
+		return result;
+	}
+
 }
