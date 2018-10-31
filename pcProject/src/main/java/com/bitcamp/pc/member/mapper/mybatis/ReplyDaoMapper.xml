@@ -23,7 +23,7 @@
 
 	<update id="updateReply" parameterType="replyVO">
 
-		update notice set replycon =#{replyCon}
+		update reply set replycon =#{replyCon}
 		where replyid = #{replyId};
 
 	</update>

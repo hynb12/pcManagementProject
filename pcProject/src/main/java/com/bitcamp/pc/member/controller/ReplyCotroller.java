@@ -45,10 +45,10 @@ public class ReplyCotroller {
 
 	@RequestMapping(value = "/modify/{replyid}", method = RequestMethod.GET)
 	@ResponseBody
-	public void replyModify(@PathVariable("replyid") int id, ReplyVO vo) {
+	public void replyModify(ReplyVO vo) {
 
 		System.out.println(vo);
 		
-		/*service.updateReply(id);*/
+		service.updateReply(vo);
 	}
 }

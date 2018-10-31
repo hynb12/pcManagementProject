@@ -49,7 +49,7 @@
 					href="<%=request.getContextPath()%>/admin/userList"><i
 						class="fa fa-users" aria-hidden="true"></i>회원목록</a></li>
 				<li class="nav-item"><a class="nav-link"
-					href="<%=request.getContextPath()%>/member/notice"><i
+					href="<%=request.getContextPath()%>/member/notice?page=1"><i
 						class="fa fa-bullhorn " aria-hidden="true"></i>공지사항</a></li>
 				<li class="nav-item"><a class="nav-link"
 					href="<%=request.getContextPath()%>/admin/message"><i
@@ -62,7 +62,7 @@
 					href="<%=request.getContextPath()%>/user/myPage"><i
 						class="fa fa-address-card-o" aria-hidden="true"></i>내정보</a></li>
 				<li class="nav-item"><a class="nav-link"
-					href="<%=request.getContextPath()%>/member/notice"><i
+					href="<%=request.getContextPath()%>/member/notice?page=1"><i
 						class="fa fa-bullhorn" aria-hidden="true"></i>공지사항</a></li>
 				<li class="nav-item"><a class="nav-link"
 					href="<%=request.getContextPath()%>/user/message"><i

@@ -70,14 +70,16 @@
 					aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
 						<span class="sr-only">Previous</span>
 				</a></li>
-
-				<!--Numbers-->
-				<li class="page-item active"><a class="page-link">1</a></li>
-				<li class="page-item"><a class="page-link">2</a></li>
-				<li class="page-item"><a class="page-link">3</a></li>
-				<li class="page-item"><a class="page-link">4</a></li>
-				<li class="page-item"><a class="page-link">5</a></li>
-
+				
+				<c:forEach var="num" begin="1" end="${viewData.pageTotalCount}">
+ 					<c:if test="${param.page == num}">  
+					<li class="page-item active"><a class="page-link" href="notice?page=${num}">${num}</a></li>
+					</c:if>
+					<c:if test="${param.page != num}">  
+					<li class="page-item"><a class="page-link" href="notice?page=${num}">${num}</a></li>
+					</c:if>
+				</c:forEach>
+				
 				<!--Arrow right-->
 				<li class="page-item"><a class="page-link" aria-label="Next">
 						<span aria-hidden="true">&raquo;</span> <span class="sr-only">Next</span>
@@ -88,12 +90,6 @@
 
 			</ul>
 		</nav>
-		<!--Pagination -->
-		<div style="text-align: center;">
-			<c:forEach var="num" begin="1" end="${viewData.pageTotalCount}">
-				<a href="notice?page=${num}">[${num}]</a>
-			</c:forEach>
-		</div>
 	</div>
 	<%@ include file="/WEB-INF/views/common/footer.jsp"%>
 </body>

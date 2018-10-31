@@ -54,18 +54,17 @@
 
 		<!--Section: Comments-->
 		<section class="comments my-5">
-
 			<!-- 코멘트 총개수 -->
 			<div id="commentsNum" class="card-header font-weight-bold"></div>
 
 			<div id="replyAllBody"></div>
 		</section>
 		<!--Section: Comments-->
+		
 		<!-- 댓글 입력란 -->
 		<div class="md-form mt-4">
 			<label for="replyFormComment">댓글 입력</label>
-			<textarea class="form-control md-textarea" id="replyFormComment"
-				rows="1"></textarea>
+			<textarea class="form-control md-textarea" id="replyFormComment" rows="1"></textarea>
 			<div class="text-center my-4">
 				<button id="commentSubmit"
 					class="btn btn-default btn-sm btn-rounded">댓글 입력</button>
@@ -122,7 +121,7 @@
 											reply += '<div class="media-body text-center text-md-left ml-md-3 ml-0">';
 											reply += '<h5 class="font-weight-bold mt-0">';
 											reply += '<button id="replyDeleteBtn' + item.replyId +'" onclick="replyDelete('+ item.replyId +')" type="button" class="btn btn-danger px-3 float-right"><i class="fa fa-trash" aria-hidden="true"></i></button>';
-											reply += '<button id="replyModifyBtn' + item.replyId +'" onclick="replyModify('+ item.replyId +')"type="button" class="btn btn-primary px-3 float-right"><i class="fa fa-pencil" aria-hidden="true"></i></button>';
+											reply += '<button id="replyModifyBtn' + item.replyId +'" onclick="replyModify('+ item.replyId +')"type="button" class="btn btn-primary px-3 float-right"><i class="fa fa-paint-brush" aria-hidden="true"></i></button>';
 										    reply += '<a class="text-default">냐옹이</a></h5>';
 											reply += '<span id="replySpan' + item.replyId +'">' + item.replyCon + '</span>';
 											reply += '<hr /></div></div>';
@@ -163,13 +162,22 @@
 		});
  	};
  	
-	function replyModify(replyId){	
+	function replyModify(reid){	
+		var replyText = $('#replySpan' + reid).text();
+		
 		$.ajax({
 			type : 'get',
-			url : '/pc/reply/modify/' + replyId,
+			url : '/pc/reply/modify/' + reid,
+			dataType : 'text',
+			data : {
+				replyId : reid,
+				replyCon : replyText
+			},
 			success : function(data){
-				alert($('#replySpan' + replyId).html());
-				$('#replySpan' + replyId).contents().unwrap().wrap( '<textarea class="form-control md-textarea"></textarea>' );
+				/* alert($('#replySpan' + replyId).html()); */
+				$('#replySpan' + reid).contents().unwrap().wrap('<textarea class="form-control md-textarea"></textarea>');
+				/* $('#replySpan' + reid).css('display', 'none'); */
+				$('#replyModifyBtn' + reid).find('i').prop('class', 'fa fa-check'); //댓글 수정클릭시 모양바뀜
 				console.log('수정확인');
 			}
 		});

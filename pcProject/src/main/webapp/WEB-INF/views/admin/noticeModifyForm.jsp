@@ -10,7 +10,6 @@
 <body>
 	<%@ include file="/WEB-INF/views/common/header.jsp"%>
 	<div class="container">
-	<h1>수정페이지입니다.</h1>
 		<form class="text-center p-5" method="post">
 			<input type="text" class="form-control" placeholder="제목" name="noticeTitle" value="${modifyView.noticeTitle}">
 			<textarea class="form-control" id="exampleFormControlTextarea2" rows="3" placeholder="내용" name="noticeCon">${modifyView.noticeCon}</textarea>
