@@ -10,6 +10,7 @@
 	margin-left : -20px;
 	min-width : 800px !important;
 	overflow : hidden;
+	max-width : 100% !important;
 }
 #messageTitle {
 	font-weight: bold;
@@ -77,7 +78,7 @@
 	background-color: white;
 	position: absolute;
 	border: 1px solid black;
-	right: 150px;
+	right: 500px;
 	top: 100px;
 	border-radius: 10px;
 }
@@ -147,6 +148,15 @@
 	background-color: #8e8e8e;
 	cursor: pointer;
 }
+#mainModal{
+	position : fixed;
+	width : 100%;
+	height : 100%;
+	left : 0px;
+	top : 0px;
+	z-index : 1;
+	background-color : rgba(0, 0, 0, 0.4);
+}
 </style>
 
 </head>
@@ -175,8 +185,9 @@
 			</div>
 		</c:if>
 
-		<!-- 상세보기가 나오는 창 -->
-		<c:if test="${detail.messageId !=null}">
+	<!-- 상세보기가 나오는 창 -->
+	<c:if test="${detail.messageId !=null}">
+		<div id = "mainModal">
 			<div id="detailDiv">
 				<ul id="detailUl">
 					<h3>메시지 상세보기</h3>
@@ -195,9 +206,9 @@
 					</div>
 				</ul>
 			</div>
-		</c:if>
-
-	</div>
+		</div>
+	</c:if>
+</div>
 
 	<%@ include file="/WEB-INF/views/common/footer.jsp"%>
 
@@ -207,8 +218,15 @@
 <script>
 	$(document).ready(function() {
 		$('#detailClose').click(function() {
-			$('#detailDiv').hide();
+			$('#mainModal').hide();
 		});
+	});
+	
+	$(window).on('click', function() {
+		//jquery는 dom 객체를 jquery 객체로 한 번 감싸 리턴하므로 dom 객체를 얻어와야 비교 가능
+		if (event.target == $('#mainModal').get(0)) {
+			$('#mainModal').hide();
+		}
 	});
 </script>
 </html>

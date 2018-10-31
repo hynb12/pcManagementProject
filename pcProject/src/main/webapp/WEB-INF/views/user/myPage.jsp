@@ -60,13 +60,11 @@
 }
 
 #edit_table{
-	width : 420px;
-	height : 420px;
+	width : 500px;
+	height : 500px;
 	position : absolute;
-	top : 200px;
-	right : 250px;
-	display : none
-	border : 1px solid black;
+	top : 150px;
+	right : 500px;
 }
 
 #edit_table tr, #edit_table td{
@@ -77,19 +75,23 @@
 	padding-left : 20px;
 	width : 150px;
 	border-top : 2px solid white;
+	font-size : 17px;
 }
 #editTitle {
-	font-size : 25px;
+	border-top : none !important;
+	font-size : 25px !important;
 	text-align : center;
 	height : 70px;
+	position : relative;
+	border-radius : 12px 12px 0px 0px
 }
 #edit_table input[type="text"]{
 	background-color : ivory;
 	border-radius : 5px;
 	border : none;
 	margin-left : 30px;
-	width : 210px;
-	height : 35px;
+	width : 280px;
+	height : 40px;
 	padding-left : 20px;
 	font-size : 18px;
 	font-weight : bold;
@@ -117,7 +119,26 @@
 	background-color : #8e8e8e;
 	cursor : pointer;
 }
-
+#mainModal{
+	position : fixed;
+	width : 100%;
+	height : 100%;
+	left : 0px;
+	top : 0px;
+	z-index : 1;
+	background-color : rgba(0, 0, 0, 0.4);
+	display : none;
+}
+#close{
+	position : absolute;
+	right : 10px;
+	top : 2px;
+	color : darkgray;
+}
+#close:hover {
+	color: white;
+	text-decoration: none;
+	cursor: pointer;
 </style>
 
 </head>
@@ -150,6 +171,10 @@
 						<td><input type = "text" name = "userBirth" id = "userBirth" value = "${user.userBirth }" readonly></td>
 					</tr>
 					<tr>
+						<th>남은시간</th>
+						<td><input type = "text" name = "userBirth" id = "userBirth" value = "${userVO.userTime }분" readonly></td>
+					</tr>
+					<tr>
 						<th>회원정보관리</th>
 						<td id = "userBtnTd"><input type="button" value='수정' id = "editBtn">
 							<input type="button" id="deleteBtn" value="삭제"></td>
@@ -159,10 +184,13 @@
 
 
 		</div>
+		
+	<!-- 수정페이지 누르면 모달창이 뜸 -->
+<div id = "mainModal">
 	<form action="" id = "editForm">
 				<table id="edit_table">
 					<tr>
-						<th colspan = "2" id = "editTitle">회원 수정</th>
+						<th colspan = "2" id = "editTitle">회원 수정<span id = "close">×</span></th>
 					</tr>
 					<tr id = "">
 						<th>회원아이디</th>
@@ -190,17 +218,17 @@
 				</table>
 			</form>
 	</div>
-	
-	<!-- 수정페이지 누르면 모달창이 뜸 -->
+</div>	
 	<%@ include file="/WEB-INF/views/common/footer.jsp"%>
 </body>
 	<script>
 		$(document).ready(function(){
 			
-			$('#edit_table').hide();
+			$('#mainModal').hide();
+			
 			$('#editBtn').on('click', function(){
 			
-				$('#edit_table').show();
+				$('#mainModal').show();
 				
 			});
 			
@@ -229,8 +257,20 @@
 						location.href = '<%=request.getContextPath()%>'
 					}
 				});
+				$('#mainModal').hide();
 			});
 		
+			$(window).on('click', function() {
+				//jquery는 dom 객체를 jquery 객체로 한 번 감싸 리턴하므로 dom 객체를 얻어와야 비교 가능
+				if (event.target == $('#mainModal').get(0)) {
+    				$('#mainModal').hide();
+    			}
+			});
+			
+			$('#close').click(function(){
+				$('#mainModal').hide();
+			
+			});
 		});
 	</script>
 </html>
