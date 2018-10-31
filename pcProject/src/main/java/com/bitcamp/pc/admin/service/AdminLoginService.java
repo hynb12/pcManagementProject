@@ -1,5 +1,7 @@
 package com.bitcamp.pc.admin.service;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -17,7 +19,7 @@ public class AdminLoginService {
 	private AdminDaoInterface adminDao;
 	
 	
-	public boolean AdminLogin(String userId, String userPw, HttpSession session) {
+	public boolean AdminLogin(String userId, String userPw, HttpSession session, String check, HttpServletResponse response) {
 		
 		boolean result = false;
 	
@@ -27,7 +29,12 @@ public class AdminLoginService {
 		// 1. vo에는 id & pw를 받아오는데
 		// 1-1. vo의 값이 null이 아니라면 얻어오는 adminId 값과 검색한 adminId값이 일치해야한다. (adminPw도 동일)
 		if(vo != null && vo.getAdminId().equals(userId) && vo.getAdminPw().equals(userPw)) {
-			
+			if(check != null) {
+				
+				Cookie cookie = new Cookie("check", check);
+				response.addCookie(cookie);
+				
+			}
 			// 2. session에 adminPw 값이 노출되지 않도록 Pw값은 초기화
 			vo.setAdminPw("");
 			

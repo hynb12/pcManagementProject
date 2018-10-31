@@ -1,5 +1,7 @@
 package com.bitcamp.pc.user.service;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -8,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.bitcamp.pc.member.dao.UserDaoInterface;
 import com.bitcamp.pc.member.model.UserVO;
+import com.mysql.fabric.Response;
 
 @Service
 public class UserLoginService {
@@ -16,7 +19,7 @@ public class UserLoginService {
    private SqlSessionTemplate sqlSessionTemplate;
    private UserDaoInterface userDao;
 
-   public boolean userLogin(String userId, String userPw, HttpSession session) {
+   public boolean userLogin(String userId, String userPw, HttpSession session, String check, HttpServletResponse response) {
 
       boolean result = false;
 
@@ -26,7 +29,15 @@ public class UserLoginService {
       
       // 1. vo가 비어있지 않다면 Id & Pw가 일치하는지 확인해야한다.
       if(vo != null && vo.getUserId().equals(userId) && vo.getUserPw().equals(userPw)) {
-         
+         if(check != null) {
+        	 Cookie cookie = new Cookie("check", userId);
+        	 response.addCookie(cookie);
+        	 System.out.println(cookie);
+         } else {
+        	 Cookie cookie = new Cookie("check", "");
+        	 cookie.setMaxAge(0);
+        	 response.addCookie(cookie);
+		}
          // session에 Pw가 노출되지 않도록 빈 값으로 초기화
          vo.setUserPw("");
          

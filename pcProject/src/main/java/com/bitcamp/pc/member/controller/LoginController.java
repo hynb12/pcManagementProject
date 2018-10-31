@@ -1,5 +1,7 @@
 package com.bitcamp.pc.member.controller;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,11 +30,17 @@ public class LoginController {
 
 	// 로그인 페이지에서 로그인 클릭
 	@RequestMapping(method = RequestMethod.POST)
-	public String login(@RequestParam("userId") String userId, @RequestParam("userPw") String userPw,
-			HttpSession session) {
+	public String login(@RequestParam("userId") String userId,
+			@RequestParam("userPw") String userPw,
+			HttpSession session,
+			HttpServletRequest request,
+			HttpServletResponse response) {
 
-		boolean isUser = userLoginService.userLogin(userId, userPw, session); // 로그인 성공 여부 검사
-		boolean isAdmin = adminLoginService.AdminLogin(userId, userPw, session); // 관리자 로그인 검사
+		// jsp 파일 check ("name") 
+		String check = request.getParameter("remember");
+		
+		boolean isUser = userLoginService.userLogin(userId, userPw, session, check, response); // 로그인 성공 여부 검사
+		boolean isAdmin = adminLoginService.AdminLogin(userId, userPw, session, check, response); // 관리자 로그인 검사
 
 		// 관리자 로그인 여부 확인하기 위해 메인 컨트롤러로 넘겨준다.
 		String url = "redirect:/member/login?loginfail=true";
