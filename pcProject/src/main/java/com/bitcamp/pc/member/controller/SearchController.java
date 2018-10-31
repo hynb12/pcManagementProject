@@ -20,7 +20,7 @@ public class SearchController {
 	SearchIdService idService;
 	@Autowired
 	SearchPwService pwService;
-	
+
 	// 메인에서 찾기 클릭 시
 	@RequestMapping(method = RequestMethod.GET)
 	public String search() {
@@ -39,6 +39,11 @@ public class SearchController {
 
 			String id = idService.userIdSearch(vo.getUserPhone(), vo.getUserName());
 
+			// 정보 오류시
+//			if (id == null || id.equals("")) {
+//				id = "notexist";
+//			}
+
 			vo.setUserId(id);
 //			mav.addObject("searchId", id);
 //			System.out.println("찾은 ID는" + id);
@@ -47,13 +52,19 @@ public class SearchController {
 		}
 
 		// 비밀번호 찾기
-		if(search.equals("pw")) {
+		if (search.equals("pw")) {
 			System.out.println("비밀번호 찾기");
 			System.out.println(vo);
-			
+
 			String pw = pwService.userPwSearch(vo.getUserId(), vo.getUserName());
+
+			// 정보 오류시
+//			if (pw == null || pw.equals("")) {
+//				pw = "notexist";
+//			}
+
 			vo.setUserPw(pw);
-			
+
 			return vo;
 		}
 		return vo;
