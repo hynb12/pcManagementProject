@@ -221,36 +221,31 @@
 
 			});
 			
-			// 충전하기 클릭 시 
-			$('#addTimeBtn').on('click', function(){
+			/* UserTimeContoller로 요청 */
+			$.ajax({
+				url: '<%=request.getContextPath()%>/member/maintimetable', 
+				type: 'post',
+				data: $('#addTimeForm').serialize(), // 선택한 자리 번호와 충전한 시간 전송
 				
-				/* UserTimeContoller로 요청 */
-				$.ajax({
-					url: '<%=request.getContextPath()%>/user/addTime', 
-					type: 'post',
-					data: $('#addTimeForm').serialize(), // 선택한 자리 번호와 충전한 시간 전송
+				success:function(data){
+					console.log(data);
 					
-					success:function(data){
-						console.log(data);
+					// 선택된 자리에 정보 표시 
+					$('#comTable td').each(function(index) {						
 						
-						// 선택된 자리에 정보 표시 
-						$('#comTable td').each(function(index) {
-							if ((index + 1) == data.comId) {
-								$(this).css('opacity', 1); // 선택된 컴퓨터의 투명도 설정
-								
-								$(this).children().eq(1).text(data.userId); // 선택된 컴퓨터의 첫 번째 줄에 아이디 표시
-								$(this).children().eq(2).text(Math.floor(data.userTime/60)+'시간 ' +(data.userTime%60)+'분'); //두번째 줄에 남은 시간 표시
-								$(this).children().eq(2).css({
-									'color': 'black',
-									'font-weight' : 'bold'
-								}); // 시간 글씨색 변경
-							}
-						});
-					} /* end success */
-				}); /* end ajax */
-				
-				$('#addTimeModal').hide();
-			});
+						if ((index + 1) == data.comId) {
+							$(this).css('opacity', 1); // 선택된 컴퓨터의 투명도 설정
+							
+							$(this).children().eq(1).text(UTimeVO.userId); // 선택된 컴퓨터의 첫 번째 줄에 아이디 표시
+							$(this).children().eq(2).text(Math.floor(UTimeVO.userTime/60)+'시간 ' +(UTimeVO.userTime%60)+'분'); //두번째 줄에 남은 시간 표시
+							$(this).children().eq(2).css({
+								'color': 'black',
+								'font-weight' : 'bold'
+							}); // 시간 글씨색 변경
+						}
+					});
+				} /* end success */
+			}); /* end ajax */
 
 		});
 	</script>

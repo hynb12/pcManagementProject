@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.bitcamp.pc.member.model.UTimeVO;
 import com.bitcamp.pc.member.service.MainTimeService;
@@ -15,8 +16,8 @@ public class MainTimeController {
 	@Autowired
 	private MainTimeService mainTimeService;
 
-	@RequestMapping("/admin/main")
-	public List<UTimeVO> addTime() {
+	@RequestMapping("/member/maintimetable")
+	public @ResponseBody List<UTimeVO> addTime() {
 
 		System.out.println("from UserTimeController // 컨트롤러 시작");
 
