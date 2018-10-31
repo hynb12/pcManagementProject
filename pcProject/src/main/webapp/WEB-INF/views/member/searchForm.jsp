@@ -19,11 +19,48 @@
 	color: white;
 	background-color: green;
 }
+
+.mainModal {
+	display: none;
+	position: fixed; /* Stay in place */
+	z-index: 1; /* Sit on top */
+	padding-top: 100px; /* Location of the box */
+	left: 0;
+	top: 0;
+	width: 100%; /* Full width */
+	height: 100%; /* Full height */
+	overflow: auto; /* Enable scroll if needed */
+	background-color: rgb(0, 0, 0); /* Fallback color */
+	background-color: rgba(0, 0, 0, 0.4);
+	position: fixed;
+}
+
+.modal-content {
+	background-color: #fefefe;
+	margin: auto;
+	padding: 15px;
+	border: 1px solid #888;
+	width: 100%;
+	text-align: center;
+}
+
+/* The Close Button */
+.close {
+	color: #aaaaaa;
+	float: right;
+	font-size: 28px;
+	font-weight: bold;
+	font-size: 28px;
+}
+
+.close:hover, .close:focus {
+	color: #000;
+	text-decoration: none;
+	cursor: pointer;
+}
 </style>
 </head>
 <body>
-
-
 
 	<div class="container">
 		<div class="row">
@@ -49,7 +86,8 @@
 					<input type="hidden" name="search" value="pw" /> <input
 						type="text" name="userId" placeholder="Id" required> <input
 						type="text" name="userName" placeholder="UserName" required>
-					<input id="searchpw" type="button" class="btn" value="Search Password">
+					<input id="searchpw" type="button" class="btn"
+						value="Search Password">
 				</form>
 			</div>
 
@@ -59,12 +97,16 @@
 			</div>
 		</div>
 	</div>
-	<div id="window_search">-></div>
+
+	<div id="showModal" class="mainModal">
+		<div id="window_search" class="modal-content">-></div>
+		<span class="close">&times;</span>
+	</div>
 
 	<script>
 		//searchId 클릭 시		
 		$("#searchid").on('click', function() {
-				
+								
 				$.ajax({
 				//url주소 조심하세요 자동정렬할때
 				url: '<%=request.getContextPath()%>/member/search',
@@ -74,39 +116,62 @@
 				success : function(data) {
 					console.log(data);
 
-					$('#window_search').text("회원님의 아이디는 : " + data.userId);
-
+					$('#window_search').text("회원님의 아이디는 [ " + data.userId + " ] 입니다");
 				} /* end success */
 			}); /* end ajax */
+				$('#showModal').show();
 		});
 		
 		// ID값이 searchpw인 input type="button"에 script를 이용한 클릭 기능 구현  
 		$("#searchpw").on('click', function(){
 			
 			$.ajax({
-				// 자동정렬하면 url 주소 깨짐
-				url: '<%=request.getContextPath()%>/member/search',
+			// 자동정렬하면 url 주소 깨짐
+			url: '<%=request.getContextPath()%>/member/search',
 				type : 'post',
 				data : $('#pwSearchForm').serialize(),
-				success : function(data){
+
+				success : function(data) {
 					// 콘솔로 데이터가 잘 들어왔는지 확인
 					console.log(data);
-					
-					$('#window_search').text("비밀번호는 "+ data.userPw +"입니다.")
+
+					$('#window_search').text("비밀번호는 [ " + data.userPw + " ] 입니다.")
 				}
-			
 			}); /* end ajax */
+			$('#showModal').show();
 		}); /* end button function */
-		
+
 		// 경원 공부
 		// data: 에는 form 안에 id 값을 넣어주면 된다.
 		// JSON(JavaScript Object Notation)이란 클라이언트 브라우저 및
 		// AJAX 사용 웹 서비스 간에 소량의 데이터를 신속하게 교환할 수 있는
 		// 효율적인 데이터 인코딩 형식이다.
-		
 		// serialize()는 입력된 모든 Element를 문자열의 데이터에 serialize 한다. 
-		// form 안에 각 요소를 param 값으로 저장 시키지 않고 한번에 담아줌		
-		
+		// form 안에 각 요소를 param 값으로 저장 시키지 않고 한번에 담아줌
+
+		// 로드 시 최초 1회만 실행
+		$(document).ready(function() {
+
+			// 아이디,비밀번호 modal 창 닫기 버튼 클릭
+			$('.close').on('click', function() {
+				$('#showModal').hide();
+				$('#orderListModal').hide();
+				$('#orderListTable').text(''); // 리스트 내용 초기화
+			});
+
+			// modal 창 외 윈도우 클릭
+			$(window).on('click', function() {
+				//jquery는 dom 객체를 jquery 객체로 한 번 감싸 리턴하므로 dom 객체를 얻어와야 비교 가능
+				if (event.target == $('#showModal').get(0)) {
+					$('#showModal').hide();
+				}
+
+				if (event.target == $('#orderListModal').get(0)) {
+					$('#orderListModal').hide();
+					$('#orderListTable').text(''); // 리스트 내용 초기화
+				}
+			});
+		})
 	</script>
 
 
