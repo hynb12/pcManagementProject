@@ -30,8 +30,14 @@ public class AdminLoginService {
 		// 1-1. vo의 값이 null이 아니라면 얻어오는 adminId 값과 검색한 adminId값이 일치해야한다. (adminPw도 동일)
 		if(vo != null && vo.getAdminId().equals(userId) && vo.getAdminPw().equals(userPw)) {
 			if(check != null) {
+
+				Cookie cookie = new Cookie("check", userId);
+				response.addCookie(cookie);
 				
-				Cookie cookie = new Cookie("check", check);
+			} else {
+				
+				Cookie cookie = new Cookie("check", "");
+				cookie.setMaxAge(0);
 				response.addCookie(cookie);
 				
 			}
