@@ -9,7 +9,7 @@
 		select *
 		from reply
 		where noid = #{noId}
-		order by replyid desc
+		order by replyid
 
 	</select>
 

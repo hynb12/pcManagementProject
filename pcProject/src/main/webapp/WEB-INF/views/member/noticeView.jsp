@@ -22,7 +22,6 @@
 .comments {
 	padding-top: 40px;
 }
-
 </style>
 
 </head>
@@ -54,22 +53,20 @@
 		<!--Section: Comments-->
 		<section class="comments my-5">
 
-			<!-- Card header -->
-			<div class="card-header font-weight-bold">0 comments</div>
+			<!-- 코멘트 총개수 -->
+			<div id="commentsNum" class="card-header font-weight-bold"></div>
 
-			<div id="replyAllBody">
-			
-			</div>
+			<div id="replyAllBody"></div>
 		</section>
 		<!--Section: Comments-->
-		<!-- Quick Reply -->
+		<!-- 댓글 입력란 -->
 		<div class="md-form mt-4">
-			<label for="quickReplyFormComment">댓글 입력</label>
-			<textarea class="form-control md-textarea" id="quickReplyFormComment"
+			<label for="replyFormComment">댓글 입력</label>
+			<textarea class="form-control md-textarea" id="replyFormComment"
 				rows="1"></textarea>
 			<div class="text-center my-4">
 				<button id="commentSubmit"
-					class="btn btn-default btn-sm btn-rounded" type="submit">입력</button>
+					class="btn btn-default btn-sm btn-rounded">댓글 입력</button>
 			</div>
 		</div>
 	</div>
@@ -101,29 +98,52 @@
 <!-- 삭제확인 모달 끝-->
 
 <script>
+	$(document).ready(function(){
+		getAllList();
+	});
+
 	var noid = '${view.noticeId}';
 	var reply = '';
+	
+	function getAllList() {
+		$.ajax({
+					type : 'get',
+					url : '/pc/reply/all/' + noid,
+					dataType : 'json',
+					success : function(data) {
+						$(data)
+								.each(
+										function(index, item) {
+											$('#commentsNum').html(data.length + ' comments');
+											reply += '<div class="media d-block d-md-flex mt-5">';
+											reply += '<img class="card-img-64 rounded-circle z-depth-1 d-flex mx-auto mb-3" src="https://mdbootstrap.com/img/Photos/Avatars/img (21).jpg">';
+											reply += '<div class="media-body text-center text-md-left ml-md-3 ml-0">';
+											reply += item.replyCon;
+											reply += '<hr /></div></div>';
 
-	$.ajax({
-				type : 'get',
-				url : '/pc/reply/all/' + noid,
-				dataType : 'json',
-				success : function(data) {
-					$(data)
-							.each(
-									function(index, item) {
-										reply += '<div class="media d-block d-md-flex mt-5">';
-										reply += '<img class="card-img-64 rounded-circle z-depth-1 d-flex mx-auto mb-3" src="https://mdbootstrap.com/img/Photos/Avatars/img (21).jpg">';
-										reply += '<div class="media-body text-center text-md-left ml-md-3 ml-0">';
-										reply += item.replyCon;
-										reply += '<hr /></div></div>';
+											$('#replyAllBody').html(reply);
+										});
+									reply = '';
+					}
+				});
+	}
 
-										$('#replyAllBody').html(reply);
-									});
-				}
-			/* ,  error:function(request,status,error){
-			   console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-			 } */
-			});
+	$('#commentSubmit').click(function() {
+		var replyText = $('#replyFormComment').val();
+
+		$.ajax({
+			type : 'post',
+			url : '/pc/reply',
+			dataType : 'text',
+			data : {
+				noId : noid,
+				replyCon : replyText
+			},
+			success : function(data) {
+				console.log('댓글작성완료');
+				getAllList();
+			}
+		});
+	});
 </script>
 </html>

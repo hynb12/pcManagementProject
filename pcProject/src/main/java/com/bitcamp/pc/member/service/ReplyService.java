@@ -20,7 +20,6 @@ public class ReplyService {
 
 	@Transactional
 	public List<ReplyVO> listReply(int id) {
-
 		daoInterface = sessionTemplate.getMapper(ReplyDaoInterface.class);
 		List<ReplyVO> reVO = null;
 		try {
@@ -29,5 +28,17 @@ public class ReplyService {
 			e.printStackTrace();
 		}
 		return reVO;
+	}
+
+	@Transactional
+	public void insertReply(ReplyVO vo) {
+		daoInterface = sessionTemplate.getMapper(ReplyDaoInterface.class);
+
+		try {
+			daoInterface.insertReply(vo);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
 	}
 }

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.bitcamp.pc.member.model.ReplyVO;
@@ -21,12 +22,18 @@ public class ReplyCotroller {
 
 	@RequestMapping(value = "/all/{id}", method = RequestMethod.GET)
 	@ResponseBody
-	public List<ReplyVO> list(@PathVariable("id") int id) {
+	public List<ReplyVO> replyList(@PathVariable("id") int id) {
 
 		List<ReplyVO> list = service.listReply(id);
 
-//		System.out.println(list);
-		
 		return list;
+	}
+	
+	@RequestMapping(value = "", method = RequestMethod.POST)
+	@ResponseBody
+	public void replyInsert(ReplyVO vo) {
+
+		service.insertReply(vo);
+				
 	}
 }
