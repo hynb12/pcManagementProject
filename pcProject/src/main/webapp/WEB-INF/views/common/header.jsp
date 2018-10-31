@@ -60,7 +60,7 @@
 			<c:if test="${!isAdmin}">
 				<li class="nav-item"><a class="nav-link"
 					href="<%=request.getContextPath()%>/user/myPage"><i
-						class="fa fa-user-o" aria-hidden="true"></i>내정보</a></li>
+						class="fa fa-address-card-o" aria-hidden="true"></i>내정보</a></li>
 				<li class="nav-item"><a class="nav-link"
 					href="<%=request.getContextPath()%>/member/notice"><i
 						class="fa fa-bullhorn" aria-hidden="true"></i>공지사항</a></li>

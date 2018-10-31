@@ -7,7 +7,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.bitcamp.pc.member.model.ReplyVO;
@@ -37,10 +36,19 @@ public class ReplyCotroller {
 
 	}
 
-	@RequestMapping(value = "/{replyid}", method = RequestMethod.GET)
+	@RequestMapping(value = "/delete/{replyid}", method = RequestMethod.GET)
 	@ResponseBody
 	public void replyDelete(@PathVariable("replyid") int id) {
 
 		service.deleteReply(id);
+	}
+
+	@RequestMapping(value = "/modify/{replyid}", method = RequestMethod.GET)
+	@ResponseBody
+	public void replyModify(@PathVariable("replyid") int id, ReplyVO vo) {
+
+		System.out.println(vo);
+		
+		/*service.updateReply(id);*/
 	}
 }

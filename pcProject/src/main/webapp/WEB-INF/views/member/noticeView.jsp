@@ -116,10 +116,11 @@
 						$(data).each(function(index, item) {
 											$('#commentsNum').html(data.length + ' comments');
 											reply += '<div class="media d-block d-md-flex mt-4">';
-											reply += '<img class="card-img-64 rounded-circle z-depth-1 d-flex mx-auto mb-3" src="https://mdbootstrap.com/img/Photos/Avatars/img (21).jpg">';
+											reply += '<img class="card-img-64 rounded-circle z-depth-1 d-flex mx-auto mb-3" src="https://post-phinf.pstatic.net/MjAxODAzMjJfMjY4/MDAxNTIxNzAxODU2MTQy.V91kaps6gaHaHS6JhzoHGT98PuoEv8kSz3zjgWT4kOAg.ffqd0efJQR_23lCWLTjDfjS3Hd-jfqEjSxNLCilQMScg.JPEG/%EC%88%98%EB%A7%8C%EA%B0%80%EC%A7%80%ED%91%9C%EC%A0%95%EC%9D%98%EB%A0%89%EC%8B%9C%EA%B3%A0%EC%96%91%EC%9D%B4_02.jpg?type=w1200">';
 											reply += '<div class="media-body text-center text-md-left ml-md-3 ml-0">';
 											reply += '<h5 class="font-weight-bold mt-0">';
 											reply += '<button id="replyDeleteBtn' + item.replyId +'" onclick="replyDelete('+ item.replyId +')" type="button" class="btn btn-danger px-3 float-right"><i class="fa fa-trash" aria-hidden="true"></i></button>';
+											reply += '<button id="replyModifyBtn' + item.replyId +'" onclick="replyModify('+ item.replyId +')"type="button" class="btn btn-primary px-3 float-right"><i class="fa fa-pencil" aria-hidden="true"></i></button>';
 										    reply += '<a class="text-default">냐옹이</a></h5>';
 											reply += item.replyCon;
 											reply += '<hr /></div></div>';
@@ -152,10 +153,21 @@
 	function replyDelete(replyId){	
 		$.ajax({
 			type : 'get',
-			url : '/pc/reply/' + replyId,
+			url : '/pc/reply/delete/' + replyId,
 			success : function(data){
 				console.log('삭제확인');
 				getAllList();
+			}
+		});
+ 	};
+ 	
+	function replyModify(replyId){	
+		$.ajax({
+			type : 'get',
+			url : '/pc/reply/modify/' + replyId,
+			success : function(data){
+				console.log('수정확인');
+				
 			}
 		});
  	};

@@ -51,4 +51,14 @@ public class ReplyService {
 			e.printStackTrace();
 		}
 	}
+
+	public void updateReply(ReplyVO vo) {
+		daoInterface = sessionTemplate.getMapper(ReplyDaoInterface.class);
+		
+		try {
+			daoInterface.updateReply(vo);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 }
