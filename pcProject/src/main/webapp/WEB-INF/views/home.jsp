@@ -13,6 +13,8 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.13/js/mdb.min.js"></script>
+<script src="http://code.jquery.com/jquery-1.12.0.js"></script>
+	
 <style>
 body, html {
 	height: 100%;
@@ -43,6 +45,7 @@ body, html {
   width: 130px;
 }
 </style>
+
 </head>
 <body>
 	<div class="view" >
@@ -57,8 +60,11 @@ body, html {
 		</div>
 	</div>
 </body>
+
 <script>
+
 	// Animations init
 	new WOW().init();
+	
 </script>
 </html>

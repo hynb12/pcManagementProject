@@ -35,7 +35,7 @@ public class LoginController {
 		boolean isAdmin = adminLoginService.AdminLogin(userId, userPw, session); // 관리자 로그인 검사
 
 		// 관리자 로그인 여부 확인하기 위해 메인 컨트롤러로 넘겨준다.
-		String url = "/member/loginForm";
+		String url = "redirect:/member/login?loginfail=true";
 
 		// isLogin == true
 		if (isUser) {
