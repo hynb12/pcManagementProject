@@ -47,7 +47,9 @@
 			<button type="button" class="btn btn-dark"
 				onclick="location.href='/pc/admin/notice/modify/${view.noticeId}'">수정</button>
 			<button type="button" class="btn btn-dark"
-				onclick="location.href='/pc/member/notice'"><i class="fa fa-th-list pr-2" aria-hidden="true"></i>목록</button>
+				onclick="location.href='/pc/member/notice'">
+				<i class="fa fa-th-list pr-2" aria-hidden="true"></i>목록
+			</button>
 		</div>
 
 		<!--Section: Comments-->
@@ -122,7 +124,7 @@
 											reply += '<button id="replyDeleteBtn' + item.replyId +'" onclick="replyDelete('+ item.replyId +')" type="button" class="btn btn-danger px-3 float-right"><i class="fa fa-trash" aria-hidden="true"></i></button>';
 											reply += '<button id="replyModifyBtn' + item.replyId +'" onclick="replyModify('+ item.replyId +')"type="button" class="btn btn-primary px-3 float-right"><i class="fa fa-pencil" aria-hidden="true"></i></button>';
 										    reply += '<a class="text-default">냐옹이</a></h5>';
-											reply += item.replyCon;
+											reply += '<span id="replySpan' + item.replyId +'">' + item.replyCon + '</span>';
 											reply += '<hr /></div></div>';
 											$('#replyAllBody').html(reply);
 										});
@@ -166,8 +168,9 @@
 			type : 'get',
 			url : '/pc/reply/modify/' + replyId,
 			success : function(data){
+				alert($('#replySpan' + replyId).html());
+				$('#replySpan' + replyId).contents().unwrap().wrap( '<textarea class="form-control md-textarea"></textarea>' );
 				console.log('수정확인');
-				
 			}
 		});
  	};
