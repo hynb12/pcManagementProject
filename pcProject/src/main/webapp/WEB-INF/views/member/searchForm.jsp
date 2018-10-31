@@ -119,15 +119,15 @@
 					$('#window_search').text("회원님의 아이디는 [ " + data.userId + " ] 입니다");
 				} /* end success */
 			}); /* end ajax */
-				$('#showModal').show();
+		$('#showModal').show();
 		});
 		
 		// ID값이 searchpw인 input type="button"에 script를 이용한 클릭 기능 구현  
 		$("#searchpw").on('click', function(){
 			
-			$.ajax({
-			// 자동정렬하면 url 주소 깨짐
-			url: '<%=request.getContextPath()%>/member/search',
+				$.ajax({
+				// 자동정렬하면 url 주소 깨짐
+				url: '<%=request.getContextPath()%>/member/search',
 				type : 'post',
 				data : $('#pwSearchForm').serialize(),
 
@@ -135,10 +135,10 @@
 					// 콘솔로 데이터가 잘 들어왔는지 확인
 					console.log(data);
 
-					$('#window_search').text("비밀번호는 [ " + data.userPw + " ] 입니다.")
-				}
+					$('#window_search').text("회원님의 비밀번호는 [ " + data.userPw + " ] 입니다.");
+				}/* end success */
 			}); /* end ajax */
-			$('#showModal').show();
+		$('#showModal').show();
 		}); /* end button function */
 
 		// 경원 공부
@@ -155,8 +155,7 @@
 			// 아이디,비밀번호 modal 창 닫기 버튼 클릭
 			$('.close').on('click', function() {
 				$('#showModal').hide();
-				$('#orderListModal').hide();
-				$('#orderListTable').text(''); // 리스트 내용 초기화
+
 			});
 
 			// modal 창 외 윈도우 클릭
@@ -164,11 +163,6 @@
 				//jquery는 dom 객체를 jquery 객체로 한 번 감싸 리턴하므로 dom 객체를 얻어와야 비교 가능
 				if (event.target == $('#showModal').get(0)) {
 					$('#showModal').hide();
-				}
-
-				if (event.target == $('#orderListModal').get(0)) {
-					$('#orderListModal').hide();
-					$('#orderListTable').text(''); // 리스트 내용 초기화
 				}
 			});
 		})
