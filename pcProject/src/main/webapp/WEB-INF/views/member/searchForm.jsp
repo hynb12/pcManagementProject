@@ -99,7 +99,7 @@
 	</div>
 
 	<div id="showModal" class="mainModal">
-		<div id="window_search" class="modal-content">-></div>
+		<div id="window_search" class="modal-content">정보를 찾고 있습니다.......</div>
 		<span class="close">&times;</span>
 	</div>
 
