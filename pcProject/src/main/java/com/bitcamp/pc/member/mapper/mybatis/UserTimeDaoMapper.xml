@@ -34,5 +34,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		userId=#{userId}
 	</update>
 
+	<select id="getUTimeListDao" resultType="utimeVO">
+		select * from uTime
+	</select>
 
 </mapper>

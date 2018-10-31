@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 
 import com.bitcamp.pc.member.dao.UserDaoInterface;
 import com.bitcamp.pc.member.model.UserVO;
-import com.mysql.fabric.Response;
 
 @Service
 public class UserLoginService {
@@ -32,6 +31,8 @@ public class UserLoginService {
          if(check != null) {
         	 Cookie cookie = new Cookie("check", userId);
         	 response.addCookie(cookie);
+        	 
+        	 // 쿠키 잘 만들어졌나~?
         	 System.out.println(cookie);
          } else {
         	 Cookie cookie = new Cookie("check", "");
