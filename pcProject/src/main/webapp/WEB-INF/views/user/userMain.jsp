@@ -107,7 +107,7 @@
 	cursor: pointer;
 }
 
-.foodCnt {
+.orderCnt {
 	text-align: center;
 	font-size: 16px;
 	width: 20px;
@@ -358,13 +358,13 @@
 			}
 			
 			// 주문한 음식과 유저 정보 담을 생성자
-			function OrderList(userComId, userId, orderId, foodName, foodPrice, foodCnt) {
+			function OrderList(userComId, userId, orderFoodId, foodName, foodPrice, orderCnt) {
 				this.userComId = userComId; // 사용자 컴퓨터 번호
 				this.userId = userId; // 사용자 아이디
-				this.orderId = orderId; // 주문번호
+				this.orderFoodId = orderFoodId; // 음식 번호
 				this.foodName = foodName; // 음식 이름
-				this.foodPrice = foodPrice*foodCnt; // 수량 만큼 가격 계산
-				this.foodCnt = foodCnt; // 이름 갯수
+				this.foodPrice = foodPrice*orderCnt; // 수량 만큼 가격 계산
+				this.orderCnt = orderCnt; // 이름 갯수
 			}
 			
 			// 생성자로 각 음식 정보 생성 후 배열에 저장
@@ -385,7 +385,7 @@
 				str += '<div><b>' + foodArr[index].foodName + '</b></div>';
 				str += '<div><b>' + foodArr[index].foodPrice + '</b></div>'; 
 				str += '<div><button type="button" class="close" aria-label="Close" style="float:left"><span class="minus" aria-hidden="true">-</span></button>';
-				str += '<input type="text" value="0" class="foodCnt">';
+				str += '<input type="text" value="0" class="orderCnt">';
 				str += '<button type="button" class="close" aria-label="Close"><span class="plus" aria-hidden="true">+</span></button> </div>'; 
 				$(str).appendTo(this);
 			
@@ -407,8 +407,8 @@
 				e.stopPropagation(); // 이벤트 전파 방지 (음식이 선택되면 안됨)
 				
 				var n =  $('.plus').index(this);
-			 	var num = $('.foodCnt:eq('+n+')').val();
-				num = $('.foodCnt:eq('+n+')').val(num*1+1);
+			 	var num = $('.orderCnt:eq('+n+')').val();
+				num = $('.orderCnt:eq('+n+')').val(num*1+1);
 		
 			});
 			
@@ -417,12 +417,12 @@
 				e.stopPropagation(); // 이벤트 전파 방지 (음식이 선택되면 안됨)
 				
 				var n =  $('.minus').index(this);
-			 	var num = $('.foodCnt:eq('+n+')').val();
+			 	var num = $('.orderCnt:eq('+n+')').val();
 			 	
 			 	if(num-1 < 0 ){ // 수량 0이하 안되게 처리
 			 		return;
 			 	}
-				num = $('.foodCnt:eq('+n+')').val(num*1-1);
+				num = $('.orderCnt:eq('+n+')').val(num*1-1);
 			});
 			
 			var isChoice = new Array(9).fill(false); 
@@ -431,10 +431,10 @@
 			$('#foodTable td').on('click', function() {
 				var idx = $(this).attr('foodId')-1;
 				
-				var foodCnt = $(this).children().eq(3).children().eq(1).val(); // 선택된 음식의 수량 가져오기
+				var orderCnt = $(this).children().eq(3).children().eq(1).val(); // 선택된 음식의 수량 가져오기
 				
 				if(isChoice[idx] == false){ // 음식 선택 안된 상태
-					if(foodCnt != 0){ // 선택된 음식 갯수가 0이 아닐 때만 선택 가능
+					if(orderCnt != 0){ // 선택된 음식 갯수가 0이 아닐 때만 선택 가능
 						$(this).css('opacity', '0.5');
 						isChoice[idx] = true;
 					}
@@ -445,7 +445,6 @@
 				}
 			});
 			
-			var orderId = 1; // 주문 번호
 			var orderList = []; // 선택된 메뉴 객체를 담을 배열
 			
 			// 메뉴 선택 후 주문하기 버튼 클릭 시 발생하는 이벤트	
@@ -496,12 +495,13 @@
 				$('#foodTable td').each(function(index) {
 					
 					if(isChoice[index]){
-						var foodCnt = $(this).children().eq(3).children().eq(1).val(); // 선택된 음식의 수량 가져오기
+						var orderCnt = $(this).children().eq(3).children().eq(1).val(); // 선택된 음식의 수량 가져오기
 						var foodName = foodArr[index].foodName; // 선택된 음식의 이름 가져오기
 						var foodPrice = foodArr[index].foodPrice; // 선택된 음식의 가격 가져오기
+						var orderFoodId = index + 1; // 음식 아이디
 						
 						// 리스트에 저장
-						orderList.push(new OrderList(userComId, userId, orderId, foodName, foodPrice, foodCnt));
+						orderList.push(new OrderList(userComId, userId, orderFoodId, foodName, foodPrice, parseInt(orderCnt)));
 					}
 				});
 				
@@ -513,7 +513,7 @@
 				for(var i=0; i < orderList.length; i++){
 					str += '<tr><td>'+ orderList[i].foodName +'</td>';
 					str += '<td>'+ orderList[i].foodPrice +'</td>';
-					str += '<td>'+ orderList[i].foodCnt +'</td></tr>';
+					str += '<td>'+ orderList[i].orderCnt +'</td></tr>';
 					totalPrice +=  orderList[i].foodPrice;
 				}
 				
@@ -525,12 +525,11 @@
 			
 			// 주문 확정 시 
 			$('#orderConfirmBtn').on('click', function () {
-				orderId++; // 주문번호 증가
 				
 				$.ajax({
 					url: '<%=request.getContextPath()%>/user/order', 
 					type: 'post',
-					contentType: "application/json", /* 요청 타입 지정(안하면 405 오류) */
+					contentType: 'application/json', /* 요청 타입 지정(안하면 405 오류) */
 					data: JSON.stringify(orderList),
 					
 					success:function(data){
@@ -538,6 +537,21 @@
 						
 					} /* end success */
 				}); /* end ajax */
+				
+				// 초기화
+				$('#foodTable td').each(function(index) {
+					$(this).css('opacity', '');
+					$(this).children().eq(3).children().eq(1).val('0');
+				});
+				
+				// 초기화
+				for(var i=0; i<isChoice.length; i++){
+					isChoice[i] = false;
+				}
+				
+				$('#orderListModal').hide();
+				
+				
 			});
 		}); // end window.onload() 
 	</script>

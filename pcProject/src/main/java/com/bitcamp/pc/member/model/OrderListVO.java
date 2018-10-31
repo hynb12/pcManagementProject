@@ -2,7 +2,7 @@ package com.bitcamp.pc.member.model;
 
 import org.apache.ibatis.type.Alias;
 
-@Alias("orderListVO")
+@Alias("orderListVo")
 public class OrderListVO {
 	private int orderId;
 	private int foodId;
