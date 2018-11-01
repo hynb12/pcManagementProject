@@ -45,6 +45,7 @@
 	text-align: left;
 	border-radius: 10px;
 	opacity: 0.5;
+	cursor: pointer;
 }
 
 #foodTable {
@@ -100,6 +101,31 @@
 	cursor: pointer;
 	border-right-width: 
 }
+
+.mainTitleText{
+	background:#1AAB8A;
+ 	color:#fff;
+  	border:none;
+  	border-radius: 10px;
+  	width:490px;
+  	height:60px;
+  	padding: 10px;
+  	font-size:1.8em;
+  	margin: auto;
+ }
+ 
+.orderProcessBtn {
+	width: 100px;
+	height: 30px;
+	background-color: #f8585b;
+	border: none;
+	border-radius: 10px;
+	color: #fff;
+	text-align: center;
+	font-size: 16px;
+	cursor: pointer;
+}
+ 
 </style>
 
 </head>
@@ -108,7 +134,7 @@
 
 	<div class="main-container">
 		<div class="comDiv">
-			<h3>◆ 현재 사용 중인 컴퓨터: 5대 ◆</h3>
+			<div class="mainTitleText">◆ 현재 사용 중인 컴퓨터 : 5대 ◆</div>
 			<table id="comTable">
 				<tr>
 					<td></td>
@@ -151,7 +177,7 @@
 			</table>
 		</div>
 		<div class="foodDiv">
-			<h3>◆ 주문 대기 중인 음식 ◆</h3>
+			<div class="mainTitleText" style="width: 530px;">◆ 주문 대기 중인 음식 ◆</div>
 			<table border="1" id="foodTable">
 				<!-- 리스트 동적 추가 -->
 			</table>
@@ -257,7 +283,7 @@
 					console.log("데이타" + data);
 					
 					if(data == ''){
-						$('.foodDiv').append('<h2 style="color:red">※고객이 주문하신 음식이 없습니다.</h2>');
+						$('.foodDiv').append('<h3 style="color:red">※고객이 주문하신 음식이 없습니다.</h3>');
 						return;
 					}
 					
@@ -266,8 +292,8 @@
 					for(var i=0; i<data.length; i++){
 						
 						if(prevComId != data[i].comId){
-							str += '<tr><td colspan="4" style="background : lightgray">주문번호 '+ data[i].orderId +'</td></tr>'
-							str += '<tr><td colspan="3">컴퓨터 번호 '+ data[i].comId +'</td><td colspan="1" style="background:#F78181"><button class="orderProcess" id='+ data[i].comId + '>처리하기</button></td></tr>';
+							str += '<tr><td colspan="4" style="background : lightgray"><b>주문번호 '+ data[i].orderId +'</b></td></tr>'
+							str += '<tr><td colspan="3">컴퓨터 번호<span style="color:red"> '+ data[i].comId +'</span></td><td colspan="1"><button class="orderProcessBtn" id='+ data[i].comId + '>처리하기</button></td></tr>';
 							str += '<tr><td>음식 번호</td><td>음식 이름</td><td>총 가격</td><td>수량</td></tr>';
 						}
 						str += '<tr><td style="margin-bottom:20">'+ data[i].foodId +'</td><td>'+ data[i].foodName +'</td><td>'+ (data[i].totalPrice*data[i].foodCnt) +'</td><td>'+ data[i].foodCnt +'</td></tr>';
@@ -282,7 +308,7 @@
 					// 자바스크립트는 위에서 아래로 순서대로 실행되므로 처리속도가 빠르다
 					// 하지만 실행 처리 완료를 고려하지 않고 계속 아래로 내려가므로 순서 고려하여 프로그래밍할 것
 					
-					$('.orderProcess').on('click', function() {
+					$('.orderProcessBtn').on('click', function() {
 						var comId = $(this).attr('id');
 						
 						$.ajax({ // 주문 처리하기 
@@ -295,7 +321,7 @@
 						}); /* end 처리하기  ajax */
 						
 						location.reload(); // 새로 고침으로 리스트 삭제
-					}); /* end orderProcess */
+					}); /* end orderProcessBtn */
 				
 				} /* end 처리하기 success */
 			}); /* end 주문리스트 ajax */

@@ -44,10 +44,8 @@
 	color: white;
 	text-align: left;
 	border-radius: 10px;
-}
-
-#comTable td {
 	opacity: 0.5;
+	cursor: pointer;
 }
 
 #foodTable {
@@ -62,6 +60,8 @@
 	border-radius: 100px;
 	border: 2px solid gray;
 	text-align: center;
+	font-size: 17px;
+	cursor: pointer;
 }
 
 .comNum {
@@ -88,6 +88,7 @@
 	margin: auto;
 	padding: 15px;
 	border: 1px solid #888;
+	border-radius: 20px;
 	width: 50%;
 }
 
@@ -116,19 +117,24 @@
 .orderTable {
 	margin: 0 auto;
 	text-align: center;
-	width: 300px;
-	height: 120px;
 }
 
 .orderTable td {
 	width: 100px;
+	height: 40px;
 }
 
 .orderTable>tr:nth-child(1) {
 	background: lightgray;
+	font-weight: bold;
 }
 
 #totalPrice {
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+#logoutInfo {
 	margin-top: 20px;
 	margin-bottom: 20px;
 }
@@ -141,11 +147,20 @@
 	color: #fff;
 	padding: 15px 0;
 	text-align: center;
-	text-decoration: none;
-	display: inline-block;
 	font-size: 18px;
 	cursor: pointer;
 }
+
+.mainTitleText{
+	background:#1AAB8A;
+ 	color:#fff;
+  	border:none;
+  	border-radius: 10px;
+  	width:490px;
+  	height:60px;
+  	padding: 10px;
+  	font-size:1.8em;
+ }
 </style>
 
 </head>
@@ -154,7 +169,9 @@
 
 	<div class="main-container">
 		<div class="comDiv">
-			<h3>◆ 사용하실 컴퓨터를 선택하세요. ◆</h3>
+			<!-- <h3>◆ 사용하실 컴퓨터를 선택하세요. ◆</h3> -->
+			<marquee behavior="alternate" scrollamount="10"><div class="mainTitleText">◆ 사용하실 컴퓨터를 선택하세요. ◆</div></marquee>
+
 			<table id="comTable">
 				<tr>
 					<td></td>
@@ -182,20 +199,19 @@
 
 			</table>
 
-			<button id="logoutbtn" class="userMainBtn">사용종료</button>
+			<button id="logoutbtn" class="userMainBtn">종료하기</button>
 
 			<!-- 종료 modal -->
 			<div id="logoutModal" class="mainModal">
 				<div class="modal-contents">
 					<h3>
-						사용종료<span class="close">&times;</span>
+						<b>- 사용종료 -</b><span class="close">&times;</span>
 					</h3>
 					<table border="1" id="logoutTable" class="orderTable">
 						<!-- jquery로 리스트 동적 생성 -->
 					</table>
 
-
-					<div id="logoutInfo"></div>
+					<h3 id="logoutInfo"></h3>
 					<button id="logoutConfirmBtn" class="userMainBtn">사용종료</button>
 
 				</div>
@@ -205,7 +221,7 @@
 			<div id="addTimeModal" class="mainModal">
 				<div class="modal-contents">
 					<h3>
-						충전하실 시간을 선택하세요.<span class="close">&times;</span>
+						<b>※ 충전하실 시간을 선택하세요.</b><span class="close">&times;</span>
 					</h3>
 
 					<!-- ajax serialize 사용을 위해  -->
@@ -223,7 +239,7 @@
 		<!-- end comDiv  -->
 
 		<div class="foodDiv">
-			<h3>◆ 음식 선택 후 주문하기 눌러주세요. ◆</h3>
+			<marquee behavior="alternate" scrollamount="10"><div class="mainTitleText" style="width: 530px;">◆ 음식 선택 후 주문하기 눌러주세요. ◆</div></marquee>
 			<table id="foodTable">
 				<tr>
 					<td></td>
@@ -251,7 +267,7 @@
 			<div id="orderListModal" class="mainModal">
 				<div class="modal-contents">
 					<h3>
-						주문내역<span class="close">&times;</span>
+						<b>- 주문내역 -</b><span class="close">&times;</span>
 					</h3>
 					<table border="1" id="orderListTable" class="orderTable">
 						<!-- jquery로 리스트 동적 생성 -->
@@ -423,7 +439,7 @@
 				for(var i=0; i<isUse.length; i++){
 					
 					if(isUse[i]){
-						$('#logoutInfo').text("${sessionScope.userVO.userId}님의 컴퓨터를 종료하시겠습니까?");
+						$('#logoutInfo').html('※ <span style="color:red">${sessionScope.userVO.userId}</span>님의 컴퓨터를 종료하시겠습니까?');
 						$('#logoutModal').show();
 					}
 				}
@@ -607,7 +623,7 @@
 				
 				console.log(orderList);
 					
-				var str = '<tr><th>음식</th><th>가격</th><th>수량</th></tr>';
+				var str = '<tr><td>음식</td><td>가격</td><td>수량</td></tr>';
 				var totalPrice = 0;
 				
 				for(var i=0; i < orderList.length; i++){
@@ -618,7 +634,7 @@
 				}
 				
 				$('#orderListTable').append(str);
-				$('#totalPrice').html('주문하신 음식의 총 가격은<span style="color:red"><b>' + totalPrice + '원</b></span> 입니다.');
+				$('#totalPrice').html('※ 주문하신 음식의 총 가격은<span style="color:red"><b> ' + totalPrice + '원</b></span> 입니다.');
 				$('#orderListModal').show();
 			});
 			
