@@ -45,9 +45,9 @@
 			<button type="button" class="btn btn-dark" data-toggle="modal"
 				data-target="#modalNoticeDeleteForm">삭제</button>
 			<button type="button" class="btn btn-dark"
-				onclick="location.href='/pc/admin/notice/modify/${view.noticeId}'">수정</button>
+				onclick="location.href='${pageContext.request.contextPath}/admin/notice/modify/${view.noticeId}'">수정</button>
 			<button type="button" class="btn btn-dark"
-				onclick="location.href='/pc/member/notice?page=1'">
+				onclick="location.href='${pageContext.request.contextPath}/member/notice?page=1'">
 				<i class="fa fa-th-list pr-2" aria-hidden="true"></i>목록
 			</button>
 		</div>
@@ -96,7 +96,7 @@
 			</div>
 			<div class="modal-footer d-flex justify-content-center">
 				<a class="btn btn-danger"
-					href="/pc/admin/notice/delete/${view.noticeId}">삭제</a> 
+					href="${pageContext.request.contextPath}/admin/notice/delete/${view.noticeId}">삭제</a> 
 				<a class="btn btn-dark" data-dismiss="modal">취소</a>
 			</div>
 		</div>
@@ -120,7 +120,7 @@
 			</div>
 			<div class="modal-footer d-flex justify-content-center">
 				<a class="btn btn-danger"
-					href="/pc/admin/notice/delete/${view.noticeId}">삭제</a> 
+					href="${pageContext.request.contextPath}/admin/notice/delete/${view.noticeId}">삭제</a> 
 				<a class="btn btn-dark" data-dismiss="modal">취소</a>
 			</div>
 		</div>
