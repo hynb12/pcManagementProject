@@ -102,42 +102,64 @@ public class UserTimeService {
 		return resultCnt;
 	}
 
-	public int endTimeReg(UTimeVO uTime) {
+	public int endTimeReg(String userId) {
 
 		System.out.println("from TimeService.endTimeReg // 서비스 시작 ");
 
 		userTimeDaoInterface = sqlSessionTemplate.getMapper(UserTimeDaoInterface.class);
+
+		UTimeVO uTimeVO = userTimeDaoInterface.getUTimeDaoUserId(userId);
 
 		// 시간형식
 		SimpleDateFormat f;
 		f = new SimpleDateFormat("HH:mm:ss");
 
 		// 시작
-		String startTime = uTime.getStartTime(); // 시작시간(객체)
+		String startTime = uTimeVO.getStartTime(); // 시작시간(객체)
 		LocalTime start = LocalTime.parse(startTime); // 계산을 위한 LocalTime타입으로 변경
 
 		// 종료
 		Date endnow = new Date(); // 종료시 현재시간
 		String endTime = f.format(endnow); // String타입으로 변경
 		LocalTime end = LocalTime.parse(endTime); // 계산을 위한 LocalTime타입으로 변경
-		uTime.setEndTime(endTime);// 객체에 종료시간 입력
 
 		// 사용시간(LocalTime, Duration, toMinutes()-type:long)
 		long used = Duration.between(start, end).toMinutes();
+		System.out.println("from UserTimeService.endTimeReg // 사용시간 : " + used);
 
-		long before = uTime.getUserTime();// 사용전 남은시간
+		long before = uTimeVO.getUserTime();// 사용전 남은시간
+		System.out.println("from UserTimeService.endTimeReg // 사용전 남은시간 : " + before);
 
 		long after = before - used;// 사용후 남은시간
+		System.out.println("from UserTimeService.endTimeReg // 사용후 남은시간 : " + after);
 
-		uTime.setUserTime(after);// 객체에 사용후 남은시간 입력
+		UserVO userVO = new UserVO();
+
+		userVO.setUserTime(after);// 객체에 사용후 남은시간 입력
+		userVO.setUserId(userId);
+
+		System.out.println("from UserTimeService.endTimeReg // 객체 확인 : " + userVO);
 
 		int resultCnt = 0;
 
-		System.out.println("from TimeService.endTimeReg // 서비스 중간 확인 ");
+		resultCnt = userTimeDaoInterface.endTime(userVO);
 
-		System.out.println(uTime); // 테스트 모델 확인
+		System.out.println("from TimeService.endTimeReg // 서비스 끝 ");
 
-		resultCnt = userTimeDaoInterface.endTime(uTime);
+		return resultCnt;
+	}
+
+	public int reset(String userId) {
+
+		System.out.println("from TimeService.endTimeReg // 서비스 시작 ");
+
+		userTimeDaoInterface = sqlSessionTemplate.getMapper(UserTimeDaoInterface.class);
+
+		UTimeVO uTimeVO = userTimeDaoInterface.getUTimeDaoUserId(userId);
+
+		int resultCnt = 0;
+
+		resultCnt = userTimeDaoInterface.reset(uTimeVO.getComId());
 
 		System.out.println("from TimeService.endTimeReg // 서비스 끝 ");
 

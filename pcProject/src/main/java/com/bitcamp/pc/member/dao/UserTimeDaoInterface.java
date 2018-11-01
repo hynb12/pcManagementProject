@@ -14,7 +14,11 @@ public interface UserTimeDaoInterface {
 	public List<UTimeVO> getUTimeListDao();
 
 	public UTimeVO getUTimeDao(int comId);
+	
+	public UTimeVO getUTimeDaoUserId(String userId);
 
-	public int endTime(UTimeVO utime);
+	public int endTime(UserVO userVO);
+	
+	public int reset(int comId);
 
 }

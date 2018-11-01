@@ -162,6 +162,25 @@
 
 			</table>
 
+			<button id="logoutbtn">사용종료</button>
+
+			<!-- 종료 modal -->
+			<div id="logoutModal" class="mainModal">
+				<div class="modal-contents">
+					<h3>
+						사용종료<span class="close">&times;</span>
+					</h3>
+					<table border="1" id="logoutTable" class="orderTable">
+						<!-- jquery로 리스트 동적 생성 -->
+					</table>
+
+
+					<div id="logoutInfo"></div>
+					<button id="logoutConfirmBtn">사용종료</button>
+
+				</div>
+			</div>
+
 			<!-- 시간 추가 modal -->
 			<div id="addTimeModal" class="mainModal">
 				<div class="modal-contents">
@@ -218,7 +237,6 @@
 						<!-- jquery로 리스트 동적 생성 -->
 					</table>
 
-					<div id="totalPrice"></div>
 					<div id="orderInfo"></div>
 					<button id="orderConfirmBtn">주문 확정</button>
 
@@ -238,6 +256,7 @@
 			$('.close').on('click', function() {
 				$('#addTimeModal').hide();
 				$('#orderListModal').hide();
+				$('#logoutModal').hide();
 			});
 			
 			// modal 창 외 윈도우 클릭
@@ -249,6 +268,10 @@
 				
 				if (event.target == $('#orderListModal').get(0)) {
     				$('#orderListModal').hide();
+    			}
+				
+				if (event.target == $('#logoutModal').get(0)) {
+    				$('#logoutModal').hide();
     			}
 			});
 			
@@ -287,7 +310,6 @@
 								if(data[index].userTime != 0 && data[index].userTime != null){
 									$(this).children().eq(1).text(data[index].userId); // 선택된 컴퓨터의 첫 번째 줄에 아이디 표시
 									$(this).children().eq(2).text(Math.floor(data[index].userTime/60)+'시간 ' +(data[index].userTime%60)+'분'); //두번째 줄에 남은 시간 표시
-									$(this).children().eq(3).html("<input style='z-index: 100' type='button' id='logout_btn' value='사용 종료'></input>"); // 사용종료
 									$(this).children().eq(1).css({
 										'color': 'black',
 										'font-weight' : 'bold'
@@ -373,45 +395,24 @@
 				
 			});			
 
-			$('#logout_Btn').on('click', function(e){
-				alert("?????")
-				<%-- if($('#selectAddTime option:selected').val() == 0){
-					alert('충전하실 시간을 선택하세요.');
-					return;
-				}
-				
-				/* UserTimeContoller로 요청 */
-				$.ajax({
-					url: '<%=request.getContextPath()%>/user/addTime', 
-					type: 'post',
-					data: $('#addTimeForm').serialize(), // 선택한 자리 번호와 충전한 시간 전송
+////////////////////////////////////////////////
+			
+			// 사용종료
+			$('#logoutbtn').on('click', function () {
+				for(var i=0; i<isUse.length; i++){
 					
-					success:function(data){
-						console.log(data);
-						
-						// 선택된 자리에 정보 표시 
-						$('#comTable td').each(function(index) {
-							if ((index + 1) == data.comId) {
-								$(this).css('opacity', 1); // 선택된 컴퓨터의 투명도 설정
-								
-								$(this).children().eq(1).text(data.userId); // 선택된 컴퓨터의 첫 번째 줄에 아이디 표시
-								$(this).children().eq(2).text(Math.floor(data.userTime/60)+'시간 ' +(data.userTime%60)+'분'); // 두 번째 줄에 남은 시간 표시
-								$(this).children().eq(2).css({
-									'color': 'black',
-									'font-weight' : 'bold'
-								}); // 시간 글씨색 변경
-							}
-						});
-						test();} /* end success */
-				
-				}); /* end ajax */
-				
-				$('#addTimeModal').hide();	 --%>			
-				
-			});	
-		
+					if(isUse[i]){
+						$('#logoutInfo').text(i+1+"번째 컴퓨터를 종료하시겠습니까?");
+						$('#logoutModal').show();
+					}
+				}
+			});
+			
+			// 종료 확정 시 
+			$('#logoutConfirmBtn').on('click', function () {
+				location.href = "http://localhost/pc/user/endTime"
+			});
 
-				
 			
 			///////////////////////////////////////////////////////////////////////////////////////
 			///////////////////////////////////////////////////////////////////////////////////////
