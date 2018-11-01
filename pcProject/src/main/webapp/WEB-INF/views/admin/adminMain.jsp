@@ -187,20 +187,23 @@
 
 	<script src="https://code.jquery.com/jquery-1.10.0.js"></script>
 	<script>
-		// 시간 충전, 주문내역  modal 창 닫기 버튼 클릭
-		$('.close').on('click', function() {
-			$('#addTimeModal').hide();
-		});
-
-		// modal 창 외 윈도우 클릭
-		$(window).on('click', function() {
-			//jquery는 dom 객체를 jquery 객체로 한 번 감싸 리턴하므로 dom 객체를 얻어와야 비교 가능
-			if (event.target == $('#addTimeModal').get(0)) {
-				$('#addTimeModal').hide();
-			}
-		});
-
+	
 		$(document).ready(function() {
+			
+			/* 시간처리(정기) */
+			
+			// 시간 충전, 주문내역  modal 창 닫기 버튼 클릭
+			$('.close').on('click', function() {
+				$('#addTimeModal').hide();
+			});
+
+			// modal 창 외 윈도우 클릭
+			$(window).on('click', function() {
+				//jquery는 dom 객체를 jquery 객체로 한 번 감싸 리턴하므로 dom 객체를 얻어와야 비교 가능
+				if (event.target == $('#addTimeModal').get(0)) {
+					$('#addTimeModal').hide();
+				}
+			});
 
 			// 각 자리 초기화
 			$('#comTable td').each(function(index) {
@@ -246,7 +249,21 @@
 					});
 				} /* end success */
 			}); /* end ajax */
-
+			
+			////////////////////////////////////////////////////////////////////
+			////////////////////////////////////////////////////////////////////
+			
+			/* 음식처리(민수) */
+			
+			$.ajax({
+				url: '<%=request.getContextPath()%>/admin/order', 
+				type: 'post',
+				
+				success:function(data){
+					console.log(data);
+					
+				} /* end success */
+			});
 		});
 	</script>
 </body>

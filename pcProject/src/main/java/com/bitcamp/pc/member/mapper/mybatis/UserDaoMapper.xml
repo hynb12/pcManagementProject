@@ -54,7 +54,7 @@
    </delete>
    
    <!-- 주문 테이블 정보 저장 -->
-   <insert id="insertOrder" parameterType="orderVo">
+   <insert id="insertOrder" parameterType="orderVO">
       insert into orders (comid, orderfoodid, ordercnt)
       values (#{comId}, #{orderFoodId}, #{orderCnt})
 

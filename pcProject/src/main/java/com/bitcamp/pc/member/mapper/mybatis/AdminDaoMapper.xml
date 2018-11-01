@@ -30,4 +30,10 @@
 		select count(*) from admin where adminid = #{adminId}
 	
 	</select>
+	
+	<select id="getOrderList" resultType="orderVO">
+		
+		select * from orders
+	
+	</select>
 </mapper>
