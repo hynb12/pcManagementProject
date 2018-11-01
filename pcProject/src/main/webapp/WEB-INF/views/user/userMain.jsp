@@ -295,6 +295,15 @@
 										'color': 'black',
 										'font-weight' : 'bold'
 									}); // 시간 글씨색 변경
+									
+									
+									//로그인한 아이디 표시
+									var userVO = "${sessionScope.userVO.userId}";
+									console.log(userVO);									
+									if(data[index].userId==userVO){
+										$(this).css('opacity', 1); // 선택된 컴퓨터의 투명도 설정
+									}
+											
 								}
 							}
 						});
