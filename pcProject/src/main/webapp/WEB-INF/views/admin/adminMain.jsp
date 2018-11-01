@@ -235,12 +235,13 @@
 					
 					// 선택된 자리에 정보 표시 
 					$('#comTable td').each(function(index) {						
+						console.log(index)
 						
-						if ((index + 1) == data.comId) {
+						if ((index + 1) == data[index].comId) {
 							$(this).css('opacity', 1); // 선택된 컴퓨터의 투명도 설정
 							
-							$(this).children().eq(1).text(UTimeVO.userId); // 선택된 컴퓨터의 첫 번째 줄에 아이디 표시
-							$(this).children().eq(2).text(Math.floor(UTimeVO.userTime/60)+'시간 ' +(UTimeVO.userTime%60)+'분'); //두번째 줄에 남은 시간 표시
+							$(this).children().eq(1).text(data[index].userId); // 선택된 컴퓨터의 첫 번째 줄에 아이디 표시
+							$(this).children().eq(2).text(Math.floor(data[index].userTime/60)+'시간 ' +(data[index].userTime%60)+'분'); //두번째 줄에 남은시간 표시
 							$(this).children().eq(2).css({
 								'color': 'black',
 								'font-weight' : 'bold'
