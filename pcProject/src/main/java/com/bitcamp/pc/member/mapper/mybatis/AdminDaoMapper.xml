@@ -43,4 +43,9 @@
 	
 	</select>
 	
+	<delete id="deleteOrderList" parameterType="int">
+		delete from orders where comid = #{comId}
+		
+	</delete>
+	
 </mapper>

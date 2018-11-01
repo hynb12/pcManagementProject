@@ -26,4 +26,7 @@ public interface AdminDaoInterface {
 	
 	// 음식 정보 가져오기
 	public FoodVO getOrderFoodList(int orderFoodid);
+	
+	// 주문 리스트 처리
+	public int deleteOrderList(int comId);
 }

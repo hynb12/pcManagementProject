@@ -267,7 +267,7 @@
 						
 						if(prevComId != data[i].comId){
 							str += '<tr><td colspan="4" style="background : lightgray">주문번호 '+ data[i].orderId +'</td></tr>'
-							str += '<tr><td colspan="3">컴퓨터 번호 '+ data[i].comId +'</td><td colspan="1" style="background:#F78181" id='+ data[i].orderId +'><button class="orderProcess">처리하기</button></td></tr>';
+							str += '<tr><td colspan="3">컴퓨터 번호 '+ data[i].comId +'</td><td colspan="1" style="background:#F78181"><button class="orderProcess" id='+ data[i].comId + '>처리하기</button></td></tr>';
 							str += '<tr><td>음식 번호</td><td>음식 이름</td><td>총 가격</td><td>수량</td></tr>';
 						}
 						str += '<tr><td style="margin-bottom:20">'+ data[i].foodId +'</td><td>'+ data[i].foodName +'</td><td>'+ data[i].totalPrice +'</td><td>'+ data[i].foodCnt +'</td></tr>';
@@ -278,31 +278,28 @@
 					$('#foodTable').append(str);
 					
 					
-					// 처리하기 클릭 시
+					// 처리하기 클릭 시 (자바스크립트 실행 순서 고려)
+					// 자바스크립트는 위에서 아래로 순서대로 실행되므로 처리속도가 빠르다
+					// 하지만 실행 처리 완료를 고려하지 않고 계속 아래로 내려가므로 순서 고려하여 프로그래밍할 것
+					
 					$('.orderProcess').on('click', function() {
 						console.log('클릭이다');
+						var comId = $(this).attr('id');
 						
 						$.ajax({ // 주문 처리하기 
-							url: '<%=request.getContextPath()%>/admin/orderProcess',
-							type: 'post',
-							data: { orderid: $(this).attr('id') }, // 주문번호 
+							url: '<%=request.getContextPath()%>/admin/orderProcess/'+comId,
+							type: 'get',
 							
 							success:function(data){
 								console.log(data);
 								
-							} /* end success */
-						}); /* end ajax */
+							} /* end 처리하기 success */
+						}); /* end 처리하기  ajax */
 					}); /* end orderProcess */
+				
 					
-					
-					
-					
-					
-				} /* end success */
-			}); /* end ajax */
-			
-			
-			
+				} /* end 처리하기 success */
+			}); /* end 주문리스트 ajax */
 		});
 	</script>
 </body>
