@@ -37,7 +37,7 @@
 			<div class="clearfix">
 				<button type="button" class="cancelbtn"
 					onclick="location.href='../'">Cancel</button>
-				<button type="submit" class="signupbtn">Sign Up</button>
+				<button id="submit" type="submit" class="signupbtn">Sign Up</button>
 			</div>
 		</div>
 	</form>
@@ -82,13 +82,14 @@
 				success : function(data) {
 					if (data == 1) {
 
-						/* console.log("아이디가 존재합니다. 다른 아이디를 입력해주세요."); */
-						//아이디가 존재할 경우 빨간색으로 알림이 뜨고 포커스를 맞춰줌
+						/* console.log("아이디가 존재합니다. 다른 아이디를 입력해주세요.");
+						아이디가 존재할 경우 빨간색으로 알림이 뜨고 포커스를 맞춰줌 */
 						$("#idCheck").text("아이디가 존재합니다. 다른 아이디를 입력해주세요.");
 						$("#idCheck").css("color", "red");
 						$("#idE").focus();
-
+							
 					} else {
+							
 						console.log("사용가능한 아이디입니다.");
 						//사용가능하면 경우 파란색으로 알림이 뜨고 비밀번호로 포커스를 맞춰줌
 						$("#idCheck").text("중복된 아이디가 없으니 사용해도 OK");
@@ -114,8 +115,24 @@
 			} else {
 				$('#pwError').text('');
 			}
-
 		});
+		
+		// 비밀번호가 틀린 상태로 
+		$('#submit').click(function(){
+			
+			if($('#pw1').val() != $('#pw2').val()){
+				
+				alert("비번이 틀렸어");
+				return false;
+			
+			} else{
+			
+				return true;
+			
+			}
+			
+		});
+		
 	</script>
 </body>
 </html>
