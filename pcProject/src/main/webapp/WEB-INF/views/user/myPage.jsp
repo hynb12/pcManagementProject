@@ -235,7 +235,7 @@
          $('#editOkBtn').click(function(){
             
             $.ajax({
-               url : '<%=request.getContextPath()%>/user/userEdit',
+               url : '${pageContext.request.contextPath}' + '/user/userEdit',
                type : 'post',
                data : $('#editForm').serialize(),
                success : function(data){
@@ -249,7 +249,7 @@
          $('#deleteBtn').click(function(){
             
             $.ajax({
-               url : '<%=request.getContextPath()%>/user/userDelete',
+               url : '${pageContext.request.contextPath}' + '/user/userDelete',
                type : 'post',
                data : $('#myForm').serialize(),
                success : function(data){

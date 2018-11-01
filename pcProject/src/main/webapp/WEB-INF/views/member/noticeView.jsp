@@ -139,7 +139,7 @@
 	function getAllList() {
 		$.ajax({
 					type : 'get',
-					url : '/pc/reply/all/' + noid,
+					url : '${pageContext.request.contextPath}' + '/reply/all/' + noid,
 					dataType : 'json',
 					success : function(data) {
 						$('#commentsNum').html(data.length + ' comments');
@@ -167,7 +167,7 @@
 		
 		$.ajax({
 			type : 'post',
-			url : '/pc/reply',
+			url : '${pageContext.request.contextPath}' + '/reply',
 			dataType : 'text',
 			data : {
 				noId : noid,
@@ -185,7 +185,7 @@
 	function replyDelete(replyId){	
 		$.ajax({
 			type : 'get',
-			url : '/pc/reply/delete/' + replyId,
+			url :'${pageContext.request.contextPath}' + '/reply/delete/' + replyId,
 			success : function(data){
 				console.log('삭제확인');
 				getAllList();
@@ -198,7 +198,7 @@
 		
 		$.ajax({
 			type : 'get',
-			url : '/pc/reply/modify/'+reid,
+			url : '${pageContext.request.contextPath}' + '/reply/modify/' + reid,
 			dataType : 'text',
 			data : {
 				replyId : reid,
