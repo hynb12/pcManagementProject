@@ -5,6 +5,8 @@ import java.time.Duration;
 import java.time.LocalTime;
 import java.util.Date;
 
+import javax.servlet.http.HttpSession;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -102,11 +104,13 @@ public class UserTimeService {
 		return resultCnt;
 	}
 
-	public int endTimeReg(String userId) {
+	public int endTimeReg(UserVO userVO) {
 
 		System.out.println("from TimeService.endTimeReg // 서비스 시작 ");
 
 		userTimeDaoInterface = sqlSessionTemplate.getMapper(UserTimeDaoInterface.class);
+		
+		String userId = userVO.getUserId();
 
 		UTimeVO uTimeVO = userTimeDaoInterface.getUTimeDaoUserId(userId);
 
@@ -133,8 +137,6 @@ public class UserTimeService {
 		long after = before - used;// 사용후 남은시간
 		System.out.println("from UserTimeService.endTimeReg // 사용후 남은시간 : " + after);
 
-		UserVO userVO = new UserVO();
-
 		userVO.setUserTime(after);// 객체에 사용후 남은시간 입력
 		userVO.setUserId(userId);
 
@@ -149,11 +151,13 @@ public class UserTimeService {
 		return resultCnt;
 	}
 
-	public int reset(String userId) {
+	public int resetReg(UserVO userVO) {
 
-		System.out.println("from TimeService.endTimeReg // 서비스 시작 ");
+		System.out.println("from TimeService.reset // 서비스 시작 ");
 
 		userTimeDaoInterface = sqlSessionTemplate.getMapper(UserTimeDaoInterface.class);
+		
+		String userId = userVO.getUserId();
 
 		UTimeVO uTimeVO = userTimeDaoInterface.getUTimeDaoUserId(userId);
 
@@ -161,7 +165,7 @@ public class UserTimeService {
 
 		resultCnt = userTimeDaoInterface.reset(uTimeVO.getComId());
 
-		System.out.println("from TimeService.endTimeReg // 서비스 끝 ");
+		System.out.println("from TimeService.reset // 서비스 끝 ");
 
 		return resultCnt;
 	}

@@ -67,7 +67,6 @@
 .comNum {
 	color: black;
 	font-weight: bold;
-	
 }
 
 .mainModal {
@@ -125,7 +124,7 @@
 	width: 100px;
 }
 
-.orderTable > tr:nth-child(1){
+.orderTable>tr:nth-child(1) {
 	background: lightgray;
 }
 
@@ -135,17 +134,17 @@
 }
 
 .userMainBtn {
-	width:150px;
-    background-color: #f8585b;
-    border: none;
-    border-radius:10px;
-    color:#fff;
-    padding: 15px 0;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 18px;
-    cursor: pointer;
+	width: 150px;
+	background-color: #f8585b;
+	border: none;
+	border-radius: 10px;
+	color: #fff;
+	padding: 15px 0;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 18px;
+	cursor: pointer;
 }
 </style>
 
@@ -416,14 +415,15 @@
 				
 			});			
 
-////////////////////////////////////////////////
+			////////////////////////////////////////////////
+			
 			
 			// 사용종료
 			$('#logoutbtn').on('click', function () {
 				for(var i=0; i<isUse.length; i++){
 					
 					if(isUse[i]){
-						$('#logoutInfo').text(i+1+"번째 컴퓨터를 종료하시겠습니까?");
+						$('#logoutInfo').text("${sessionScope.userVO.userId}님의 컴퓨터를 종료하시겠습니까?");
 						$('#logoutModal').show();
 					}
 				}
@@ -431,8 +431,9 @@
 			
 			// 종료 확정 시 
 			$('#logoutConfirmBtn').on('click', function () {
-				location.href = "http://localhost/pc/user/endTime"
+				location.href = "<%=request.getContextPath()%>/member/endtime"
 			});
+
 
 			
 			///////////////////////////////////////////////////////////////////////////////////////

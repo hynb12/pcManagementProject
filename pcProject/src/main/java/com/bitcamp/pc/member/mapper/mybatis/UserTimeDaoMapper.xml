@@ -44,17 +44,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<update id="endTime" parameterType="userVO">
 		update user set
-		usertime=#{userTime},
+		usertime=#{userTime}
 		where
 		userId=#{userId}
 	</update>
 
 	<update id="reset" parameterType="utimeVO">
 		update utime set
-		userId=null,
-		usertime=null,
-		starttime=null,
-		endtime=null
+		userId=NULL,
+		usertime=NULL,
+		starttime=NULL,
+		endtime=NULL
 		where
 		comid=#{comId}
 	</update>
