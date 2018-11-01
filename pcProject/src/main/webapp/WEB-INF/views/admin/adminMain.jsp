@@ -270,7 +270,7 @@
 							str += '<tr><td colspan="3">컴퓨터 번호 '+ data[i].comId +'</td><td colspan="1" style="background:#F78181"><button class="orderProcess" id='+ data[i].comId + '>처리하기</button></td></tr>';
 							str += '<tr><td>음식 번호</td><td>음식 이름</td><td>총 가격</td><td>수량</td></tr>';
 						}
-						str += '<tr><td style="margin-bottom:20">'+ data[i].foodId +'</td><td>'+ data[i].foodName +'</td><td>'+ data[i].totalPrice +'</td><td>'+ data[i].foodCnt +'</td></tr>';
+						str += '<tr><td style="margin-bottom:20">'+ data[i].foodId +'</td><td>'+ data[i].foodName +'</td><td>'+ (data[i].totalPrice*data[i].foodCnt) +'</td><td>'+ data[i].foodCnt +'</td></tr>';
 						
 						prevComId = data[i].comId; 
 					}
@@ -283,7 +283,6 @@
 					// 하지만 실행 처리 완료를 고려하지 않고 계속 아래로 내려가므로 순서 고려하여 프로그래밍할 것
 					
 					$('.orderProcess').on('click', function() {
-						console.log('클릭이다');
 						var comId = $(this).attr('id');
 						
 						$.ajax({ // 주문 처리하기 
@@ -292,12 +291,12 @@
 							
 							success:function(data){
 								console.log(data);
-								
 							} /* end 처리하기 success */
 						}); /* end 처리하기  ajax */
+						
+						location.reload(); // 새로 고침으로 리스트 삭제
 					}); /* end orderProcess */
 				
-					
 				} /* end 처리하기 success */
 			}); /* end 주문리스트 ajax */
 		});

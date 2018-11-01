@@ -16,7 +16,7 @@ public class AdminOrderProcessController {
 	AdminOrderProcessService adminOrderProcessService;
 	
 	@RequestMapping(value ="/admin/orderProcess/{comId}", method = RequestMethod.GET)
-	public void orderProcess(@PathVariable("comId") int comId) {
+	public String orderProcess(@PathVariable("comId") int comId) {
 		
 		int resultCnt = adminOrderProcessService.orderProcess(comId);
 		
@@ -27,5 +27,7 @@ public class AdminOrderProcessController {
 		else {
 			System.out.println("음식 리스트 삭제 성공");
 		}
+		
+		return "admin/adminMain";
 	}
 }
