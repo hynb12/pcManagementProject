@@ -231,7 +231,6 @@
 
 	<!-- 컴퓨터 처리(정기)  -->
 	<script>
-				
 		// 로드 시 최초 1회만 실행
 		$(document).ready(function() {
 			
