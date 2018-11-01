@@ -264,6 +264,7 @@
 				var str = '<div><b>' + (index + 1) + '</b></div>'; // comId (1~9)
 				str += '<div></div>'; // userId
 				str += '<div></div>'; // time
+				str += '<div></div>'; // btn
 				$(str).appendTo(this);
 				
 				$(this).attr('comId', index+1);
@@ -287,6 +288,7 @@
 								if(data[index].userTime != 0 && data[index].userTime != null){
 									$(this).children().eq(1).text(data[index].userId); // 선택된 컴퓨터의 첫 번째 줄에 아이디 표시
 									$(this).children().eq(2).text(Math.floor(data[index].userTime/60)+'시간 ' +(data[index].userTime%60)+'분'); //두번째 줄에 남은 시간 표시
+									$(this).children().eq(3).html("<input style="z-index: 100" type='button' id='logout_btn' value='사용 종료'></input>"); // 사용종료
 									$(this).children().eq(1).css({
 										'color': 'black',
 										'font-weight' : 'bold'
@@ -302,6 +304,7 @@
 									console.log(userVO);									
 									if(data[index].userId==userVO){
 										$(this).css('opacity', 1); // 선택된 컴퓨터의 투명도 설정
+										isUse[index] = true; // 자리 상태
 									}
 											
 								}
@@ -369,7 +372,44 @@
 				$('#addTimeModal').hide();				
 				
 			});			
-			
+
+			$('#logout_Btn').on('click', function(){
+				
+				alert("?????")
+				<%-- if($('#selectAddTime option:selected').val() == 0){
+					alert('충전하실 시간을 선택하세요.');
+					return;
+				}
+				
+				/* UserTimeContoller로 요청 */
+				$.ajax({
+					url: '<%=request.getContextPath()%>/user/addTime', 
+					type: 'post',
+					data: $('#addTimeForm').serialize(), // 선택한 자리 번호와 충전한 시간 전송
+					
+					success:function(data){
+						console.log(data);
+						
+						// 선택된 자리에 정보 표시 
+						$('#comTable td').each(function(index) {
+							if ((index + 1) == data.comId) {
+								$(this).css('opacity', 1); // 선택된 컴퓨터의 투명도 설정
+								
+								$(this).children().eq(1).text(data.userId); // 선택된 컴퓨터의 첫 번째 줄에 아이디 표시
+								$(this).children().eq(2).text(Math.floor(data.userTime/60)+'시간 ' +(data.userTime%60)+'분'); // 두 번째 줄에 남은 시간 표시
+								$(this).children().eq(2).css({
+									'color': 'black',
+									'font-weight' : 'bold'
+								}); // 시간 글씨색 변경
+							}
+						});
+						test();} /* end success */
+				
+				}); /* end ajax */
+				
+				$('#addTimeModal').hide();	 --%>			
+				
+			});	
 		
 
 				
