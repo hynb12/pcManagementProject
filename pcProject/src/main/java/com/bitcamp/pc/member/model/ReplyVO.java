@@ -7,6 +7,7 @@ public class ReplyVO {
 
 	private int replyId;
 	private int noId;
+	private String nickName;
 	private String replyCon;
 
 	public int getReplyId() {
@@ -25,6 +26,14 @@ public class ReplyVO {
 		this.noId = noId;
 	}
 
+	public String getNickName() {
+		return nickName;
+	}
+
+	public void setNickName(String nickName) {
+		this.nickName = nickName;
+	}
+
 	public String getReplyCon() {
 		return replyCon;
 	}
@@ -35,7 +44,8 @@ public class ReplyVO {
 
 	@Override
 	public String toString() {
-		return "ReplyVO [replyId=" + replyId + ", noId=" + noId + ", replyCon=" + replyCon + "]";
+		return "ReplyVO [replyId=" + replyId + ", noId=" + noId + ", nickName=" + nickName + ", replyCon=" + replyCon
+				+ "]";
 	}
 
 }

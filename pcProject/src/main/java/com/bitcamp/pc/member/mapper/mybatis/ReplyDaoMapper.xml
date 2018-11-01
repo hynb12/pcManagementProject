@@ -15,8 +15,8 @@
 
 	<insert id="insertReply" parameterType="replyVO">
 
-		insert into reply(noid, replycon)
-		values (#{noId}, #{replyCon})
+		insert into reply(noid, nickname, replycon)
+		values (#{noId}, #{nickName}, #{replyCon})
 
 	</insert>
 

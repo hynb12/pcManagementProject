@@ -68,6 +68,12 @@
 			<div class="text-center my-4">
 				<button id="commentSubmit"
 					class="btn btn-default btn-sm btn-rounded">댓글 입력</button>
+				<c:if test="${adminVO.adminId != null}">
+					<input id="nick" type="hidden" value="${adminVO.adminId}"/>
+				</c:if>
+				<c:if test="${userVO.userId != null}">
+					<input id="nick" type="hidden" value="${userVO.userId}"/>
+				</c:if>
 			</div>
 		</div>
 	</div>
@@ -122,8 +128,7 @@
 											reply += '<h5 class="font-weight-bold mt-0">';
 											reply += '<button id="replyDeleteBtn' + item.replyId +'" onclick="replyDelete('+ item.replyId +')" type="button" class="btn btn-danger px-3 float-right"><i class="fa fa-trash" aria-hidden="true"></i></button>';
 											reply += '<button id="replyEditBtn' + item.replyId +'" onclick="replyEdit('+ item.replyId +')" type="button" class="btn btn-primary px-3 float-right"><i class="fa fa-paint-brush" aria-hidden="true"></i></button>';
-											/* reply += '<button id="replyModifyBtn' + item.replyId +'" onclick="replyModify('+ item.replyId +')" type="button" class="btn btn-primary px-3 float-right"><i class="fa fa-paint-brush" aria-hidden="true"></i></button>'; */
-										    reply += '<a class="text-default">냐옹이</a></h5>';
+										    reply += '<a class="text-default">' + item.nickName +'</a></h5>';
 											reply += '<input id="replyInput' + item.replyId +'" class="form-control w-75" value="'+ item.replyCon +'" style="border: 0px; background: white;" readonly="true"></input><hr /></div></div>';
 											$('#replyAllBody').html(reply);
 										});
@@ -134,13 +139,15 @@
 
 	$('#commentSubmit').click(function() {
 		var replyText = $('#replyFormComment').val();
-
+		var nick = $('#nick').val();
+		
 		$.ajax({
 			type : 'post',
 			url : '/pc/reply',
 			dataType : 'text',
 			data : {
 				noId : noid,
+				nickName : nick,
 				replyCon : replyText
 			},
 			success : function(data) {
