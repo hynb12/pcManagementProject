@@ -17,25 +17,29 @@
 
 	<div class="container">
 		<h1>회원목록</h1>
-		<table class="table">
-			<tr>
-				<th>회원아이디</th>
-				<th>회원이름</th>
-				<th>비밀번호</th>
-				<th>핸드폰번호</th>
-				<th>생년월일</th>
-				<th>남은시간</th>
-			</tr>
-			<c:forEach var="list" items="${userlist}">
+		<table class="table table-striped table-bordered">
+			<thead>
 				<tr>
-					<td>${list.userId}</td>
-					<td>${list.userName}</td>
-					<td>${list.userPw}</td>
-					<td>${list.userPhone}</td>
-					<td>${list.userBirth}</td>
-					<td>${list.userTime}</td>
+					<th class="th-sm"><i class="fa fa-sort float-right" aria-hidden="true"></i>회원아이디</th>
+					<th class="th-sm"><i class="fa fa-sort float-right" aria-hidden="true"></i>회원이름</th>
+					<th class="th-sm"><i class="fa fa-sort float-right" aria-hidden="true"></i>비밀번호</th>
+					<th class="th-sm"><i class="fa fa-sort float-right" aria-hidden="true"></i>핸드폰번호</th>
+					<th class="th-sm"><i class="fa fa-sort float-right" aria-hidden="true"></i>생년월일</th>
+					<th class="th-sm"><i class="fa fa-sort float-right" aria-hidden="true"></i>남은시간</th>
 				</tr>
-			</c:forEach>
+			</thead>
+			<tbody>
+				<c:forEach var="list" items="${userlist}">
+					<tr>
+						<td>${list.userId}</td>
+						<td>${list.userName}</td>
+						<td>${list.userPw}</td>
+						<td>${list.userPhone}</td>
+						<td>${list.userBirth}</td>
+						<td>${list.userTime}</td>
+					</tr>
+				</c:forEach>
+			</tbody>
 		</table>
 	</div>
 
