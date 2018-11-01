@@ -59,9 +59,8 @@
 		</table>
 
 		<!--Pagination -->
-		<nav class="d-flex justify-content-center mt-5">
+		<nav class="d-flex justify-content-center mt-3" style="padding-bottom: 20px">
 			<ul class="pagination pagination-circle pg-teal mb-0">
-
 				<!--First-->
 				<li class="page-item disabled"><a class="page-link">First</a></li>
 

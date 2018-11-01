@@ -121,10 +121,10 @@
 											reply += '<div class="media-body text-center text-md-left ml-md-3 ml-0">';
 											reply += '<h5 class="font-weight-bold mt-0">';
 											reply += '<button id="replyDeleteBtn' + item.replyId +'" onclick="replyDelete('+ item.replyId +')" type="button" class="btn btn-danger px-3 float-right"><i class="fa fa-trash" aria-hidden="true"></i></button>';
-											reply += '<button id="replyModifyBtn' + item.replyId +'" onclick="replyModify('+ item.replyId +')"type="button" class="btn btn-primary px-3 float-right"><i class="fa fa-paint-brush" aria-hidden="true"></i></button>';
+											reply += '<button id="replyEditBtn' + item.replyId +'" onclick="replyEdit('+ item.replyId +')" type="button" class="btn btn-primary px-3 float-right"><i class="fa fa-paint-brush" aria-hidden="true"></i></button>';
+											/* reply += '<button id="replyModifyBtn' + item.replyId +'" onclick="replyModify('+ item.replyId +')" type="button" class="btn btn-primary px-3 float-right"><i class="fa fa-paint-brush" aria-hidden="true"></i></button>'; */
 										    reply += '<a class="text-default">냐옹이</a></h5>';
-											reply += '<span id="replySpan' + item.replyId +'">' + item.replyCon + '</span>';
-											reply += '<hr /></div></div>';
+											reply += '<input id="replyInput' + item.replyId +'" class="form-control w-75" value="'+ item.replyCon +'" style="border: 0px; background: white;" readonly="true"></input><hr /></div></div>';
 											$('#replyAllBody').html(reply);
 										});
 									reply = '';
@@ -162,25 +162,30 @@
 		});
  	};
  	
-	function replyModify(reid){	
-		var replyText = $('#replySpan' + reid).text();
+	function replyModify(reid){	//댓글 수정확인 누를시
+		var replyText = $('#replyInput'+reid).val();
 		
 		$.ajax({
 			type : 'get',
-			url : '/pc/reply/modify/' + reid,
+			url : '/pc/reply/modify/'+reid,
 			dataType : 'text',
 			data : {
 				replyId : reid,
 				replyCon : replyText
 			},
 			success : function(data){
-				/* alert($('#replySpan' + replyId).html()); */
-				$('#replySpan' + reid).contents().unwrap().wrap('<textarea class="form-control md-textarea"></textarea>');
-				/* $('#replySpan' + reid).css('display', 'none'); */
-				$('#replyModifyBtn' + reid).find('i').prop('class', 'fa fa-check'); //댓글 수정클릭시 모양바뀜
 				console.log('수정확인');
+				getAllList();
 			}
 		});
- 	};
+	};	
+	
+	function replyEdit(reid){ //댓글수정 클릭시
+		
+		$('#replyInput'+reid).attr("readonly", false);
+		$('#replyEditBtn' + reid).find('i').attr("class", "fa fa-check"); //댓글 수정클릭시 모양바뀜
+		$('#replyInput'+reid).focus();
+		$('#replyEditBtn'+reid).attr("onclick", 'replyModify(' + reid + ')');
+	};
 </script>
 </html>
