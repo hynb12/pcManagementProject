@@ -288,7 +288,7 @@
 								if(data[index].userTime != 0 && data[index].userTime != null){
 									$(this).children().eq(1).text(data[index].userId); // 선택된 컴퓨터의 첫 번째 줄에 아이디 표시
 									$(this).children().eq(2).text(Math.floor(data[index].userTime/60)+'시간 ' +(data[index].userTime%60)+'분'); //두번째 줄에 남은 시간 표시
-									$(this).children().eq(3).html("<input style="z-index: 100" type='button' id='logout_btn' value='사용 종료'></input>"); // 사용종료
+									$(this).children().eq(3).html("<input style='z-index: 100' type='button' id='logout_btn' value='사용 종료'></input>"); // 사용종료
 									$(this).children().eq(1).css({
 										'color': 'black',
 										'font-weight' : 'bold'
