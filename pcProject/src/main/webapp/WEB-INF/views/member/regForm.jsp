@@ -77,7 +77,7 @@
 		
 		
 		// 1-1 회원가입 회원, 관리자 아이디 중복(PK값) 체크
-		$('#idE').keyup(function(){
+		$('#idE').blur(function(){
 			
 			var isAdmin = $('#isAdmin').is(':checked');
 			
@@ -115,7 +115,7 @@
 		});
 		
 		// 1-2 회원가입 회원 폰번호(userPhone(Unique 값)) 중복 체크
-		$('#phoneNum').keyup(function(){
+		$('#phoneNum').blur(function(){
 			
 			var isAdmin = $('#isAdmin').is(':checked');
 			
@@ -140,7 +140,7 @@
 		
 		
 		// 2-1 비밀번호 중복 체크 (keydown 이벤트를 사용)
-		$('#pw2').keyup(function() {
+		$('#pw2').blur(function() {
 			if ($('#pw1').val() != $(this).val()) {
 				$('#pwError').text('비밀번호가 일치하지 않습니다.');
 				$('#pwError').css('color', 'red');
