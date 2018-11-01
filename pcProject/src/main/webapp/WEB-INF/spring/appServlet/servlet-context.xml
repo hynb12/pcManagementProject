@@ -32,7 +32,7 @@
 
 	<context:component-scan
 		base-package="com.bitcamp.pc" />
-	
+
 	<!-- JDBC 빈 등록 -->
 	<!-- 2018-10-25 14:45 김정기 -->
 	<beans:bean id="dataSource"
@@ -70,9 +70,21 @@
 		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<beans:property name="dataSource" ref="dataSource" />
 	</beans:bean>
-	
+
 	<!-- @Transactional 애노테이션 활성화 설정 -->
 	<!-- 2018-10-26 20:22 신동진 -->
 	<tx:annotation-driven
 		transaction-manager="transactionManager" />
+
+	<interceptors>
+		<interceptor>
+			<mapping path="/admin/**/" />
+			<mapping path="/member/**/" />
+			<mapping path="/user/**/" />
+			<exclude-mapping path="/member/login" />
+			<exclude-mapping path="/member/reg" />
+			<beans:bean
+				class="com.bitcamp.pc.interrceptor.AuthCheckInterceptor" />
+		</interceptor>
+	</interceptors>
 </beans:beans>
