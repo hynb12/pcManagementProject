@@ -83,6 +83,7 @@
 			<mapping path="/user/**/" />
 			<exclude-mapping path="/member/login" />
 			<exclude-mapping path="/member/reg" />
+			<exclude-mapping path="/member/search" />
 			<beans:bean
 				class="com.bitcamp.pc.interrceptor.AuthCheckInterceptor" />
 		</interceptor>
