@@ -7,7 +7,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="styleSheet" href="../css/css_regForm.css">
+<style>
+	.checkText{
+		margin-top : -10px;
+		margin-bottom: 15px;
+	}
+</style>
 </head>
+
 <body>
 
 	<form method="post">
@@ -20,17 +27,17 @@
 
 			<label for="email"><b>Id (Email)</b></label>
 			<input type="text" placeholder="Enter Email" id="idE" name="id" required>
-			<p id="idCheck"></p>
+			<div id="idCheck" class="checkText"></div>
 			<label for="psw"><b>Password</b></label>
 			<input type="password" placeholder="Enter Password" id="pw1" name="pw" required>
 			<label for="psw-repeat"><b>Repeat Password</b></label>
 			<input type="password" placeholder="Repeat Password" id="pw2" name="pw-repeat" required>
-			<p id="pwError"></p>
+			<div id="pwError" class="checkText"></div>
 			<label for="name"><b>Name</b></label>
 			<input type="text" placeholder="Enter Name" name="name" required>
 			<label for="phoneNum"><b>PhoneNum</b></label>
 			<input type="text" placeholder="Enter PhoneNum" name="phoneNum" id="phoneNum" required>
-			<p id="phoneChk"></p>
+			<div id="phoneChk" class="checkText"></div>
 			<label for="birth"><b>Birth</b></label>
 			<input type="text" placeholder="Enter Birth" name="birth" id="birth" required>
 			<label> <input type="checkbox" checked="checked" name="remember" style="margin-bottom: 15px"> Remember me </label>
