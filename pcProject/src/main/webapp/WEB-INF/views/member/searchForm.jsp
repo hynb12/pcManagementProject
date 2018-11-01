@@ -125,9 +125,9 @@ color: red
 					
 					//정보 오류시
 					if((data.userId) == ""){
-						$('#window_search').html("<h3 class='strong'>회원님의 정보를 확인해주세요</h3>");
+						$('#window_search').html("<h3 class='strong'>회원님의 정보를 확인해주세요.</h3>");
 					} else {
-						$('#window_search').html("회원님의 아이디는 <h3 class='strong'>" + data.userId + "</h3> 입니다");
+						$('#window_search').html("회원님의 아이디는 <h3 class='strong'>" + data.userId + "</h3> 입니다.");
 					}
 					
 				} /* end success */
@@ -156,7 +156,7 @@ color: red
 
 							//정보 오류시
 							if ((data.userPw) == "") {
-								$('#window_search').html("<h3 class='strong'>회원님의 정보를 확인해주세요</h3>");
+								$('#window_search').html("<h3 class='strong'>회원님의 정보를 확인해주세요.</h3>");
 							} else {
 								$('#window_search').html("회원님의 비밀번호는 <h3 class='strong'>" + data.userPw + "</h3> 입니다.");
 							}

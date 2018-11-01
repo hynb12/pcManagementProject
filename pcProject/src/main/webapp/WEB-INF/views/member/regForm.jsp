@@ -89,6 +89,8 @@
 				type : 'get',
 				success : function(data) {
 					if (data == 1) {
+						console.log(data);
+						
 						/* console.log("아이디가 존재합니다. 다른 아이디를 입력해주세요.");
 						아이디가 존재할 경우 빨간색으로 알림이 뜨고 포커스를 맞춰줌 */
 						$("#idCheck").text("아이디가 존재합니다. 다른 아이디를 입력해주세요.");
