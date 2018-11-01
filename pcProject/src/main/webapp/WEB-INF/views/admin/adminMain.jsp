@@ -267,8 +267,7 @@
 						
 						if(prevComId != data[i].comId){
 							str += '<tr><td colspan="4" style="background : lightgray">주문번호 '+ data[i].orderId +'</td></tr>'
-							str += '<tr><td colspan="3">컴퓨터 번호 '+ data[i].comId +'</td><td colspan="1" style="background:#F78181" id='+ data[i].orderId +'><button class="orderProcess"
-							>처리하기</button></td></tr>';
+							str += '<tr><td colspan="3">컴퓨터 번호 '+ data[i].comId +'</td><td colspan="1" style="background:#F78181" id='+ data[i].orderId +'><button class="orderProcess">처리하기</button></td></tr>';
 							str += '<tr><td>음식 번호</td><td>음식 이름</td><td>총 가격</td><td>수량</td></tr>';
 						}
 						str += '<tr><td style="margin-bottom:20">'+ data[i].foodId +'</td><td>'+ data[i].foodName +'</td><td>'+ data[i].totalPrice +'</td><td>'+ data[i].foodCnt +'</td></tr>';
@@ -277,27 +276,33 @@
 					}
 					
 					$('#foodTable').append(str);
+					
+					
+					// 처리하기 클릭 시
+					$('.orderProcess').on('click', function() {
+						console.log('클릭이다');
+						
+						$.ajax({ // 주문 처리하기 
+							url: '<%=request.getContextPath()%>/admin/orderProcess',
+							type: 'post',
+							data: { orderid: $(this).attr('id') }, // 주문번호 
+							
+							success:function(data){
+								console.log(data);
+								
+							} /* end success */
+						}); /* end ajax */
+					}); /* end orderProcess */
+					
+					
+					
+					
+					
 				} /* end success */
 			}); /* end ajax */
 			
 			
-			// 처리하기 클릭 시
-			$('.orderProcess').on('click', function () {
-				console.log('클릭이다');
-				alert('클릭이다');
-				
-				$.ajax({ // 주문 처리하기 
-					url: '<%=request.getContextPath()%>/admin/orderProcess',
-					type: 'post',
-					data: { orderid: $(this).attr('id') }, // 주문번호 
-					
-					success:function(data){
-						console.log(data);
-						
-					} /* end success */
-				}); /* end ajax */
-				
-			});
+			
 		});
 	</script>
 </body>
