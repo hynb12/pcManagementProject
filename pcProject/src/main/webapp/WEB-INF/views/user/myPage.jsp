@@ -13,35 +13,37 @@
    position : relative;
 }
 #user_table th {
-   color: white;
-   background-color: #212121;
-   width : 180px;
+   color: black;
+   width : 240px;
    height : 80px;
-   font-size : 20px;
-   padding : 10px 20px;
-   border-top : 1px solid white;
-   border-bottom : 2px solid white;
+   font-size : 25px;
+   padding : 10px 40px;
+   border-top : 2px solid darkgray;
+   border-bottom : 2px solid darkgray;
+   border-right : 2px solid darkgray;
+   font-weight : bold;
 }
 #user_table td {
-   width : 400px;
+   width : 600px;
    color: black;
-   border-top: 1px solid white;
-   border-bottom: 2px solid white;
-   background-color: #eee;
+   border-top: 2px solid darkgray;
+   border-bottom: 2px solid darkgray;
+   background-color: #white;
 }
 #user_table input[type=text]{
-   width : 300px;
-   height : 40px;
-   margin-left : 50px;
+   width : 400px;
+   height : 50px;
+   margin-left : 70px;
    border-radius : 7px;
    border : 1px solid ivory;
-   background-color : ivory;
+   background-color : #eee;
    padding-left : 20px;
    font-size : 20px;
    font-weight : bold;
 }
 #myPageTitle{
    margin-top : 30px;
+   font-weight : bold;
 }
 #userBtnTd{
    padding-left : 50px;
@@ -49,13 +51,21 @@
 #editBtn, #deleteBtn {
    border : none;
    background-color : #212121;
-   width : 100px;
-   height : 40px;
+   width : 130px;
+   height : 50px;
    color : white;
-   margin-left : 30px;
+   margin-left : 60px;
+   font-size : 20px;
 }
-#editBtn:hover, #deleteBtn:hover {
+#deleteBtn {
+	background-color : red;
+}
+#editBtn:hover {
    background-color : #8e8e8e;
+   cursor : pointer;
+}
+#deleteBtn:hover{
+	background-color : palevioletred;
    cursor : pointer;
 }
 
@@ -70,23 +80,26 @@
 #edit_table tr, #edit_table td{
 }
 #edit_table th {
-   background-color : #212121;
-   color : white;
+   background-color : #eee;
+   color : black;
    padding-left : 20px;
    width : 150px;
-   border-top : 2px solid white;
+   border-top : 2px solid darkgray;
    font-size : 17px;
+   font-weight : bold;
 }
 #editTitle {
    border-top : none !important;
    font-size : 25px !important;
    text-align : center;
-   height : 70px;
+   height : 80px;
    position : relative;
-   border-radius : 12px 12px 0px 0px
+   background-color : black !important;
+   color : white !important;
+   font-weight : bold;
 }
 #edit_table input[type="text"]{
-   background-color : ivory;
+   background-color : white;
    border-radius : 5px;
    border : none;
    margin-left : 30px;
@@ -99,10 +112,10 @@
 }
 #edit_table td {
    background-color : #eee;
-   border : 2px solid white;
+   border : 2px solid darkgray;
 }
 #editUserId{
-   background-color : darkgray !important;
+	background-color : #eee !important;
 }
 
 #editBtnTd{
@@ -112,8 +125,10 @@
    background-color : #212121;
    color : white;
    border : none;
-   width : 100px;
+   width : 120px;
    height : 40px;
+   font-weight : bold;
+   font-size : 18px;
 }
 #editOkBtn:hover {
    background-color : #8e8e8e;
@@ -190,11 +205,11 @@
    <form action="" id = "editForm">
             <table id="edit_table">
                <tr>
-                  <th colspan = "2" id = "editTitle">회원 수정<span id = "close">×</span></th>
+                  <th colspan = "2" id = "editTitle">회 원 수 정<span id = "close">×</span></th>
                </tr>
                <tr id = "">
                   <th>회원아이디</th>
-                  <td id = "editUserId"><input type = "text" name = "userId" id = "editUserId" value = "${user.userId }" readonly></td>
+                  <td><input type = "text" name = "userId" id = "editUserId" value = "${user.userId }" readonly></td>
                </tr>
                <tr>
                   <th>이름</th>

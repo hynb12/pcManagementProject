@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <head>
 <title>PC Management</title>
@@ -15,8 +16,8 @@
 #messageTitle {
 	font-weight: bold;
 	margin-top: 30px;
-	margin-left: 70px;
-	margin-bottom: 30px;
+	margin-left: 50px;
+	margin-bottom: 10px;
 }
 
 #wrap {
@@ -35,7 +36,8 @@
 	text-align: center;
 	width: 250px;
 	height: 250px;
-	border: 1px solid #8e8e8e;
+	border-right : 3px solid #8e8e8e;
+	border-bottom : 3px solid #8e8e8e;
 	margin-left: 40px;
 	list-style: none;
 	margin-bottom: 30px;
@@ -45,7 +47,7 @@
 #messageUl textarea {
 	padding: 10px;
 	margin-top: 10px;
-	margin-bottom: 10px;
+	margin-bottom: 8px;
 	height: 120px;
 	border-radius: 5px;
 	font-weight: bold;
@@ -61,21 +63,25 @@
 	font-size: 15px;
 	color: white;
 	background-color: black;
-	border: 1px solid black;
 	text-decoration: none;
-	padding: 8px 5px;
+	padding: 10px;
 	border-radius: 5px;
 }
-
+.messageBtnClass{
+	background-color : red !important;
+}
 #messageBtn:hover {
 	background-color: #8e8e8e;
 	cursor: pointer;
+}
+.messageBtnClass:hover{
+	background-color : palevioletred !important;
 }
 
 #detailDiv {
 	width: 450px;
 	height: 550px;
-	background-color: white;
+	background-color: #eee;
 	position: absolute;
 	border: 1px solid black;
 	right: 500px;
@@ -105,13 +111,12 @@
 	height: 33px;
 	border: none;
 	padding: 6px 12px 6px 12px;
-	background-color: #eee;
 	font-weight: bold;
 	border-radius: 7px;
 }
 
 #detailUl textarea {
-	margin-top: 10px;
+	margin-top: 5px;
 	height: 200px;
 	font-size: 20px;
 	padding: 15px;
@@ -120,31 +125,31 @@
 }
 
 #detailFoot {
-	margin-top: 5px;
+	margin-top: 20px;
 	text-align: center;
 }
 
 #detailDel, #detailClose {
-	margin: 5px 20px 0px 20px;
 	color: white;
 	border: none;
 	background-color: black;
 	text-decoration: none;
 	border-radius: 7px;
+	padding : 13px;
+	font-size : 17px;
 }
-
-#detailDel {
-	padding: 10px;
-}
-
 #detailClose {
-	width: 83px;
-	height: 41.6px;
-	font-size: 15px;
-	padding: 11px;
+	padding : 13px 28px !important;
+	margin-left : 50px;
+}
+#detailDel {
+	background-color : red;
 }
 
-#detailDel:hover, #detailClose:hover {
+#detailDel:hover{
+	background-color : palevioletred;
+}
+#detailClose:hover {
 	background-color: #8e8e8e;
 	cursor: pointer;
 }
@@ -157,16 +162,27 @@
 	z-index : 1;
 	background-color : rgba(0, 0, 0, 0.4);
 }
+hr{
+	margin-left : 40px;
+    border: 0;
+    border-top: 1px solid rgba(0,0,0,.1)
+}
+#nomessage {
+	margin-left : 50px;
+	font-size : 30px;
+	color : red;
+	font-weight : bold;
+}
 </style>
 
 </head>
 <body>
 	<%@ include file="/WEB-INF/views/common/header.jsp"%>
-
 	<div class="container" id="main-container">
 		<h1 id="messageTitle">메시지 리스트</h1>
-		<c:if test="${list == null}">
-	메세지가 없습니다.
+		<hr>
+		<c:if test="${empty list}"> <!-- jstl 에서 null값인지 확인할때는 empty를 넣어줘야함 -->
+	<div id = "noMessage">※ 메세지가 없습니다.</div>
 </c:if>
 
 		<c:if test="${list != null}">
@@ -178,7 +194,7 @@
 							<li>아이디 : ${message.userId}</li>
 							<li><textarea readonly cols="20">${message.messageCon}</textarea></li>
 							<a href="message?messageId=${message.messageId}" id="messageBtn">상세보기</a>
-							<a href="delete?messageId=${message.messageId}" id="messageBtn">삭제하기</a>
+							<a href="delete?messageId=${message.messageId}" id="messageBtn" class = "messageBtnClass">삭제하기</a>
 						</ul>
 					</div>
 				</c:forEach>
@@ -199,10 +215,10 @@
 						readonly></li>
 					<li>메시지 제목 : <input type="text" value="${detail.messageTitle}"
 						readonly></li>
-					<li><textarea readonly cols="28"> ${detail.messageCon}</textarea></li>
+					<li><textarea readonly cols="31"> ${detail.messageCon}</textarea></li>
 					<div id="detailFoot">
 						<a href="delete?messageId=${detail.messageId}" id="detailDel">삭제하기</a>
-						<input type="button" value="닫기" id="detailClose">
+						<a id="detailClose">닫 기 </a>
 					</div>
 				</ul>
 			</div>

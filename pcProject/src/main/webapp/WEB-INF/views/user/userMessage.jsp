@@ -29,9 +29,12 @@
 }
 
 .messageTitle {
-	margin: 20px 0px 50px 0px;
+	margin-top: 20px;
 	font-size : 35px;
 	font-weight : bold;
+}
+hr{
+	margin-bottom : 50px !important;
 }
 #userId {
 	background-color : darkgray;
@@ -73,8 +76,9 @@
 		<div class="post">
 			<div class="contact">
 				<div class="messageTitle">
-					<p>메시지남기기</p>
+					<p>메시지 남기기</p>
 				</div>
+				<hr>
 				<form class="comment-form" method="post">
 					<div class="row">
 						<div class="col-md-12 form-group">
@@ -95,7 +99,7 @@
 						</div>
 						<div class="col-md-12 form-group">
 							<input type="submit" class="btn btn-block btn-lg btn-success"
-								value="쪽지 보내기" id = "submit">
+								value="메시지 남기기" id = "submit">
 						</div>
 
 					</div>
@@ -111,7 +115,7 @@
 			var messageTitle = $('#messageTitle').val();
 			var messageCon = $('#messageCon').val();
 			if(messageTitle != null && messageCon != null && messageTitle != "" && messageCon != ""){
-				alert("쪽지를 보냈습니다.");
+				alert("메시지를 남겼습니다.");
 			} else {
 				alert("메시지 제목 혹은 메시지 내용을 입력하세요");
 			}

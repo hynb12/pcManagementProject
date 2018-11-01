@@ -29,12 +29,13 @@ public class AdminMessageController {
 		
 		String messageId = request.getParameter("messageId");
 		
-		MessageVo message = service2.select(messageId);
-		List<MessageVo> list = service.getMessage();
+		MessageVo message = service2.select(messageId); // 아아디값을 주면 데이터베이스에서 해당하는 쪽지정보를 가져옴
+		List<MessageVo> list = service.getMessage(); // 모든 쪽지리스트를 가져옴
 		
 		model.addAttribute("list", list);
 		model.addAttribute("detail", message);
 		
+		System.out.println(list);
 		return "admin/adminMessage";
 	}
 
