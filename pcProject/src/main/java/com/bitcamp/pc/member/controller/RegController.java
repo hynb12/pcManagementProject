@@ -93,6 +93,7 @@ public class RegController {
 	public int idCheck(@RequestParam("id") String paramId, @RequestParam("isAdmin") boolean isAdmin) {
 		System.out.println("isAdmin" + isAdmin);
 		System.out.println("paramId" + paramId);
+		
 		int result = 0;
 
 		if (isAdmin) {

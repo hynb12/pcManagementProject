@@ -319,7 +319,8 @@
 			// 각 컴퓨터 선택 분기 처리
 			var isUse = new Array(12).fill(false); 
 			
-			$('#comTable td').on('click', function() {
+			$('#comTable td').on('click', function(e) {
+				
 				var comId = $(this).attr('comId'); // 선택한 컴퓨터의 위치 값 가져오기
 				
 				if(isUse[comId] == false){
@@ -373,8 +374,7 @@
 				
 			});			
 
-			$('#logout_Btn').on('click', function(){
-				
+			$('#logout_Btn').on('click', function(e){
 				alert("?????")
 				<%-- if($('#selectAddTime option:selected').val() == 0){
 					alert('충전하실 시간을 선택하세요.');

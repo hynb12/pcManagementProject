@@ -39,8 +39,8 @@
 			<input type="text" placeholder="Enter PhoneNum" name="phoneNum" id="phoneNum" required>
 			<div id="phoneChk" class="checkText"></div>
 			<label for="birth"><b>Birth</b></label>
-			<input type="text" placeholder="Enter Birth" name="birth" id="birth" required>
-			<label> <input type="checkbox" checked="checked" name="remember" style="margin-bottom: 15px"> Remember me </label>
+			<input type="text" placeholder="Enter Birth" name="birth" id="birth" required><label> <input type="checkbox" checked="checked" name="remember" style="margin-bottom: 15px"> Remember me </label>
+			
 
 			<div class="clearfix">
 				<button type="button" class="cancelbtn"
@@ -88,8 +88,9 @@
 				url: '${pageContext.request.contextPath}/member/idCheck?id='+$('#idE').val()+'&isAdmin='+isAdmin,
 				type : 'get',
 				success : function(data) {
+					console.log("성공 번호 "+ data);
+					
 					if (data == 1) {
-						console.log(data);
 						
 						/* console.log("아이디가 존재합니다. 다른 아이디를 입력해주세요.");
 						아이디가 존재할 경우 빨간색으로 알림이 뜨고 포커스를 맞춰줌 */
