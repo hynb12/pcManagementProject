@@ -14,7 +14,6 @@ import com.bitcamp.pc.member.model.UserVO;
 import com.bitcamp.pc.user.service.UserRegService;
 
 @Controller
-/* @RequestMapping("/member/reg") */
 public class RegController {
 
 	// 유저 서비스 autowired

@@ -43,7 +43,7 @@
 		<hr />
 		<div class="buttons">
 			<button type="button" class="btn btn-dark" data-toggle="modal"
-				data-target="#modalLoginForm" onclick="">삭제</button>
+				data-target="#modalNoticeDeleteForm">삭제</button>
 			<button type="button" class="btn btn-dark"
 				onclick="location.href='/pc/admin/notice/modify/${view.noticeId}'">수정</button>
 			<button type="button" class="btn btn-dark"
@@ -80,8 +80,8 @@
 
 	<%@ include file="/WEB-INF/views/common/footer.jsp"%>
 </body>
-<!-- 삭제확인 모달 -->
-<div class="modal fade" id="modalLoginForm" tabindex="-1" role="dialog"
+<!-- 게시글 삭제확인 모달 -->
+<div class="modal fade" id="modalNoticeDeleteForm" tabindex="-1" role="dialog"
 	aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
@@ -96,13 +96,37 @@
 			</div>
 			<div class="modal-footer d-flex justify-content-center">
 				<a class="btn btn-danger"
-					href="/pc/admin/notice/delete/${view.noticeId}">삭제</a> <a
-					class="btn btn-dark" data-dismiss="modal">취소</a>
+					href="/pc/admin/notice/delete/${view.noticeId}">삭제</a> 
+				<a class="btn btn-dark" data-dismiss="modal">취소</a>
 			</div>
 		</div>
 	</div>
 </div>
-<!-- 삭제확인 모달 끝-->
+<!-- 게시글 삭제확인 모달 끝 -->
+
+<!-- 댓글 삭제확인 모달 -->
+<div class="modal fade right" id="modalReplyDeleteForm" tabindex="-1" role="dialog"
+	aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-side modal-bottom-right" role="document">
+		<div class="modal-content">
+			<div class="modal-header text-center">
+				<h4 class="modal-title w-100 font-weight-bold">
+					정말 <span style="color: red">삭제</span>하시나요?
+				</h4>
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-footer d-flex justify-content-center">
+				<a class="btn btn-danger"
+					href="/pc/admin/notice/delete/${view.noticeId}">삭제</a> 
+				<a class="btn btn-dark" data-dismiss="modal">취소</a>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- 댓글 삭제확인 모달 끝-->
 
 <script>
 	$(document).ready(function(){
