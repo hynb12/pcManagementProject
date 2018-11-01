@@ -58,7 +58,7 @@ public class UserTimeController {
 			}
 
 			// User테이블
-			int UserResultCnt = userTimeService.UserChargeService(userVo.getUserId(), remainTime);
+			int UserResultCnt = userTimeService.UserChargeService(userVo.getUserId(), comId);
 
 			if (UserResultCnt == 1) {
 				System.out.println("from UserTimeController // User 테이블 등록 성공");

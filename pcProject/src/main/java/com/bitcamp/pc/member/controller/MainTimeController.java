@@ -19,12 +19,12 @@ public class MainTimeController {
 	@RequestMapping("/member/maintimetable")
 	public @ResponseBody List<UTimeVO> addTime() {
 
-		System.out.println("from UserTimeController // 컨트롤러 시작");
+		System.out.println("from MainTimeController // 컨트롤러 시작");
 
 		// UTime테이블
 		List<UTimeVO> list = mainTimeService.getUTimeListService();
 
-		System.out.println("from UserTimeController // 컨트롤러 끝");
+		System.out.println("from MainTimeController // 컨트롤러 끝");
 
 		return list; // 요청한 페이지에 JSON 객체로 리턴
 	}

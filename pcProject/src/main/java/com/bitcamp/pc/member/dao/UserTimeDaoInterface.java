@@ -10,11 +10,11 @@ public interface UserTimeDaoInterface {
 	public int UTimeChargeDao(UTimeVO utime);
 
 	public int UserChargeDao(UserVO userVO);
-	
+
 	public List<UTimeVO> getUTimeListDao();
 
-	public int endTime(UTimeVO utime);
+	public UTimeVO getUTimeDao(int comId);
 
-	
+	public int endTime(UTimeVO utime);
 
 }

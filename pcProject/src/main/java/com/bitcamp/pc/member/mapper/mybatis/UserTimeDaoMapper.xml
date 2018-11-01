@@ -25,6 +25,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		userId=#{userId}
 	</update>
 
+	<select id="getUTimeListDao" resultType="utimeVO">
+		select * from utime
+	</select>
+
+	<select id="getUTimeDao" resultType="utimeVO">
+		select userId, starttime, userTime
+		from utime
+		where comid=#{comId}
+	</select>
+
 
 	<update id="endTime" parameterType="utimeVO">
 		update utime set
@@ -34,8 +44,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		userId=#{userId}
 	</update>
 
-	<select id="getUTimeListDao" resultType="utimeVO">
-		select * from utime
-	</select>
+
 
 </mapper>

@@ -88,7 +88,7 @@
 	margin: auto;
 	padding: 15px;
 	border: 1px solid #888;
-	width:50%;
+	width: 50%;
 }
 
 /* The Close Button */
@@ -98,7 +98,6 @@
 	font-size: 28px;
 	font-weight: bold;
 	font-size: 28px;
-	
 }
 
 .close:hover, .close:focus {
@@ -127,7 +126,6 @@
 	margin-top: 20px;
 	margin-bottom: 20px;
 }
-
 </style>
 
 </head>
@@ -217,13 +215,13 @@
 						주문내역<span class="close">&times;</span>
 					</h3>
 					<table border="1" id="orderListTable" class="orderTable">
-							<!-- jquery로 리스트 동적 생성 -->
+						<!-- jquery로 리스트 동적 생성 -->
 					</table>
-						
+
 					<div id="totalPrice"></div>
 					<div id="orderInfo"></div>
 					<button id="orderConfirmBtn">주문 확정</button>
-					
+
 				</div>
 			</div>
 		</div>
@@ -233,30 +231,7 @@
 
 	<!-- 컴퓨터 처리(정기)  -->
 	<script>
-		var setTime = 2;// 최초 설정 시간(기본 : 초), 
-		
-		// 카운트 함수 
-		function msg_time(user) { // 1초씩 카운트
-			
-			console.log(setTime);
-			m = Math.floor(setTime / 60) + "분 " + (setTime % 60) + "초"; // 남은 시간 계산
-		         
-		    var msg = "<font color='black'><b>" + m + "</b></font>";
-		  	$(user).children().eq(2).html(msg); // div 영역에 보여줌 
-		  	
-		    setTime--; // 1초씩 감소  
-		    
-		    if (setTime < 0) {
-		    	console.log("시간 종료");
-		    	
-		    	// 시간이 종료 되었으면..
-		        m = (Math.floor(setTime / 60)+1)*(-1) + "분 " + ((setTime % 60)+1)*(-1) + "초";
-
-		        var msg = " <font color='red'><b>" + m + "</b></font>";
-		        $(user).children().eq(2).html(msg); // div 영역에 보여줌 
-		    }
-	    } // end msg_time()
-		
+				
 		// 로드 시 최초 1회만 실행
 		$(document).ready(function() {
 			
@@ -293,8 +268,42 @@
 				
 				$(this).attr('comId', index+1);
 			});
+			function test(){
+				// 각 테이블 정보 입력
+				$.ajax({
+					url: '<%=request.getContextPath()%>/member/maintimetable', 
+					type: 'post',
+					data: $('#addTimeForm').serialize(), // 선택한 자리 번호와 충전한 시간 전송
+				
+					success:function(data){
+						console.log(data);
+					
+						// 선택된 자리에 정보 표시 
+						$('#comTable td').each(function(index) {						
+							console.log(index)
+						
+							if ((index + 1) == data[index].comId) {
+								// 남은시간이 없으면 안나옴
+								if(data[index].userTime != 0 && data[index].userTime != null){
+									$(this).children().eq(1).text(data[index].userId); // 선택된 컴퓨터의 첫 번째 줄에 아이디 표시
+									$(this).children().eq(2).text(Math.floor(data[index].userTime/60)+'시간 ' +(data[index].userTime%60)+'분'); //두번째 줄에 남은 시간 표시
+									$(this).children().eq(1).css({
+										'color': 'black',
+										'font-weight' : 'bold'
+									}); // 시간 글씨색 변경
+									$(this).children().eq(2).css({
+										'color': 'black',
+										'font-weight' : 'bold'
+									}); // 시간 글씨색 변경
+								}
+							}
+						});
+					} /* end success */
+				}); /* end ajax */
+			}
 			
-
+			test();
+			
 			// 각 컴퓨터 선택 분기 처리
 			var isUse = new Array(12).fill(false); 
 			
@@ -344,11 +353,17 @@
 								}); // 시간 글씨색 변경
 							}
 						});
-					} /* end success */
+						test();} /* end success */
+				
 				}); /* end ajax */
 				
-				$('#addTimeModal').hide();
-			});
+				$('#addTimeModal').hide();				
+				
+			});			
+			
+		
+
+				
 			
 			///////////////////////////////////////////////////////////////////////////////////////
 			///////////////////////////////////////////////////////////////////////////////////////

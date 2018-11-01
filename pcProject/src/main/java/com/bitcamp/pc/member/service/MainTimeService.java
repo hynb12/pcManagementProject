@@ -14,15 +14,14 @@ public class MainTimeService {
 
 	@Autowired
 	SqlSessionTemplate sqlSessionTemplate;
-	
+
 	UserTimeDaoInterface userTimeDaoInterface;
-	
-	public List<UTimeVO> getUTimeListService(){
-		
+
+	public List<UTimeVO> getUTimeListService() {
+
 		userTimeDaoInterface = sqlSessionTemplate.getMapper(UserTimeDaoInterface.class);
-		
+
 		return userTimeDaoInterface.getUTimeListDao();
-		
 	}
-	
+
 }
