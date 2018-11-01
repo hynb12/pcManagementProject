@@ -111,7 +111,8 @@
 			
 			$.ajax({
 				url :'${pageContext.request.contextPath}/member/phoneCheck?phoneNum='+$('#phoneNum').val()+'&isAdmin='+isAdmin,
-				type : 'get',
+				// 전화번호는 민감한 부분이니 POST 방식으로 보내버림.
+				type : 'post',
 				success : function(data){
 					if(data == $('#phoneNum').val()){
 						$("#phoneChk").text("핸드폰 번호가 존재하네요. 이미 가입하신 거 아닐까요?");

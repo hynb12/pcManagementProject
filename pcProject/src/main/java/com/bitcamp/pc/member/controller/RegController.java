@@ -110,7 +110,7 @@ public class RegController {
 	
 	
 	// userPhone 중복 체크하는 컨트롤러
-	@RequestMapping(value = "/member/phoneCheck", method = RequestMethod.GET)
+	@RequestMapping(value = "/member/phoneCheck", method = RequestMethod.POST)
 	@ResponseBody
 	public String phoneCheck(@RequestParam("phoneNum")String phoneNum, @RequestParam("isAdmin") boolean isAdmin) {
 		
