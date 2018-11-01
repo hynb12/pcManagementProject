@@ -67,6 +67,7 @@
 .comNum {
 	color: black;
 	font-weight: bold;
+	
 }
 
 .mainModal {
@@ -116,15 +117,35 @@
 .orderTable {
 	margin: 0 auto;
 	text-align: center;
+	width: 300px;
+	height: 120px;
 }
 
 .orderTable td {
 	width: 100px;
 }
 
+.orderTable > tr:nth-child(1){
+	background: lightgray;
+}
+
 #totalPrice {
 	margin-top: 20px;
 	margin-bottom: 20px;
+}
+
+.userMainBtn {
+	width:150px;
+    background-color: #f8585b;
+    border: none;
+    border-radius:10px;
+    color:#fff;
+    padding: 15px 0;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 18px;
+    cursor: pointer;
 }
 </style>
 
@@ -162,7 +183,7 @@
 
 			</table>
 
-			<button id="logoutbtn">사용종료</button>
+			<button id="logoutbtn" class="userMainBtn">사용종료</button>
 
 			<!-- 종료 modal -->
 			<div id="logoutModal" class="mainModal">
@@ -176,7 +197,7 @@
 
 
 					<div id="logoutInfo"></div>
-					<button id="logoutConfirmBtn">사용종료</button>
+					<button id="logoutConfirmBtn" class="userMainBtn">사용종료</button>
 
 				</div>
 			</div>
@@ -196,7 +217,7 @@
 						</select>
 					</form>
 
-					<button id="addTimeBtn">충전하기</button>
+					<button id="addTimeBtn" class="userMainBtn">충전하기</button>
 				</div>
 			</div>
 		</div>
@@ -225,7 +246,7 @@
 
 			</table>
 
-			<button id="orderBtn">주문하기</button>
+			<button id="orderBtn" class="userMainbtn">주문하기</button>
 
 			<!-- 주문 리스트 modal -->
 			<div id="orderListModal" class="mainModal">
@@ -237,8 +258,8 @@
 						<!-- jquery로 리스트 동적 생성 -->
 					</table>
 
-					<div id="orderInfo"></div>
-					<button id="orderConfirmBtn">주문 확정</button>
+					<h3 id="totalPrice"></h3>
+					<button id="orderConfirmBtn" class="userMainBtn">주문 확정</button>
 
 				</div>
 			</div>
@@ -505,11 +526,20 @@
 				if(isChoice[idx] == false){ // 음식 선택 안된 상태
 					if(orderCnt != 0){ // 선택된 음식 갯수가 0이 아닐 때만 선택 가능
 						$(this).css('opacity', '0.5');
+						$(this).css({
+							'border-color' : 'red',
+							'border-width' : 3
+						});
+						
 						isChoice[idx] = true;
 					}
 				}
 				else {
 					$(this).css('opacity', '');
+					$(this).css({
+						'border-color' : '',
+						'border-width' : ''
+					});
 					isChoice[idx] = false;
 				}
 			});
@@ -587,7 +617,7 @@
 				}
 				
 				$('#orderListTable').append(str);
-				$('#totalPrice').text('주문하신 음식의 총 가격은 ' + totalPrice + '원 입니다.');
+				$('#totalPrice').html('주문하신 음식의 총 가격은<span style="color:red"><b>' + totalPrice + '원</b></span> 입니다.');
 				$('#orderListModal').show();
 			});
 			
@@ -610,6 +640,10 @@
 				$('#foodTable td').each(function(index) {
 					$(this).css('opacity', ''); // 투명도 defalut
 					$(this).children().eq(3).children().eq(1).val('0'); // 모든 음식 수량 0
+					$(this).css({
+						'border-color' : '',
+						'border-width' : ''
+					});
 				});
 				
 				// 초기화
@@ -618,7 +652,7 @@
 				}
 				
 				$('#orderListModal').hide();
-								
+				alert("주문이 완료되었습니다.");
 			});
 		}); // end window.onload() 
 	</script>
