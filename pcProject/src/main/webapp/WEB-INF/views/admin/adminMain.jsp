@@ -49,10 +49,14 @@
 
 #foodTable {
 	margin: 0 auto;
+	text-align: center;
+	width: 450px;
+	margin-top: 25px;
 }
 
 #foodTable td {
 	padding: 10px;
+
 }
 
 #close {
@@ -94,6 +98,7 @@
 	color: #000;
 	text-decoration: none;
 	cursor: pointer;
+	border-right-width: 
 }
 </style>
 
@@ -148,20 +153,7 @@
 		<div class="foodDiv">
 			<h3>◆ 주문 대기 중인 음식 ◆</h3>
 			<table border="1" id="foodTable">
-				<tr>
-					<td>컴퓨터 번호</td>
-					<td>음식 이름</td>
-					<td>수량</td>
-					<td>상태</td>
-				</tr>
-
-				<tr>
-					<td>3</td>
-					<td>돈까스</td>
-					<td>1</td>
-					<td>처리하기</td>
-				</tr>
-
+				<!-- 리스트 동적 추가 -->
 			</table>
 
 			<!-- 시간 추가 modal -->
@@ -256,14 +248,55 @@
 			
 			/* 음식처리(민수) */
 			
-			$.ajax({
+			$.ajax({ // 주문 리스트 보여주기
 				url: '<%=request.getContextPath()%>/admin/order', 
 				type: 'post',
+				contentType: 'application/json',
 				
 				success:function(data){
-					console.log(data);
+					console.log("데이타" + data);
 					
+					if(data == ''){
+						$('.foodDiv').append('<h2 style="color:red">※고객이 주문하신 음식이 없습니다.</h2>');
+						return;
+					}
+					
+					var str='';
+					var prevComId = '';
+					for(var i=0; i<data.length; i++){
+						
+						if(prevComId != data[i].comId){
+							str += '<tr><td colspan="4" style="background : lightgray">주문번호 '+ data[i].orderId +'</td></tr>'
+							str += '<tr><td colspan="3">컴퓨터 번호 '+ data[i].comId +'</td><td colspan="1" style="background:#F78181" id='+ data[i].orderId +'><button class="orderProcess"
+							>처리하기</button></td></tr>';
+							str += '<tr><td>음식 번호</td><td>음식 이름</td><td>총 가격</td><td>수량</td></tr>';
+						}
+						str += '<tr><td style="margin-bottom:20">'+ data[i].foodId +'</td><td>'+ data[i].foodName +'</td><td>'+ data[i].totalPrice +'</td><td>'+ data[i].foodCnt +'</td></tr>';
+						
+						prevComId = data[i].comId; 
+					}
+					
+					$('#foodTable').append(str);
 				} /* end success */
+			}); /* end ajax */
+			
+			
+			// 처리하기 클릭 시
+			$('.orderProcess').on('click', function () {
+				console.log('클릭이다');
+				alert('클릭이다');
+				
+				$.ajax({ // 주문 처리하기 
+					url: '<%=request.getContextPath()%>/admin/orderProcess',
+					type: 'post',
+					data: { orderid: $(this).attr('id') }, // 주문번호 
+					
+					success:function(data){
+						console.log(data);
+						
+					} /* end success */
+				}); /* end ajax */
+				
 			});
 		});
 	</script>

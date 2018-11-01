@@ -4,11 +4,17 @@ import org.apache.ibatis.type.Alias;
 
 @Alias("orderVO")
 public class OrderVO {
+	private int orderId;
 	private int comId;
 	private int orderFoodId;
 	private int orderCnt;
 	
-	
+	public int getOrderId() {
+		return orderId;
+	}
+	public void setOrderId(int orderId) {
+		this.orderId = orderId;
+	}
 	public int getComId() {
 		return comId;
 	}
@@ -27,9 +33,11 @@ public class OrderVO {
 	public void setOrderCnt(int orderCnt) {
 		this.orderCnt = orderCnt;
 	}
+	
 	@Override
 	public String toString() {
-		return "OrderVO [comId=" + comId + ", orderFoodId=" + orderFoodId + ", orderCnt=" + orderCnt + "]";
+		return "OrderVO [orderId=" + orderId + ", comId=" + comId + ", orderFoodId=" + orderFoodId + ", orderCnt="
+				+ orderCnt + "]";
 	}
 	
 	
