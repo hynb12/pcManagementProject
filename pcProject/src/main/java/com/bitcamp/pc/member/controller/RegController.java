@@ -87,8 +87,8 @@ public class RegController {
 		return mav;
 	}
 
-	// 유효성 검사하는 컨트롤러
-	@RequestMapping(value = "/member/regCheck", method = RequestMethod.GET)
+	// ID 중복 유효성 체크하는 컨트롤러
+	@RequestMapping(value = "/member/idCheck", method = RequestMethod.GET)
 	@ResponseBody
 	public int idCheck(@RequestParam("id") String paramId, @RequestParam("isAdmin") boolean isAdmin) {
 		System.out.println("isAdmin" + isAdmin);
@@ -107,5 +107,25 @@ public class RegController {
 
 		return result;
 	}
+	
+	
+	// userPhone 중복 체크하는 컨트롤러
+	@RequestMapping(value = "/member/phoneCheck", method = RequestMethod.GET)
+	@ResponseBody
+	public String phoneCheck(@RequestParam("phoneNum")String phoneNum, @RequestParam("isAdmin") boolean isAdmin) {
+		
+		
+		String result = "";
+		
+		// isAdmin = true -> 관리자 페이지
+		if(!(isAdmin)) {
+			
+			result = userRegService.checkUserPhoneNum(phoneNum);
+			
+		}
+		
+		return result;
+	}
+	
 
 }

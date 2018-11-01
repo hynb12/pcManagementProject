@@ -6,7 +6,7 @@ import com.bitcamp.pc.member.model.UserVO;
 public interface UserDaoInterface {
 
 	// 유저 회원가입 메서드	
-	public int insertUser(UserVO user);
+	public int insertUser(UserVO user) throws Exception;
 	
 	// 유저 로그인 메서드
 	public UserVO loginUser(String userId);
@@ -31,4 +31,7 @@ public interface UserDaoInterface {
 	
 	// 아이디 중복 체크
 	public int checkOverId(String userId);
+	
+	// 유저 전화번호 중복 체크
+	public String checkOverPhoneNum(String userPhone);
 }

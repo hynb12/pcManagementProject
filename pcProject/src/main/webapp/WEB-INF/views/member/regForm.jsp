@@ -30,6 +30,7 @@
 			<input type="text" placeholder="Enter Name" name="name" required>
 			<label for="phoneNum"><b>PhoneNum</b></label>
 			<input type="text" placeholder="Enter PhoneNum" name="phoneNum" id="phoneNum" required>
+			<p id="phoneChk"></p>
 			<label for="birth"><b>Birth</b></label>
 			<input type="text" placeholder="Enter Birth" name="birth" id="birth" required>
 			<label> <input type="checkbox" checked="checked" name="remember" style="margin-bottom: 15px"> Remember me </label>
@@ -68,7 +69,7 @@
 		});
 		
 		
-		// 1. 회원가입하는데 userId / userPhone 중복 체크하고
+		// 1-1 회원가입 회원, 관리자 아이디 중복(PK값) 체크
 		$('#idE').keyup(function(){
 			
 			var isAdmin = $('#isAdmin').is(':checked');
@@ -77,37 +78,57 @@
 			console.log(isAdmin);
 			
 			$.ajax({
-				url: '${pageContext.request.contextPath}/member/regCheck?id='+$('#idE').val()+'&isAdmin='+isAdmin,
+				url: '${pageContext.request.contextPath}/member/idCheck?id='+$('#idE').val()+'&isAdmin='+isAdmin,
 				type : 'get',
 				success : function(data) {
 					if (data == 1) {
-
 						/* console.log("아이디가 존재합니다. 다른 아이디를 입력해주세요.");
 						아이디가 존재할 경우 빨간색으로 알림이 뜨고 포커스를 맞춰줌 */
 						$("#idCheck").text("아이디가 존재합니다. 다른 아이디를 입력해주세요.");
 						$("#idCheck").css("color", "red");
 						$("#idE").focus();
-							
+						$("#submit").attr("disabled", true);
+						
 					} else {
 							
 						console.log("사용가능한 아이디입니다.");
 						//사용가능하면 경우 파란색으로 알림이 뜨고 비밀번호로 포커스를 맞춰줌
 						$("#idCheck").text("중복된 아이디가 없으니 사용해도 OK");
 						$("#idCheck").css("color", "blue");
-						
-
+						$("#submit").attr("disabled", false);
 					}
 				},
 				error : function(error) {
-
 					console.log("error : " + error);
 				}
-
 			});
-
 		});
-
-		// 2. 비밀번호 중복 체크 (keydown 이벤트를 사용)
+		
+		// 1-2 회원가입 회원 폰번호(userPhone(Unique 값)) 중복 체크
+		$('#phoneNum').keyup(function(){
+			
+			var isAdmin = $('#isAdmin').is(':checked');
+			
+			$.ajax({
+				url :'${pageContext.request.contextPath}/member/phoneCheck?phoneNum='+$('#phoneNum').val()+'&isAdmin='+isAdmin,
+				type : 'get',
+				success : function(data){
+					if(data == $('#phoneNum').val()){
+						$("#phoneChk").text("핸드폰 번호가 존재하네요. 이미 가입하신 거 아닐까요?");
+						$("#phoneChk").css("color", "red");
+						$("#phoneNum").focus();
+						$("#submit").attr("disabled", true);
+					} else {
+						$("#phoneChk").text("저희 PC방에 오신 걸 환영합니다!");
+						$("#phoneChk").css("color", "blue");
+						$("#submit").attr("disabled", false);
+					}
+				}
+			});
+		});
+		
+		
+		// 2-1 비밀번호 중복 체크 (keydown 이벤트를 사용)
 		$('#pw2').keyup(function() {
 			if ($('#pw1').val() != $(this).val()) {
 				$('#pwError').text('비밀번호가 일치하지 않습니다.');
@@ -117,16 +138,16 @@
 			}
 		});
 		
-		// 비밀번호가 틀린 상태로 
+		// 2-2 비밀번호가 일치되지 않았을 때 가입되지 않음.
 		$('#submit').click(function(){
 			
 			if($('#pw1').val() != $('#pw2').val()){
 				
 				alert("비번이 틀렸어");
 				return false;
-			
+				
 			} else{
-			
+				
 				return true;
 			
 			}
