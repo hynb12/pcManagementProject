@@ -47,7 +47,7 @@
 			<button type="button" class="btn btn-dark"
 				onclick="location.href='/pc/admin/notice/modify/${view.noticeId}'">수정</button>
 			<button type="button" class="btn btn-dark"
-				onclick="location.href='/pc/member/notice'">
+				onclick="location.href='/pc/member/notice?page=1'">
 				<i class="fa fa-th-list pr-2" aria-hidden="true"></i>목록
 			</button>
 		</div>
@@ -68,10 +68,10 @@
 			<div class="text-center my-4">
 				<button id="commentSubmit"
 					class="btn btn-default btn-sm btn-rounded">댓글 입력</button>
-				<c:if test="${adminVO.adminId != null}">
+				<c:if test="${adminVO.adminId != null}"> <!-- 세션에 userId가 존재하면 hidden에 넣어줌(댓글이름에 사용) -->
 					<input id="nick" type="hidden" value="${adminVO.adminId}"/>
 				</c:if>
-				<c:if test="${userVO.userId != null}">
+				<c:if test="${userVO.userId != null}"> <!-- 세션에 userI가 존재하면 hidden에 넣어줌(댓글이름에 사용) -->
 					<input id="nick" type="hidden" value="${userVO.userId}"/>
 				</c:if>
 			</div>

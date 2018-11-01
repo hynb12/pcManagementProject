@@ -28,6 +28,6 @@ public class NoticeWriteController {
 
 		service.noticeWrite(noticeVO);
 		
-		return "redirect:/member/notice";
+		return "redirect:/member/notice?page=1";
 	}
 }

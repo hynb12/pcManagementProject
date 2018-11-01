@@ -28,8 +28,9 @@
 <body>
 	<%@ include file="/WEB-INF/views/common/header.jsp"%>
 	<div class="container">
-		<a id="write" class="btn btn-outline-elegant waves-effect"
-			href="/pc/admin/noticeWrite">글쓰기</a>
+		<c:if test="${adminVO != null}">
+			<a id="write" class="btn btn-outline-elegant waves-effect" href="/pc/admin/noticeWrite">글쓰기</a>
+		</c:if>
 		<table class="table">
 			<thead>
 				<tr class="text-center">

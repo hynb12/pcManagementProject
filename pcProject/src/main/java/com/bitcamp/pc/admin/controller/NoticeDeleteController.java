@@ -20,6 +20,6 @@ public class NoticeDeleteController {
 
 		service.noticeDelete(id);
 		
-		return "redirect:/member/notice";
+		return "redirect:/member/notice?page=1";
 	}
 }
