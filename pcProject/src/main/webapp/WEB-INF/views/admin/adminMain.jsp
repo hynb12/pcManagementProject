@@ -261,7 +261,7 @@
 				var comId = $(this).attr('comId'); // 선택한 컴퓨터의 위치 값 가져오기
 
 				$('#inputComId').val(comId); //comId input 창에 값 저장
-				$('#addTimeModal').show(); // modal창 보이기
+/* 				$('#addTimeModal').show(); // modal창 보이기 */
 
 			});
 			
