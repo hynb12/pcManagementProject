@@ -69,7 +69,7 @@ public class UserTimeService {
 			resetResultCnt = userTimeDaoInterface.reset(beforeUTimeVO.getComId());
 
 			if (resetResultCnt == 0) {
-				System.out.println("from UserTimeService.UTimeChargeService // 기존자리 초기화 && 자리이동 없음");
+				System.out.println("from UserTimeService.UTimeChargeService // 기존자리 초기화 && 자리이동 실패");
 			} else {
 				System.out.println("from UserTimeService.UTimeChargeService // 기존자리 초기화 && 자리이동 완료");
 			}
