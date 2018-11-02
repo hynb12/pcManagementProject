@@ -96,7 +96,6 @@
 						아이디가 존재할 경우 빨간색으로 알림이 뜨고 포커스를 맞춰줌 */
 						$("#idCheck").text("아이디가 존재합니다. 다른 아이디를 입력해주세요.");
 						$("#idCheck").css("color", "red");
-						$("#idE").focus();
 						$("#submit").attr("disabled", true);
 						
 					} else {
@@ -127,7 +126,6 @@
 					if(data == $('#phoneNum').val()){
 						$("#phoneChk").text("핸드폰 번호가 존재하네요. 이미 가입하신 거 아닐까요?");
 						$("#phoneChk").css("color", "red");
-						$("#phoneNum").focus();
 						$("#submit").attr("disabled", true);
 					} else {
 						$("#phoneChk").text("저희 PC방에 오신 걸 환영합니다!");
@@ -139,7 +137,7 @@
 		});
 		
 		
-		// 2-1 비밀번호 중복 체크 (keydown 이벤트를 사용)
+		// 2-1 비밀번호 중복 체크 (keydown 이벤트에서 blur로 바꿈)
 		$('#pw2').blur(function() {
 			if ($('#pw1').val() != $(this).val()) {
 				$('#pwError').text('비밀번호가 일치하지 않습니다.');
@@ -154,7 +152,7 @@
 			
 			if($('#pw1').val() != $('#pw2').val()){
 				
-				alert("비번이 틀렸어");
+				alert("비번 바꾸고 오세요");
 				return false;
 				
 			} else{
