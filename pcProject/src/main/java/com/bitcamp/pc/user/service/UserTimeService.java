@@ -48,7 +48,7 @@ public class UserTimeService {
 
 		int resultCnt = 0;
 
-		int resetresultCnt = 0;
+		int resetResultCnt = 0;
 
 		if (beforeUTimeVO == null) {
 
@@ -66,9 +66,13 @@ public class UserTimeService {
 			remainTime = remainTime - used;
 			System.out.println("from UserTimeService.UTimeChargeService // 사용 후 남은시간 : " + remainTime);
 
-			resetresultCnt = userTimeDaoInterface.reset(beforeUTimeVO.getComId());
+			resetResultCnt = userTimeDaoInterface.reset(beforeUTimeVO.getComId());
 
-			System.out.println("from UserTimeService.UTimeChargeService // 기존자리 초기화 ");
+			if (resetResultCnt == 0) {
+				System.out.println("from UserTimeService.UTimeChargeService // 기존자리 초기화 && 자리이동 실패");
+			} else {
+				System.out.println("from UserTimeService.UTimeChargeService // 기존자리 초기화 && 자리이동 완료");
+			}
 
 		}
 
