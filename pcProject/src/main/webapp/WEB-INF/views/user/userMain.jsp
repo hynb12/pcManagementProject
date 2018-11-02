@@ -432,7 +432,7 @@
 					success:function(data){
 						console.log(data);
 						
-						// 선택된 자리에 정보 표시 
+						/* // 선택된 자리에 정보 표시 
 						$('#comTable td').each(function(index) {
 							if ((index + 1) == data.comId) {
 								$(this).css('opacity', 1); // 선택된 컴퓨터의 투명도 설정
@@ -444,12 +444,11 @@
 									'font-weight' : 'bold'
 								}); // 시간 글씨색 변경
 							}
-						});
-						test();} /* end success */
+						}); */
+						
+						location.reload();} /* end success */
 				
-				}); /* end ajax */
-				
-				$('#addTimeModal').hide();				
+				}); /* end ajax */						
 				
 			});			
 
