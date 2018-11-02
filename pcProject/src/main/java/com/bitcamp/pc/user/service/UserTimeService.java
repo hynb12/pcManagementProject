@@ -46,9 +46,14 @@ public class UserTimeService {
 		UTimeVO beforeUTimeVO = userTimeDaoInterface.getUTimeDaoUserId(userId);
 		System.out.println("from UserTimeService.UTimeChargeService // 사용전 컴퓨터 객체 확인 : " + beforeUTimeVO);
 
-		if (beforeUTimeVO.getUserId() == null) {
+		int resultCnt = 0;
+
+		int resetresultCnt = 0;
+
+		if (beforeUTimeVO == null) {
 
 		} else {
+
 			System.out
 					.println("from UserTimeService.UTimeChargeService // 충전 전 시작시간 : " + beforeUTimeVO.getStartTime());
 
@@ -60,20 +65,15 @@ public class UserTimeService {
 
 			remainTime = remainTime - used;
 			System.out.println("from UserTimeService.UTimeChargeService // 사용 후 남은시간 : " + remainTime);
+
+			resetresultCnt = userTimeDaoInterface.reset(beforeUTimeVO.getComId());
+
+			System.out.println("from UserTimeService.UTimeChargeService // 기존자리 초기화 ");
+
 		}
 
 		UTimeVO uTime = new UTimeVO(userId, comId, remainTime, startTime, ""); // 테스트 모델
 //      UTime(String userId, String comId, long userTime, String startTime, String endTime)
-
-		int resultCnt = 0;
-
-		int resetresultCnt = 0;
-
-		System.out.println("from UserTimeService.UTimeChargeService // 서비스 중간 확인 ");
-
-		resetresultCnt = userTimeDaoInterface.reset(beforeUTimeVO.getComId());
-
-		System.out.println("from UserTimeService.UTimeChargeService // 기존자리 초기화 ");
 
 		resultCnt = userTimeDaoInterface.UTimeChargeDao(uTime);
 
