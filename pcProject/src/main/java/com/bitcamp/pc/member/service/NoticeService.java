@@ -31,15 +31,14 @@ public class NoticeService {
 		int noticeTotalCount = daoInterface.pageCount();
 		List<NoticeVO> noticeList = null;
 		int firstRow = 0;
-		int endRow = NOTICE_COUNT_PER_PAGE;
 
 		if (noticeTotalCount > 0) {
 			firstRow = (pageNum - 1) * NOTICE_COUNT_PER_PAGE + 1;
-			noticeList = daoInterface.selectList(firstRow - 1, endRow); // mysql은 0열부터 시작 -1을 해줌
+			noticeList = daoInterface.selectList(firstRow - 1); // mysql은 0열부터 시작 -1을 해줌
 		} else {
 			currentPageNum = 0;
 			noticeList = Collections.emptyList();
 		}
-		return new NoticeListVO(noticeList, noticeTotalCount, currentPageNum, NOTICE_COUNT_PER_PAGE, firstRow, endRow);
+		return new NoticeListVO(noticeList, noticeTotalCount, currentPageNum, NOTICE_COUNT_PER_PAGE, firstRow);
 	}
 }

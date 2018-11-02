@@ -12,13 +12,12 @@ public class NoticeListVO {
 	private int endRow;
 
 	public NoticeListVO(List<NoticeVO> noticeList, int noticeTotalCount, int currentPageNum, int noticeCountPerPage,
-			int firstRow, int endRow) {
+			int firstRow) {
 		this.noticeList = noticeList;
 		this.noticeTotalCount = noticeTotalCount;
 		this.currentPageNum = currentPageNum;
 		this.noticeCountPerPage = noticeCountPerPage;
 		this.firstRow = firstRow;
-		this.endRow = endRow;
 		calculatePageTotalCount();
 
 	}
@@ -57,10 +56,6 @@ public class NoticeListVO {
 
 	public int getFirstRow() {
 		return firstRow;
-	}
-
-	public int getEndRow() {
-		return endRow;
 	}
 
 	public boolean isEmpty() {

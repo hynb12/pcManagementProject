@@ -20,7 +20,7 @@
 
 	<select id="selectList" parameterType="map" resultType="noticeVO">
 	
-		select * from notice order by noticeid desc limit #{firstRow},#{endRow} 
+		select * from notice order by noticeid desc limit #{firstRow}, 10
 	
 	</select>
 	
