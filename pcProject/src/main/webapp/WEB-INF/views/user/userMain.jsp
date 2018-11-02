@@ -159,6 +159,7 @@
   	width:490px;
   	height:60px;
   	padding: 10px;
+  	text-align: center;
   	font-size:1.8em;
  }
 </style>
@@ -344,6 +345,7 @@
 							if ((index + 1) == data[index].comId) {
 								// 남은시간이 없으면 안나옴
 								if(data[index].userTime != 0 && data[index].userTime != null){
+									$(this).css('background', 'red'); // 선택된 컴퓨터의 투명도 설정
 									$(this).children().eq(1).text(data[index].userId); // 선택된 컴퓨터의 첫 번째 줄에 아이디 표시
 									$(this).children().eq(2).text(Math.floor(data[index].userTime/60)+'시간 ' +(data[index].userTime%60)+'분'); //두번째 줄에 남은 시간 표시
 									$(this).children().eq(1).css({
@@ -361,6 +363,7 @@
 									console.log(userVO);									
 									if(data[index].userId==userVO){
 										$(this).css('opacity', 1); // 선택된 컴퓨터의 투명도 설정
+										$(this).css('background', 'gray'); // 선택된 컴퓨터의 투명도 설정
 										isUse[index] = true; // 자리 상태
 									}
 											

@@ -78,12 +78,13 @@
 	background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
 }
 
-.modal-content {
+.modal-contents {
 	background-color: #fefefe;
 	margin: auto;
 	padding: 15px;
 	border: 1px solid #888;
-	width: 60%;
+	border-radius: 20px;
+	width: 50%;
 }
 
 /* The Close Button */
@@ -125,6 +126,18 @@
 	font-size: 16px;
 	cursor: pointer;
 }
+
+.adminMainBtn {
+	width: 150px;
+	background-color: #f8585b;
+	border: none;
+	border-radius: 10px;
+	color: #fff;
+	padding: 15px 0;
+	text-align: center;
+	font-size: 18px;
+	cursor: pointer;
+}
  
 </style>
 
@@ -134,7 +147,7 @@
 
 	<div class="main-container">
 		<div class="comDiv">
-			<div class="mainTitleText">◆ 현재 사용 중인 컴퓨터 : 5대 ◆</div>
+			<div id="pcTitle" class="mainTitleText"><!-- jquery 동적 추가   --></div>
 			<table id="comTable">
 				<tr>
 					<td></td>
@@ -184,17 +197,20 @@
 
 			<!-- 시간 추가 modal -->
 			<div id="addTimeModal" class="mainModal">
-				<div class="modal-content">
+				<div class="modal-contents">
 					<h3>
-						충전하실 시간을 선택하세요.<span class="close">&times;</span>
+						※ 충전하실 시간을 선택하세요.<span class="close">&times;</span>
 					</h3>
 
 					<!-- ajax serialize 사용을 위해  -->
 					<form id="addTimeForm">
-						<input type="hidden" id="inputComId" name="comId">
+						<input type="hidden" id="inputComId" name="comId"> <select
+							name="addTime" id="selectAddTime">
+							<option value="0">select Time</option>
+						</select>
 					</form>
 
-					<button id="addTimeBtn">충전하기</button>
+					<button id="addTimeBtn" class="adminMainBtn">충전하기</button>
 				</div>
 			</div>
 
@@ -209,6 +225,7 @@
 		$(document).ready(function() {
 			
 			/* 시간처리(정기) */
+			var comCnt = 0;
 			
 			// 시간 충전, 주문내역  modal 창 닫기 버튼 클릭
 			$('.close').on('click', function() {
@@ -222,6 +239,12 @@
 					$('#addTimeModal').hide();
 				}
 			});
+			
+			// 시간 select box 초기화 
+			for (var i = 1; i <= 12; i++) {
+				var option = '<option value='+ i + '>' + i + ' 시간</option>';
+				$('#selectAddTime').append(option);
+			}
 
 			// 각 자리 초기화
 			$('#comTable td').each(function(index) {
@@ -242,32 +265,59 @@
 
 			});
 			
-			/* UserTimeContoller로 요청 */
-			$.ajax({
-				url: '<%=request.getContextPath()%>/member/maintimetable', 
-				type: 'post',
-				data: $('#addTimeForm').serialize(), // 선택한 자리 번호와 충전한 시간 전송
+			function test(){
+				// 각 테이블 정보 입력
+				$.ajax({
+					url: '<%=request.getContextPath()%>/member/maintimetable', 
+					type: 'post',
+					data: $('#addTimeForm').serialize(), // 선택한 자리 번호와 충전한 시간 전송
 				
-				success:function(data){
-					console.log(data);
+					success:function(data){
+						console.log(data);
 					
-					// 선택된 자리에 정보 표시 
-					$('#comTable td').each(function(index) {						
-						console.log(index)
-						
-						if ((index + 1) == data[index].comId) {
-							$(this).css('opacity', 1); // 선택된 컴퓨터의 투명도 설정
+						// 선택된 자리에 정보 표시 
+						$('#comTable td').each(function(index) {						
 							
-							$(this).children().eq(1).text(data[index].userId); // 선택된 컴퓨터의 첫 번째 줄에 아이디 표시
-							$(this).children().eq(2).text(Math.floor(data[index].userTime/60)+'시간 ' +(data[index].userTime%60)+'분'); //두번째 줄에 남은시간 표시
-							$(this).children().eq(2).css({
-								'color': 'black',
-								'font-weight' : 'bold'
-							}); // 시간 글씨색 변경
-						}
-					});
-				} /* end success */
-			}); /* end ajax */
+							if ((index + 1) == data[index].comId) {
+								// 남은시간이 없으면 안나옴
+								if(data[index].userTime != 0 && data[index].userTime != null){
+									comCnt++; // 사용 중인 컴퓨터 수 검사
+									
+									$(this).css('opacity', 1); // 선택된 컴퓨터의 투명도 설정
+									$(this).children().eq(1).text(data[index].userId); // 선택된 컴퓨터의 첫 번째 줄에 아이디 표시
+									$(this).children().eq(2).text(Math.floor(data[index].userTime/60)+'시간 ' +(data[index].userTime%60)+'분'); //두번째 줄에 남은 시간 표시
+									$(this).children().eq(1).css({
+										'color': 'black',
+										'font-weight' : 'bold'
+									}); // 시간 글씨색 변경
+									$(this).children().eq(2).css({
+										'color': 'black',
+										'font-weight' : 'bold'
+									}); // 시간 글씨색 변경
+									
+									
+									//로그인한 아이디 표시 (관리자는 표시 할 필요 없음)
+									/* var userVO = "${sessionScope.userVO.userId}";
+									console.log(userVO);									
+									if(data[index].userId==userVO){
+										$(this).css('opacity', 1); // 선택된 컴퓨터의 투명도 설정
+										isUse[index] = true; // 자리 상태
+									} */
+											
+								}
+								
+								
+							}
+						});
+						$('#pcTitle').html('◆ 현재 사용 중인 컴퓨터 : ' + comCnt + '대 ◆');
+					} /* end success */
+					
+				}); /* end ajax */
+			}			
+			
+			test();
+			
+			
 			
 			////////////////////////////////////////////////////////////////////
 			////////////////////////////////////////////////////////////////////
@@ -281,6 +331,7 @@
 				
 				success:function(data){
 					console.log("데이타" + data);
+					
 					
 					if(data == ''){
 						$('.foodDiv').append('<h3 style="color:red">※고객이 주문하신 음식이 없습니다.</h3>');
