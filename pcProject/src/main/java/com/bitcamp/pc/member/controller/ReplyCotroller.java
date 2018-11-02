@@ -43,11 +43,9 @@ public class ReplyCotroller {
 		service.deleteReply(id);
 	}
 
-	@RequestMapping(value = "/modify/{replyid}", method = RequestMethod.GET)
+	@RequestMapping(value = "/modify", method = RequestMethod.GET)
 	@ResponseBody
 	public void replyModify(ReplyVO vo) {
-
-		System.out.println(vo);
 		
 		service.updateReply(vo);
 	}

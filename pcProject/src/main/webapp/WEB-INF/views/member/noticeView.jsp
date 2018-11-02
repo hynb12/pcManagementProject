@@ -33,7 +33,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-sm-3">
-				<h4 style="color: #1e1e1e;">${view.noticeTitle}</h4>
+				<h4 style="color: #1e1e1e;"><strong>${view.noticeTitle}</strong></h4>
 				<fmt:parseDate value="${view.noticeDate}" pattern="yyyy-MM-dd HH:mm"
 					var="date" />
 				<fmt:formatDate value="${date}" pattern="yyyy-MM-dd" />
@@ -227,8 +227,7 @@
 
 		$.ajax({
 			type : 'get',
-			url : '${pageContext.request.contextPath}' + '/reply/modify/'
-					+ reid,
+			url : '${pageContext.request.contextPath}' + '/reply/modify',
 			dataType : 'text',
 			data : {
 				replyId : reid,
