@@ -151,17 +151,17 @@
 	cursor: pointer;
 }
 
-.mainTitleText{
-	background:#1AAB8A;
- 	color:#fff;
-  	border:none;
-  	border-radius: 10px;
-  	width:490px;
-  	height:60px;
-  	padding: 10px;
-  	text-align: center;
-  	font-size:1.8em;
- }
+.mainTitleText {
+	background: #1AAB8A;
+	color: #fff;
+	border: none;
+	border-radius: 10px;
+	width: 490px;
+	height: 60px;
+	padding: 10px;
+	text-align: center;
+	font-size: 1.8em;
+}
 </style>
 
 </head>
@@ -171,7 +171,9 @@
 	<div class="main-container">
 		<div class="comDiv">
 			<!-- <h3>◆ 사용하실 컴퓨터를 선택하세요. ◆</h3> -->
-			<marquee behavior="alternate" scrollamount="10"><div class="mainTitleText">◆ 사용하실 컴퓨터를 선택하세요. ◆</div></marquee>
+			<marquee behavior="alternate" scrollamount="10">
+				<div class="mainTitleText">◆ 사용하실 컴퓨터를 선택하세요. ◆</div>
+			</marquee>
 
 			<table id="comTable">
 				<tr>
@@ -240,7 +242,10 @@
 		<!-- end comDiv  -->
 
 		<div class="foodDiv">
-			<marquee behavior="alternate" scrollamount="10"><div class="mainTitleText" style="width: 530px;">◆ 음식 선택 후 주문하기 눌러주세요. ◆</div></marquee>
+			<marquee behavior="alternate" scrollamount="10">
+				<div class="mainTitleText" style="width: 530px;">◆ 음식 선택 후
+					주문하기 눌러주세요. ◆</div>
+			</marquee>
 			<table id="foodTable">
 				<tr>
 					<td></td>
@@ -345,6 +350,7 @@
 							if ((index + 1) == data[index].comId) {
 								// 남은시간이 없으면 안나옴
 								if(data[index].userTime != 0 && data[index].userTime != null){
+									$(this).off('click');// 이벤트 제거
 									$(this).css('background', 'red'); // 선택된 컴퓨터의 투명도 설정
 									$(this).children().eq(1).text(data[index].userId); // 선택된 컴퓨터의 첫 번째 줄에 아이디 표시
 									$(this).children().eq(2).text(Math.floor(data[index].userTime/60)+'시간 ' +(data[index].userTime%60)+'분'); //두번째 줄에 남은 시간 표시
@@ -361,10 +367,23 @@
 									//로그인한 아이디 표시
 									var userVO = "${sessionScope.userVO.userId}";
 									console.log(userVO);									
-									if(data[index].userId==userVO){
+									if(data[index].userId==userVO){										
 										$(this).css('opacity', 1); // 선택된 컴퓨터의 투명도 설정
 										$(this).css('background', 'gray'); // 선택된 컴퓨터의 투명도 설정
 										isUse[index] = true; // 자리 상태
+										$(this).on('click', function(){
+											var comId = $(this).attr('comId'); // 선택한 컴퓨터의 위치 값 가져오기
+											
+											if(isUse[comId] == false){
+												isUse[comId] = true;
+											}
+											
+											else{
+												isUse[comId] = false;
+											}
+											$('#inputComId').val(comId); //comId input 창에 값 저장
+											$('#addTimeModal').show(); // modal창 보이기
+										});
 									}
 											
 								}
@@ -378,8 +397,8 @@
 			
 			// 각 컴퓨터 선택 분기 처리
 			var isUse = new Array(12).fill(false); 
-			
-			$('#comTable td').on('click', function(e) {
+		
+			$('#comTable td').on('click', function() {
 				
 				var comId = $(this).attr('comId'); // 선택한 컴퓨터의 위치 값 가져오기
 				
