@@ -7,19 +7,18 @@
 <title>PC Management</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
 <style>
 .row {
 	margin-top: 50px;
 	color: #666;
 }
 
-.buttons1 {
+.buttonsLeft {
 	float: left;
 	display: block;
 }
 
-.buttons2 {
+.buttonsRight {
 	float: right;
 	display: block;
 }
@@ -28,7 +27,6 @@
 	padding-top: 40px;
 }
 </style>
-
 </head>
 <body>
 	<%@ include file="/WEB-INF/views/common/header.jsp"%>
@@ -46,11 +44,11 @@
 			</div>
 		</div>
 		<hr />
-		<div class="buttons1">
-			<button type="button" class="btn btn-outline-elegant waves-effect">이전</button>
-			<button type="button" class="btn btn-outline-elegant waves-effect">다음</button>
+		<div class="buttonsLeft">
+			<button type="button" class="btn btn-outline-elegant waves-effect" onclick="location.href='${pageContext.request.contextPath}/member/notice/${view.noticeId-1}'">이전</button>
+			<button type="button" class="btn btn-outline-elegant waves-effect" onclick="location.href='${pageContext.request.contextPath}/member/notice/${view.noticeId+1}'">다음</button>
 		</div>
-		<div class="buttons2">
+		<div class="buttonsRight">
 			<button type="button" class="btn btn-dark" data-toggle="modal"
 				data-target="#modalNoticeDeleteForm">삭제</button>
 			<button type="button" class="btn btn-dark"

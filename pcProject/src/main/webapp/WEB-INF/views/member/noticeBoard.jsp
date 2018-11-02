@@ -10,7 +10,7 @@
 <style>
 #write {
 	float: right;
-	margin: 10px;
+	margin: 20px;
 }
 /* 공지사항 게시판 제목 오버 */
 .notice-title:hover {
