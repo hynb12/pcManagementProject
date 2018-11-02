@@ -43,10 +43,10 @@ public class UserTimeService {
 		System.out.println("from UserTimeService.UTimeChargeService // 사용 전 남은시간 : " + remainTime);
 
 		// 사용중이던 경우
-		UTimeVO beforeUTimeVO = userTimeDaoInterface.getUTimeDao(comId);
+		UTimeVO beforeUTimeVO = userTimeDaoInterface.getUTimeDaoUserId(userId);
 		System.out.println("from UserTimeService.UTimeChargeService // 사용전 컴퓨터 객체 확인 : " + beforeUTimeVO);
 
-		if (beforeUTimeVO == null) {
+		if (beforeUTimeVO.getUserId() == null) {
 
 		} else {
 			System.out
@@ -67,11 +67,19 @@ public class UserTimeService {
 
 		int resultCnt = 0;
 
+		int resetresultCnt = 0;
+
 		System.out.println("from UserTimeService.UTimeChargeService // 서비스 중간 확인 ");
+
+		resetresultCnt = userTimeDaoInterface.reset(beforeUTimeVO.getComId());
+
+		System.out.println("from UserTimeService.UTimeChargeService // 기존자리 초기화 ");
+
+		resultCnt = userTimeDaoInterface.UTimeChargeDao(uTime);
 
 		System.out.println("from UserTimeService.UTimeChargeService // 테스트 모델 확인 : " + uTime); // 테스트 모델 확인
 
-		resultCnt = userTimeDaoInterface.UTimeChargeDao(uTime);
+		System.out.println("from UserTimeService.UTimeChargeService // 새로운 자리 출력");
 
 		System.out.println("from UserTimeService.UTimeChargeService // 서비스 끝 ");
 
@@ -109,7 +117,7 @@ public class UserTimeService {
 		System.out.println("from TimeService.endTimeReg // 서비스 시작 ");
 
 		userTimeDaoInterface = sqlSessionTemplate.getMapper(UserTimeDaoInterface.class);
-		
+
 		String userId = userVO.getUserId();
 
 		UTimeVO uTimeVO = userTimeDaoInterface.getUTimeDaoUserId(userId);
@@ -156,7 +164,7 @@ public class UserTimeService {
 		System.out.println("from TimeService.reset // 서비스 시작 ");
 
 		userTimeDaoInterface = sqlSessionTemplate.getMapper(UserTimeDaoInterface.class);
-		
+
 		String userId = userVO.getUserId();
 
 		UTimeVO uTimeVO = userTimeDaoInterface.getUTimeDaoUserId(userId);
