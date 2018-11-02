@@ -213,18 +213,18 @@
                </tr>
                <tr>
                   <th>이름</th>
-                  <td><input type = "text" name = "userName" value = "${user.userName }" ></td>
+                  <td><input type = "text" name = "userName" id = "editName" value = "${user.userName }" required></td>
                </tr>
                </tr>
                <tr>
                   <th>비밀번호</th>
-                  <td><input type = "text" name = "userPw" value = "${user.userPw }" ></td>
+                  <td><input type = "text" name = "userPw" id = "editPw" value = "${user.userPw }" required></td>
                </tr>
                <th>핸드폰번호</th>
-                  <td><input type = "text" name = "userPhone" value = "${user.userPhone }" ></td>
+                  <td><input type = "text" name = "userPhone" id = "editPhone" value = "${user.userPhone }" required></td>
                <tr>
                   <th>생년월일</th>
-                  <td><input type = "text" name = "userBirth" value = "${user.userBirth }" ></td>
+                  <td><input type = "text" name = "userBirth" id = "editBirth" value = "${user.userBirth }" ></td>
                </tr>
                <tr>
                   <th>회원정보관리</th>
@@ -239,17 +239,22 @@
    <script>
       $(document).ready(function(){
          
-         $('#mainModal').hide();
+         $('#mainModal').hide(); // 시작시 모달창을 가림
          
          $('#editBtn').on('click', function(){
          
-            $('#mainModal').show();
+            $('#mainModal').show(); //수정버튼을 누르면 모달창 띄움
             
          });
          
+         //수정페이지에서 수정완료 버튼을 눌렀을때 수정칸이 비워있으면
+         //수정이 되지 않음
          $('#editOkBtn').click(function(){
-            
-            $.ajax({
+            if($('#editName').val() != "" 
+            	&& $('#editPw').val() != ""
+            	&& $('#editPhone').val() != ""
+            	&& $('#editBirth').val() != ""){
+        	 $.ajax({
                url : '${pageContext.request.contextPath}' + '/user/userEdit',
                type : 'post',
                data : $('#editForm').serialize(),
@@ -258,12 +263,14 @@
                   location.href = '<%=request.getContextPath()%>/user/myPage'
                }
             });
-            
+            } else{
+            	alert("수정할 회원정보를 모두 입력하세요.");
+            }
          });
          
+         //삭제버튼을 누르면 탈퇴처리되고 로그인페이지로 이동
          $('#deleteBtn').click(function(){
-            
-            $.ajax({
+        	 $.ajax({
                url : '${pageContext.request.contextPath}' + '/user/userDelete',
                type : 'post',
                data : $('#myForm').serialize(),
