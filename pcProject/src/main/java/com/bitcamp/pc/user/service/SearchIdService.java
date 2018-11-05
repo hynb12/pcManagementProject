@@ -17,8 +17,6 @@ public class SearchIdService {
 	// 유저 아이디를 찾기 위해 phoneNum를 사용
 	public String userIdSearch(String phoneNum, String userName) {
 		
-		String result = "";
-		
 		userDao = sqlSessionTemplate.getMapper(UserDaoInterface.class);
 		UserVO vo = userDao.searchId(phoneNum);
 		System.out.println("서비스"+vo);

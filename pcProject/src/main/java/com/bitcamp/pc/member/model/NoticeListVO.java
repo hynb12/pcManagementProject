@@ -9,7 +9,6 @@ public class NoticeListVO {
 	private int pageTotalCount;
 	private int noticeCountPerPage;
 	private int firstRow;
-	private int endRow;
 
 	public NoticeListVO(List<NoticeVO> noticeList, int noticeTotalCount, int currentPageNum, int noticeCountPerPage,
 			int firstRow) {

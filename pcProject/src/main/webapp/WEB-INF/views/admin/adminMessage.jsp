@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <head>
 <title>PC Management</title>
@@ -8,11 +8,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
 #main-container {
-	margin-left : -20px;
-	min-width : 800px !important;
-	overflow : hidden;
-	max-width : 100% !important;
+	margin-left: -20px;
+	min-width: 800px !important;
+	overflow: hidden;
+	max-width: 100% !important;
 }
+
 #messageTitle {
 	font-weight: bold;
 	margin-top: 30px;
@@ -36,8 +37,8 @@
 	text-align: center;
 	width: 250px;
 	height: 250px;
-	border-right : 3px solid #8e8e8e;
-	border-bottom : 3px solid #8e8e8e;
+	border-right: 3px solid #8e8e8e;
+	border-bottom: 3px solid #8e8e8e;
 	margin-left: 40px;
 	list-style: none;
 	margin-bottom: 30px;
@@ -67,15 +68,18 @@
 	padding: 10px;
 	border-radius: 5px;
 }
-.messageBtnClass{
-	background-color : red !important;
+
+.messageBtnClass {
+	background-color: red !important;
 }
+
 #messageBtn:hover {
 	background-color: #8e8e8e;
 	cursor: pointer;
 }
-.messageBtnClass:hover{
-	background-color : palevioletred !important;
+
+.messageBtnClass:hover {
+	background-color: palevioletred !important;
 }
 
 #detailDiv {
@@ -135,43 +139,49 @@
 	background-color: black;
 	text-decoration: none;
 	border-radius: 7px;
-	padding : 13px;
-	font-size : 17px;
-}
-#detailClose {
-	padding : 13px 28px !important;
-	margin-left : 50px;
-}
-#detailDel {
-	background-color : red;
+	padding: 13px;
+	font-size: 17px;
 }
 
-#detailDel:hover{
-	background-color : palevioletred;
+#detailClose {
+	padding: 13px 28px !important;
+	margin-left: 50px;
 }
+
+#detailDel {
+	background-color: red;
+}
+
+#detailDel:hover {
+	background-color: palevioletred;
+}
+
 #detailClose:hover {
 	background-color: #8e8e8e;
 	cursor: pointer;
 }
-#mainModal{
-	position : fixed;
-	width : 100%;
-	height : 100%;
-	left : 0px;
-	top : 0px;
-	z-index : 1;
-	background-color : rgba(0, 0, 0, 0.4);
+
+#mainModal {
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	left: 0px;
+	top: 0px;
+	z-index: 1;
+	background-color: rgba(0, 0, 0, 0.4);
 }
-hr{
-	margin-left : 40px;
-    border: 0;
-    border-top: 1px solid rgba(0,0,0,.1)
+
+hr {
+	margin-left: 40px;
+	border: 0;
+	border-top: 1px solid rgba(0, 0, 0, .1)
 }
+
 #nomessage {
-	margin-left : 50px;
-	font-size : 30px;
-	color : red;
-	font-weight : bold;
+	margin-left: 50px;
+	font-size: 30px;
+	color: red;
+	font-weight: bold;
 }
 </style>
 
@@ -181,9 +191,10 @@ hr{
 	<div class="container" id="main-container">
 		<h1 id="messageTitle">메시지 리스트</h1>
 		<hr>
-		<c:if test="${empty list}"> <!-- jstl 에서 null값인지 확인할때는 empty를 넣어줘야함 -->
-	<div id = "noMessage">※ 메세지가 없습니다.</div>
-</c:if>
+		<c:if test="${empty list}">
+			<!-- jstl 에서 null값인지 확인할때는 empty를 넣어줘야함 -->
+			<div id="noMessage">※ 메세지가 없습니다.</div>
+		</c:if>
 
 		<c:if test="${list != null}">
 			<div id="wrap">
@@ -194,37 +205,37 @@ hr{
 							<li>아이디 : ${message.userId}</li>
 							<li><textarea readonly cols="20">${message.messageCon}</textarea></li>
 							<a href="message?messageId=${message.messageId}" id="messageBtn">상세보기</a>
-							<a href="delete?messageId=${message.messageId}" id="messageBtn" class = "messageBtnClass">삭제하기</a>
+							<a href="delete?messageId=${message.messageId}" id="messageBtn" class="messageBtnClass">삭제하기</a>
 						</ul>
 					</div>
 				</c:forEach>
 			</div>
 		</c:if>
 
-	<!-- 상세보기가 나오는 창 -->
-	<c:if test="${detail.messageId !=null}">
-		<div id = "mainModal">
-			<div id="detailDiv">
-				<ul id="detailUl">
-					<h3>메시지 상세보기</h3>
-					<li>메시지 번호 : <input type="text" value="${detail.messageId}"
-						readonly></li>
-					<li>보낸 아이디 : <input type="text" value="${detail.userId}"
-						readonly></li>
-					<li>메시지 날짜 : <input type="text" value="${detail.messageDate}" pattern="yyyy-MM-dd HH:mm"
-						readonly></li>
-					<li>메시지 제목 : <input type="text" value="${detail.messageTitle}"
-						readonly></li>
-					<li><textarea readonly cols="31"> ${detail.messageCon}</textarea></li>
-					<div id="detailFoot">
-						<a href="delete?messageId=${detail.messageId}" id="detailDel">삭제하기</a>
-						<a id="detailClose">닫 기 </a>
-					</div>
-				</ul>
+		<!-- 상세보기가 나오는 창 -->
+		<c:if test="${detail.messageId !=null}">
+			<div id="mainModal">
+				<div id="detailDiv">
+					<ul id="detailUl">
+						<h3>메시지 상세보기</h3>
+						<li>메시지 번호 : <input type="text" value="${detail.messageId}"
+							readonly></li>
+						<li>보낸 아이디 : <input type="text" value="${detail.userId}"
+							readonly></li>
+						<li>메시지 날짜 : <input type="text" value="${detail.messageDate}"
+							pattern="yyyy-MM-dd HH:mm" readonly></li>
+						<li>메시지 제목 : <input type="text"
+							value="${detail.messageTitle}" readonly></li>
+						<li><textarea readonly cols="31"> ${detail.messageCon}</textarea></li>
+						<div id="detailFoot">
+							<a href="delete?messageId=${detail.messageId}" id="detailDel">삭제하기</a>
+							<a id="detailClose">닫 기 </a>
+						</div>
+					</ul>
+				</div>
 			</div>
-		</div>
-	</c:if>
-</div>
+		</c:if>
+	</div>
 
 	<%@ include file="/WEB-INF/views/common/footer.jsp"%>
 
@@ -237,7 +248,7 @@ hr{
 			$('#mainModal').hide();
 		});
 	});
-	
+
 	$(window).on('click', function() {
 		//jquery는 dom 객체를 jquery 객체로 한 번 감싸 리턴하므로 dom 객체를 얻어와야 비교 가능
 		if (event.target == $('#mainModal').get(0)) {
